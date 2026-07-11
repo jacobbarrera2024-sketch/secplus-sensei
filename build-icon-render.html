@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; width: 512px; height: 512px; overflow: hidden; background: transparent; }
+  #host { width: 512px; height: 512px; }
+  canvas { display: block; width: 512px !important; height: 512px !important; }
+</style>
+<script src="ninja-duck-data.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.149.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.149.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<div id="host"></div>
+<script type="module">
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+
+function b64ToArrayBuffer(b64) {
+  const bin = atob(b64);
+  const buf = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) buf[i] = bin.charCodeAt(i);
+  return buf.buffer;
+}
+
+window.waitForDuckReady = () => new Promise((resolve, reject) => {
+  if (window.__duckReady) return resolve();
+  const timeout = setTimeout(() => reject(new Error("Timed out waiting for duck render")), 60000);
+  const done = () => { clearTimeout(timeout); resolve(); };
+  window.__duckReadyResolve = done;
+});
+
+const host = document.getElementById("host");
+const size = 512;
+const scene = new THREE.Scene();
+const cam = new THREE.PerspectiveCamera(36, 1, 0.05, 50);
+cam.position.set(0, 0, 2.55);
+cam.lookAt(0, 0, 0);
+
+const renderer = new THREE.WebGLRenderer({
+  alpha: true,
+  antialias: true,
+  premultipliedAlpha: false,
+  preserveDrawingBuffer: true,
+});
+renderer.setSize(size, size, false);
+renderer.setPixelRatio(1);
+renderer.setClearColor(0x000000, 0);
+host.appendChild(renderer.domElement);
+
+scene.add(new THREE.AmbientLight(0xffffff, 0.95));
+const key = new THREE.DirectionalLight(0xffffff, 1);
+key.position.set(2.5, 4, 3);
+scene.add(key);
+const fill = new THREE.DirectionalLight(0x8ab4ff, 0.35);
+fill.position.set(-2, 1, 2);
+scene.add(fill);
+
+function mountDuck(gltf) {
+  const duck = gltf.scene;
+  const box = new THREE.Box3().setFromObject(duck);
+  const sphere = box.getBoundingSphere(new THREE.Sphere());
+  const center = sphere.center;
+  const vFov = cam.fov * Math.PI / 180;
+  const viewH = 2 * Math.tan(vFov / 2) * cam.position.z;
+  const viewW = viewH * cam.aspect;
+  const fit = Math.min(viewH, viewW) * 0.82;
+  const sc = fit / sphere.radius;
+  duck.scale.setScalar(sc);
+  duck.position.set(-center.x * sc, -center.y * sc, -center.z * sc);
+  duck.rotation.y = 0.65;
+  scene.add(duck);
+  renderer.render(scene, cam);
+  window.__duckReady = true;
+  if (window.__duckReadyResolve) window.__duckReadyResolve();
+}
+
+const loader = new GLTFLoader();
+if (window.NINJA_DUCK_GLB_B64) {
+  loader.parse(b64ToArrayBuffer(window.NINJA_DUCK_GLB_B64), "", mountDuck);
+} else {
+  loader.load("ninja-duck.glb", mountDuck);
+}
+</script>
+</body>
+</html>
