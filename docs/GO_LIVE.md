@@ -10,9 +10,12 @@ Do these when you get home. **~45–60 minutes total.**
 - [x] Professional README with badges and structure
 - [x] Portfolio case study → [PORTFOLIO.md](PORTFOLIO.md)
 - [x] Freelance copy templates → [FREELANCE_COPY.md](FREELANCE_COPY.md)
+- [x] **Portfolio website** built in `website/` — see [WELCOME_HOME.md](WELCOME_HOME.md)
+- [x] LinkedIn launch copy → [LINKEDIN_LAUNCH.md](LINKEDIN_LAUNCH.md)
+- [x] `Preview Website.bat` — double-click to preview locally
 - [x] MIT license added
 - [x] 84 MB `.exe` removed from git
-- [x] Code merged to `main` (after you pull)
+- [x] Code on `main`
 
 ---
 
@@ -46,7 +49,7 @@ Do these when you get home. **~45–60 minutes total.**
 
 - [ ] Sign up **Upwork** — paste profile overview + add project from FREELANCE_COPY.md
 - [ ] Sign up **Fiverr** — create 1 gig from FREELANCE_COPY.md templates
-- [ ] Link: `https://github.com/jacobbarrera2024-sketch/secplus-sensei`
+- [ ] Link: `https://jacobbarrera2024-sketch.github.io/secplus-sensei/` and GitHub repo
 
 ### 5. First outreach (10 min)
 
@@ -58,7 +61,7 @@ Do these when you get home. **~45–60 minutes total.**
 ## This week
 
 - [ ] Apply to 5–10 jobs per week
-- [ ] Optional: one-page site on Carrd or GitHub Pages linking GitHub + LinkedIn
+- [ ] Optional: one-page site on Carrd — **skip, you have GitHub Pages**
 - [ ] Optional: 60-second demo video (Loom)
 
 ---
@@ -67,7 +70,7 @@ Do these when you get home. **~45–60 minutes total.**
 
 - Don't keep polishing the app — it's done
 - Don't build project #2 before you're live on Upwork/LinkedIn
-- Don't wait for a website — GitHub + LinkedIn is enough to start
+- Don't wait for a website — **it's already built** in `website/`
 
 ---
 

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jacobbarrera2024-sketch.github.io/secplus-sensei/sitemap.xml

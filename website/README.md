@@ -45,6 +45,8 @@ Copy the `<article class="project-item">` block in `index.html` and update:
 | `index.html` | Page structure and content |
 | `styles.css` | All styles |
 | `main.js` | Contact config, nav, animations |
-| `assets/` | Favicon and project thumbnails |
+| `assets/og-image.png` | Social preview when sharing on LinkedIn/Twitter |
+| `manifest.json` | Add to Home Screen on iPhone |
+| `404.html` | Custom not-found page |
 
 No build step. No dependencies.

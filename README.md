@@ -17,10 +17,10 @@
 </p>
 
 <p align="center">
+  <a href="docs/WELCOME_HOME.md"><strong>Welcome home — start here</strong></a> ·
   <a href="docs/GO_LIVE.md"><strong>Go-live checklist</strong></a> ·
   <a href="website/"><strong>Portfolio website</strong></a> ·
-  <a href="docs/PORTFOLIO.md"><strong>Case study</strong></a> ·
-  <a href="docs/FREELANCE_COPY.md"><strong>Freelance copy</strong></a>
+  <a href="docs/PORTFOLIO.md"><strong>Case study</strong></a>
 </p>
 
 > **Unofficial study aid** — not affiliated with or endorsed by CompTIA. "CompTIA" and "Security+" are trademarks of CompTIA, Inc.

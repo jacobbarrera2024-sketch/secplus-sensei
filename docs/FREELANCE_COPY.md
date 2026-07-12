@@ -1,6 +1,10 @@
 # Ready-to-paste freelance copy
 
-Copy these into Upwork, Fiverr, LinkedIn, or proposal messages. Swap `[YOUR LINK]` with your GitHub repo URL.
+Copy these into Upwork, Fiverr, LinkedIn, or proposal messages.
+
+**Your links:**
+- Portfolio site: `https://jacobbarrera2024-sketch.github.io/secplus-sensei/`
+- GitHub repo: `https://github.com/jacobbarrera2024-sketch/secplus-sensei`
 
 ---
 
@@ -14,7 +18,7 @@ Tech: Electron, vanilla JavaScript, Three.js, electron-builder, local-first pers
 
 Proof of ability to ship complete products — not just code snippets.
 
-🔗 [YOUR LINK]
+🔗 https://jacobbarrera2024-sketch.github.io/secplus-sensei/
 
 ---
 
@@ -30,7 +34,7 @@ Proof of ability to ship complete products — not just code snippets.
 
 I build desktop and web applications end to end — from UI and logic to installers, persistence, and optional AI features. Recent work: SecPlus Sensei, a Security+ study desktop app with spaced repetition, exam simulation, and 500+ authored questions, built in three days. Open to contract work on Electron apps, study/quiz platforms, and AI-integrated tools.
 
-Portfolio: [YOUR LINK]
+Portfolio: https://jacobbarrera2024-sketch.github.io/secplus-sensei/
 
 ---
 
@@ -44,7 +48,7 @@ I can help you build:
 - Web apps with clean UI and local-first or cloud persistence
 - AI-enhanced tools (Claude, OpenAI) with bring-your-own-key or backend proxy patterns
 
-Portfolio: [YOUR LINK]
+Portfolio: https://jacobbarrera2024-sketch.github.io/secplus-sensei/
 
 ---
 
@@ -57,7 +61,7 @@ Full-featured CompTIA Security+ (SY0-701) study application. Includes 452 flashc
 
 **Skills:** Electron, JavaScript, HTML/CSS, Desktop Applications, AI Integration
 
-**URL:** [YOUR LINK]
+**URL:** https://jacobbarrera2024-sketch.github.io/secplus-sensei/
 
 ---
 
@@ -87,13 +91,13 @@ Need a custom Electron app, a study/quiz platform, or AI features in your produc
 
 Message me your idea — I'll reply with a clear plan and timeline.
 
-Portfolio: [YOUR LINK]
+Portfolio: https://jacobbarrera2024-sketch.github.io/secplus-sensei/
 
 ---
 
 ## Cold outreach DM (LinkedIn / email)
 
-Hi [Name] — I'm a developer who builds desktop and web apps with optional AI integration. I recently shipped SecPlus Sensei, a full Security+ study desktop app (flashcards, exam sim, 500+ questions, Electron) in three days: [YOUR LINK]
+Hi [Name] — I'm a developer who builds desktop and web apps with optional AI integration. I recently shipped SecPlus Sensei, a full Security+ study desktop app (flashcards, exam sim, 500+ questions, Electron) in three days: https://jacobbarrera2024-sketch.github.io/secplus-sensei/
 
 If you ever need contract help on a similar tool — training app, internal dashboard, Electron wrapper, AI features — I'd be glad to chat. Happy to do a quick walkthrough.
 
@@ -103,7 +107,7 @@ If you ever need contract help on a similar tool — training app, internal dash
 
 ## Proposal opener (Upwork job reply)
 
-Hi — I build Electron and JavaScript apps end to end and recently shipped a desktop study product with spaced repetition, exam simulation, and optional AI: [YOUR LINK]
+Hi — I build Electron and JavaScript apps end to end and recently shipped a desktop study product with spaced repetition, exam simulation, and optional AI: https://jacobbarrera2024-sketch.github.io/secplus-sensei/
 
 Your project sounds like a strong fit for [mention 1 specific thing from their job post]. I can [concrete deliverable in 1 sentence].
 
