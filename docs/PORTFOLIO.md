@@ -1,6 +1,6 @@
 # SecPlus Sensei — Portfolio Case Study
 
-> **One-line pitch:** A full-featured CompTIA Security+ desktop study app — built solo in three days — with 500+ authored questions, real spaced repetition, exam simulation, gamification, and optional AI tutoring.
+> **One-line pitch:** A full-featured CompTIA Security+ desktop study app — built solo in three days — with 480+ authored questions, real spaced repetition, exam simulation, gamification, and optional AI tutoring.
 
 ---
 
@@ -15,7 +15,7 @@ Security+ candidates need more than passive reading. They need **active recall**
 | Area | What it does |
 |------|----------------|
 | **Flashcards** | 452 cards across all 5 exam domains, SM-2 spaced repetition, leech detection |
-| **Quizzes** | 438 MCQ/multi-select + adaptive weak-domain weighting |
+| **Quizzes** | 415 MCQ/multi-select + adaptive weak-domain weighting |
 | **Exam sim** | 90-minute timed run, PBQs first, scaled scoring, per-domain breakdown |
 | **Dashboard** | Readiness %, XP/levels, daily quests, achievements, 20/30/60-day plans |
 | **AI tutor** | Optional BYOK Claude integration — optimize cards, explain misses, refine suggestions |
@@ -34,7 +34,7 @@ Everything works **offline-first**. AI is optional and user-keyed.
 ## By the numbers
 
 - **452** flashcards
-- **507** practice questions (including 69 PBQs)
+- **481** practice questions (415 multiple-choice/multi-select + 66 PBQs)
 - **5** SY0-701 domains, weighted to the real exam blueprint
 - **8** main views + onboarding, AI key modal, About/Help
 - **v1.1.7** — iterated through onboarding, auto-update, AI error handling, and portfolio polish
@@ -53,7 +53,7 @@ Electron · JavaScript · HTML/CSS · Three.js · electron-builder · Anthropic 
 ## Links
 
 - **Repo:** [github.com/jacobbarrera2024-sketch/secplus-sensei](https://github.com/jacobbarrera2024-sketch/secplus-sensei)
-- **Freelance copy:** [docs/FREELANCE_COPY.md](FREELANCE_COPY.md)
+- **Portfolio:** [jacobbarrera2024-sketch.github.io/secplus-sensei](https://jacobbarrera2024-sketch.github.io/secplus-sensei/)
 - **Screenshot guide:** [docs/SCREENSHOTS.md](SCREENSHOTS.md)
 
 ---
