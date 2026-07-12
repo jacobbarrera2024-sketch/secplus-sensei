@@ -1,47 +1,43 @@
 # Portfolio website
 
-A simple, self-contained showcase site for Jacob's work — featuring **SecPlus Sensei**.
+A clean, professional single-page portfolio — **not** tied to any one project's visual style. Works as a hub for multiple projects over time.
 
 ## Preview locally
-
-Open `index.html` in your browser, or run a quick server:
 
 ```bash
 cd website
 npx --yes serve .
-# visit http://localhost:3000
 ```
 
-## Before you share
+Or open `index.html` in your browser.
 
-Edit `index.html` and replace these placeholders:
+## Add a new project
 
-| Placeholder | What to set |
-|-------------|-------------|
-| LinkedIn link (`id="linkedinLink"`) | Your real LinkedIn profile URL |
-| Email link (`id="emailLink"`) | Your real email address |
+Duplicate the first `<article class="project-item">` block in `index.html` and fill in:
 
-## Deploy to GitHub Pages (free)
+- Thumbnail image in `assets/` (project screenshot or icon)
+- Title, description, tags
+- Links (GitHub, live demo, case study)
 
-1. Push this repo to GitHub (already done if you're reading this on GitHub).
-2. Go to **repo Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-4. Push to `main` — the workflow `.github/workflows/deploy-website.yml` publishes the `website/` folder automatically.
-5. Your site will be live at:
+Remove or hide the "Coming soon" placeholder when you have a second project.
 
-   **https://jacobbarrera2024-sketch.github.io/secplus-sensei/**
+## Personalize before sharing
 
-   (GitHub username + repo name — adjust if your username differs.)
+Edit `index.html`:
 
-## Files
+| Item | Current placeholder |
+|------|---------------------|
+| LinkedIn | `https://www.linkedin.com/in/` |
+| Email | `hello@example.com` |
 
-```
-website/
-├── index.html      # Single-page portfolio
-├── styles.css      # All styles
-├── main.js         # Mobile menu + scroll reveal
-├── assets/         # App icon
-└── README.md       # This file
-```
+## Deploy (GitHub Pages)
 
-No build step. No npm install. Just HTML, CSS, and JS.
+1. Repo **Settings → Pages → Source → GitHub Actions**
+2. Push to `main` — workflow deploys `website/` automatically
+3. Live at: **https://jacobbarrera2024-sketch.github.io/secplus-sensei/**
+
+## Design
+
+- Neutral light theme — works for any project type
+- SecPlus Sensei appears only as one project card, not as site branding
+- No build step required
