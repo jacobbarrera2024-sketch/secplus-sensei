@@ -175,6 +175,7 @@ function notifyUpdateAvailable(info) {
 }
 
 function backgroundUpdateCheck() {
+  if (!app.isPackaged) return;
   var info = checkForLocalUpdate();
   if (info) {
     pendingUpdate = info;
@@ -249,6 +250,7 @@ ipcMain.on("progress-save-sync", function(e, json) {
 });
 
 ipcMain.handle("check-update", function() {
+  if (!app.isPackaged) return null;
   var info = checkForLocalUpdate();
   if (info) pendingUpdate = info;
   return info;
@@ -272,7 +274,7 @@ ipcMain.handle("run-update", function(_e, installerPath) {
 });
 
 app.on("will-quit", function() {
-  if (updateInstalling) return;
+  if (!app.isPackaged || updateInstalling) return;
   var dismissed = readDismissedUpdate();
   var info = pendingUpdate || checkForLocalUpdate();
   if (info && info.installerPath && fs.existsSync(info.installerPath) && dismissed !== info.version) {

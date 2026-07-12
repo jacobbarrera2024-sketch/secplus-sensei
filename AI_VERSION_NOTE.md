@@ -4,15 +4,15 @@
 
 ## Current version
 
-**1.1.2**
+**1.1.5**
 
 Canonical sources (keep all in sync):
 
 | File | What to update |
 |------|----------------|
-| `CURRENT_VERSION.txt` | Single line: `1.1.3` |
-| `package.json` | `"version": "1.1.3"` |
-| `secplus-sensei.html` | `var APP_VERSION="1.1.3"` |
+| `CURRENT_VERSION.txt` | Single line: `1.1.5` |
+| `package.json` | `"version": "1.1.5"` |
+| `secplus-sensei.html` | `var APP_VERSION="1.1.5"` |
 
 ## After every code change
 
@@ -35,6 +35,7 @@ Canonical sources (keep all in sync):
 
 ## Last change summary
 
+- v1.1.5: Enlarged header ninja duck (44px → 64px); synced all version files after the duck change; dev mode (`npm start`) no longer shows the packaged-app update banner.
 - v1.1.2: Background auto-update UX — no blocking modal on launch; slim top banner ("Update ready — installs when you close, or Restart now"); silent install on quit; Restart now runs silent install and reopens the app. Desktop shortcut workflow: open app → keep studying → close or restart when ready.
 - v1.1.1: Compact header nav (tabs no longer stretch full width). Persistent "Unofficial study aid" disclaimer in a new app footer on every view; new About & Help modal (version, what the app does, how optional AI works, privacy note, FAQ/known issues); all 5 raw AI error messages (Optimize, Card tutor x2, quiz explain, refine suggestions) replaced with friendly `friendlyAiError()` classification (bad key / offline / rate-limited / out of credits / other); fixed stale "check API key on the Dashboard" text left over from the old redirect-based flow; fixed "Refine with AI" missing loading/disabled state (could double-fire) and dropped its redundant pre-emptive toast; repo hygiene — deleted stale `dist2`–`dist6` build-output folders (~37MB, mostly duplicate Chromium license files), `.gitignore` now ignores `dist*/`; reformatted `README.txt` spacing.
 - v1.0.9: Priority 1 (onboarding/BYOK) — first-run welcome modal explaining offline-first + optional AI, with CompTIA disclaimer; replaced disruptive "redirect to Dashboard" AI-key prompt with an in-place quick-add key modal on all 4 AI entry points (Optimize, Card tutor, quiz explain, refine suggestions); Dashboard AI card reworded as clearly optional with a "How does this work?" link back to the welcome modal.
