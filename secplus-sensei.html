@@ -18,7 +18,7 @@
     border-bottom:1px solid var(--border); background:rgba(11,16,32,.85); backdrop-filter:blur(12px);
     position:sticky; top:0; z-index:10; }
   .header-brand { display:flex; align-items:center; gap:10px; min-width:0; grid-column:1; justify-self:start; }
-  .header-brand .logo { position:static; transform:none; width:64px; height:64px; flex:none; pointer-events:none;
+  .header-brand .logo { position:static; transform:none; width:44px; height:44px; flex:none; pointer-events:none;
     display:flex; align-items:center; justify-content:center; overflow:visible; }
   .header-brand .logo canvas { display:block; width:100%!important; height:100%!important; background:transparent!important; }
   .brand-text { min-width:0; }
@@ -3352,7 +3352,7 @@ function b64ToArrayBuffer(b64){
 function initNinjaDuck(){
   var host=document.getElementById("logoDuck");
   if(!host) return;
-  var size=64;
+  var size=44;
   host.style.width=size+"px";
   host.style.height=size+"px";
   var W=size, H=size;
@@ -3384,7 +3384,7 @@ function initNinjaDuck(){
     var vFov=cam.fov*Math.PI/180;
     var viewH=2*Math.tan(vFov/2)*dist;
     var viewW=viewH*cam.aspect;
-    var fit=Math.min(viewH, viewW)*0.45;
+    var fit=Math.min(viewH, viewW)*0.33;
     var sc=fit/sphere.radius;
     duck.scale.setScalar(sc);
     duck.position.set(-center.x*sc, -center.y*sc, -center.z*sc);
