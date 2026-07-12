@@ -24,6 +24,9 @@ Do these when you get home. **~45–60 minutes total.**
 - [ ] Confirm README looks good
 - [ ] **Settings → General → Change visibility → Public** (if not already)
 - [ ] **Profile → Customize pins → pin this repo**
+- [ ] **Settings → Pages → Source → GitHub Actions** (enables portfolio site)
+- [ ] After Pages deploys: **https://jacobbarrera2024-sketch.github.io/secplus-sensei/**
+- [ ] Edit `website/index.html` — add your real LinkedIn URL and email
 
 ### 2. Screenshots (15 min) — optional but high impact
 
@@ -34,7 +37,7 @@ Do these when you get home. **~45–60 minutes total.**
 
 ### 3. LinkedIn (15 min)
 
-- [ ] **Featured** → add repo link
+- [ ] **Featured** → add repo link **and portfolio site URL**
 - [ ] **Add project** — copy from [FREELANCE_COPY.md](FREELANCE_COPY.md) → LinkedIn section
 - [ ] Update headline (suggestion in FREELANCE_COPY.md)
 - [ ] Turn on **Open to work** → Freelance / Contract (optional)
@@ -73,6 +76,7 @@ Do these when you get home. **~45–60 minutes total.**
 | What | URL |
 |------|-----|
 | Repo | https://github.com/jacobbarrera2024-sketch/secplus-sensei |
+| Portfolio site | https://jacobbarrera2024-sketch.github.io/secplus-sensei/ (after Pages enabled) |
 | Case study | https://github.com/jacobbarrera2024-sketch/secplus-sensei/blob/main/docs/PORTFOLIO.md |
 | Freelance copy | https://github.com/jacobbarrera2024-sketch/secplus-sensei/blob/main/docs/FREELANCE_COPY.md |
 

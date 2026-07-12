@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jacob — Developer building desktop and web apps with optional AI. Creator of SecPlus Sensei." />
+  <meta name="author" content="Jacob" />
+  <meta property="og:title" content="Jacob — Developer Portfolio" />
+  <meta property="og:description" content="Desktop apps, study platforms, and AI-integrated tools. Featuring SecPlus Sensei." />
+  <meta property="og:type" content="website" />
+  <title>Jacob — Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/icon-512.png" type="image/png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <img src="assets/icon-512.png" alt="" width="36" height="36" />
+        <span>Jacob</span>
+      </a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#work">Work</a>
+        <a href="#skills">Skills</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/jacobbarrera2024-sketch/secplus-sensei" target="_blank" rel="noopener">GitHub</a>
+        <a class="nav-cta" href="#contact">Hire me</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">● Available for freelance work</div>
+          <h1>I build <span>desktop &amp; web apps</span> that actually ship.</h1>
+          <p class="hero-lead">
+            Full-stack developer focused on Electron desktop apps, study platforms,
+            dashboards, and optional AI integration. I deliver working products — UI,
+            logic, persistence, and packaging — not half-finished demos.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#work">See my work ↓</a>
+            <a class="btn btn-ghost" href="https://github.com/jacobbarrera2024-sketch/secplus-sensei" target="_blank" rel="noopener">GitHub repo</a>
+          </div>
+        </div>
+        <div class="hero-card reveal">
+          <h3>Latest project — built in 3 days</h3>
+          <p style="margin:0;color:var(--text);font-weight:700;font-size:1.2rem;">SecPlus Sensei</p>
+          <p style="margin:6px 0 0;font-size:14px;color:var(--muted);">Security+ desktop study app with 500+ questions, exam simulation &amp; AI tutor.</p>
+          <div class="stat-grid">
+            <div class="stat"><div class="num">452</div><div class="lbl">Flashcards</div></div>
+            <div class="stat"><div class="num">507</div><div class="lbl">Questions</div></div>
+            <div class="stat"><div class="num">5</div><div class="lbl">Exam domains</div></div>
+            <div class="stat"><div class="num">3d</div><div class="lbl">Build time</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Featured work</h2>
+          <p>A complete desktop product — from content authoring to installer and auto-update.</p>
+        </div>
+
+        <article class="project-card reveal">
+          <div class="project-visual">
+            <img src="assets/icon-512.png" alt="SecPlus Sensei app icon" width="96" height="96" />
+            <div class="tag">Desktop · Electron · v1.1.7</div>
+          </div>
+          <div class="project-body">
+            <h3>SecPlus Sensei</h3>
+            <p>
+              Offline-first CompTIA Security+ (SY0-701) study app for Windows.
+              Flashcards with true SM-2 spaced repetition, adaptive quizzes, a 90-minute
+              timed exam simulator, readiness dashboard with gamification, and an optional
+              bring-your-own-key Claude AI tutor.
+            </p>
+            <div class="feature-chips">
+              <span class="chip">Electron</span>
+              <span class="chip">Vanilla JS</span>
+              <span class="chip">Spaced repetition</span>
+              <span class="chip">Exam simulation</span>
+              <span class="chip">Claude AI (BYOK)</span>
+              <span class="chip">NSIS installer</span>
+              <span class="chip">Auto-update</span>
+              <span class="chip">Local-first</span>
+            </div>
+            <div class="project-links">
+              <a class="btn btn-primary" href="https://github.com/jacobbarrera2024-sketch/secplus-sensei" target="_blank" rel="noopener">View on GitHub</a>
+              <a class="btn btn-ghost" href="https://github.com/jacobbarrera2024-sketch/secplus-sensei/blob/main/docs/PORTFOLIO.md" target="_blank" rel="noopener">Case study</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Skills &amp; stack</h2>
+          <p>What I use to go from idea to shippable software.</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card reveal">
+            <h4>Desktop</h4>
+            <p>Electron, Windows packaging (NSIS), IPC, local persistence, auto-update flows.</p>
+          </div>
+          <div class="skill-card reveal">
+            <h4>Frontend</h4>
+            <p>Vanilla JavaScript, HTML/CSS, responsive UI, hash routing, state management.</p>
+          </div>
+          <div class="skill-card reveal">
+            <h4>AI integration</h4>
+            <p>Anthropic Claude API, BYOK patterns, friendly error handling, optional offline fallback.</p>
+          </div>
+          <div class="skill-card reveal">
+            <h4>Product</h4>
+            <p>Onboarding, gamification, content systems, export/import, disclaimers, privacy UX.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>What I can build for you</h2>
+          <p>Contract-friendly services — tell me your idea and I'll ship a clear plan.</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card reveal">
+            <div class="icon">🖥️</div>
+            <h4>Electron desktop apps</h4>
+            <p>Custom Windows desktop tools with installers, local saves, and polished UI.</p>
+          </div>
+          <div class="service-card reveal">
+            <div class="icon">📚</div>
+            <h4>Study &amp; quiz platforms</h4>
+            <p>Flashcards, spaced repetition, timed exams, progress dashboards, and analytics.</p>
+          </div>
+          <div class="service-card reveal">
+            <div class="icon">✨</div>
+            <h4>AI-enhanced tools</h4>
+            <p>Chat tutors, explanations, content enrichment — Claude or OpenAI, BYOK or backend.</p>
+          </div>
+          <div class="service-card reveal">
+            <div class="icon">📊</div>
+            <h4>Dashboards &amp; internal tools</h4>
+            <p>Business dashboards, data entry apps, export/import, role-ready admin panels.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <h2>Let's build something.</h2>
+          <p>
+            Open to freelance and contract work. Share your project idea — I'll reply with a
+            clear scope and timeline.
+          </p>
+          <div class="contact-links">
+            <a class="btn btn-primary" href="https://www.linkedin.com/in/" target="_blank" rel="noopener" id="linkedinLink">LinkedIn</a>
+            <a class="btn btn-ghost" href="https://github.com/jacobbarrera2024-sketch" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-ghost" href="mailto:hello@example.com" id="emailLink">Email me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Jacob. Built with HTML, CSS &amp; JS.</span>
+      <span>
+        <a href="https://github.com/jacobbarrera2024-sketch/secplus-sensei" target="_blank" rel="noopener">SecPlus Sensei</a>
+        · MIT License
+      </span>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
