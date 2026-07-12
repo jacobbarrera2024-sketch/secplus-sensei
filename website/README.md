@@ -1,6 +1,6 @@
 # Portfolio website
 
-A clean, professional single-page portfolio — **not** tied to any one project's visual style. Works as a hub for multiple projects over time.
+Clean, professional single-page portfolio — neutral design that works for any project type.
 
 ## Preview locally
 
@@ -9,26 +9,28 @@ cd website
 npx --yes serve .
 ```
 
-Or open `index.html` in your browser.
+## Personalize (one file)
+
+Edit the `SITE` object at the top of **`main.js`**:
+
+```javascript
+var SITE = {
+  name: "Jacob",
+  linkedin: "https://www.linkedin.com/in/YOUR-PROFILE",
+  email: "you@email.com",
+  github: "https://github.com/jacobbarrera2024-sketch"
+};
+```
+
+All contact links update automatically.
 
 ## Add a new project
 
-Duplicate the first `<article class="project-item">` block in `index.html` and fill in:
+Copy the `<article class="project-item">` block in `index.html` and update:
 
-- Thumbnail image in `assets/` (project screenshot or icon)
-- Title, description, tags
-- Links (GitHub, live demo, case study)
-
-Remove or hide the "Coming soon" placeholder when you have a second project.
-
-## Personalize before sharing
-
-Edit `index.html`:
-
-| Item | Current placeholder |
-|------|---------------------|
-| LinkedIn | `https://www.linkedin.com/in/` |
-| Email | `hello@example.com` |
+- Thumbnail in `assets/`
+- Title, description, stats, tags
+- GitHub / demo / case study links
 
 ## Deploy (GitHub Pages)
 
@@ -36,8 +38,13 @@ Edit `index.html`:
 2. Push to `main` — workflow deploys `website/` automatically
 3. Live at: **https://jacobbarrera2024-sketch.github.io/secplus-sensei/**
 
-## Design
+## Files
 
-- Neutral light theme — works for any project type
-- SecPlus Sensei appears only as one project card, not as site branding
-- No build step required
+| File | Purpose |
+|------|---------|
+| `index.html` | Page structure and content |
+| `styles.css` | All styles |
+| `main.js` | Contact config, nav, animations |
+| `assets/` | Favicon and project thumbnails |
+
+No build step. No dependencies.

@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Jacob — Freelance developer building desktop apps, web tools, and AI-integrated software." />
+  <meta name="description" content="Jacob — Freelance developer building desktop apps, web tools, and AI-integrated software. Available for contract work." />
   <meta name="author" content="Jacob" />
-  <meta property="og:title" content="Jacob — Developer Portfolio" />
-  <meta property="og:description" content="Desktop apps, web tools, and AI-integrated software. Open to freelance work." />
+  <meta name="theme-color" content="#ffffff" />
+  <meta property="og:title" content="Jacob — Developer" />
+  <meta property="og:description" content="Desktop apps, web tools, and AI-integrated software. Open to freelance and contract work." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jacobbarrera2024-sketch.github.io/secplus-sensei/" />
+  <link rel="canonical" href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/" />
   <title>Jacob — Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,152 +19,158 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <nav class="nav">
+  <header class="nav">
     <div class="container nav-inner">
-      <a class="brand" href="#top">
+      <a class="brand" href="#top" aria-label="Jacob — home">
         <span class="brand-mark" aria-hidden="true">J</span>
         <span>Jacob</span>
       </a>
-      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu">☰</button>
-      <div class="nav-links" id="navLinks">
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+        <span class="menu-icon" aria-hidden="true"></span>
+      </button>
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
         <a href="#work">Work</a>
         <a href="#skills">Skills</a>
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
-        <a href="https://github.com/jacobbarrera2024-sketch" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/jacobbarrera2024-sketch" data-github target="_blank" rel="noopener noreferrer">GitHub</a>
         <a class="nav-cta" href="#contact">Get in touch</a>
-      </div>
+      </nav>
     </div>
-  </nav>
+  </header>
 
-  <main id="top">
-    <section class="hero">
+  <main id="main">
+    <section class="hero" id="top">
       <div class="container hero-inner reveal">
-        <p class="eyebrow">Freelance developer · Open to work</p>
+        <p class="eyebrow">Freelance developer · Available for contract work</p>
         <h1>I build software that ships.</h1>
         <p class="hero-lead">
-          Desktop apps, web tools, dashboards, and AI-integrated products — from first
-          sketch to working deliverable. Clean code, clear communication, fast turnaround.
+          Desktop apps, web tools, dashboards, and AI-integrated products — from idea
+          to working deliverable. Clean code, clear communication, and fast turnaround.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#work">View projects</a>
           <a class="btn btn-outline" href="#contact">Contact me</a>
         </div>
+        <ul class="hero-stack" aria-label="Core technologies">
+          <li>Electron</li>
+          <li>JavaScript</li>
+          <li>HTML / CSS</li>
+          <li>AI APIs</li>
+        </ul>
       </div>
     </section>
 
-    <section id="work" class="alt">
+    <section id="work" class="alt" aria-labelledby="work-heading">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Selected work</h2>
-          <p>Projects I've designed, built, and shipped. More coming as the portfolio grows.</p>
+          <h2 id="work-heading">Selected work</h2>
+          <p>Projects designed, built, and shipped end to end.</p>
         </div>
 
         <div class="projects-grid">
           <article class="project-item reveal">
             <div class="project-thumb">
-              <img src="assets/secplus-sensei-icon.png" alt="" width="120" height="120" />
+              <img src="assets/secplus-sensei-icon.png" alt="SecPlus Sensei application icon" width="120" height="120" loading="lazy" />
             </div>
-            <div>
-              <div class="project-meta">Desktop app · 2026</div>
+            <div class="project-content">
+              <div class="project-meta">Desktop application · 2026</div>
               <h3>SecPlus Sensei</h3>
               <p>
-                A full-featured CompTIA Security+ study application for Windows — flashcards
-                with spaced repetition, adaptive quizzes, timed exam simulation, and optional
-                AI tutoring. Built solo in three days, packaged with installer and auto-update.
+                A complete CompTIA Security+ study app for Windows — 450+ flashcards,
+                500+ practice questions, SM-2 spaced repetition, adaptive quizzes, a
+                90-minute exam simulator, and optional Claude AI tutoring. Built solo
+                in three days, packaged with installer and auto-update.
               </p>
-              <div class="tags">
+              <ul class="project-stats" aria-label="Project highlights">
+                <li><strong>452</strong> flashcards</li>
+                <li><strong>507</strong> questions</li>
+                <li><strong>3 days</strong> to build</li>
+              </ul>
+              <div class="tags" aria-label="Technologies used">
                 <span class="tag">Electron</span>
                 <span class="tag">JavaScript</span>
                 <span class="tag">Desktop</span>
                 <span class="tag">AI integration</span>
               </div>
               <div class="project-links">
-                <a class="btn btn-primary" href="https://github.com/jacobbarrera2024-sketch/secplus-sensei" target="_blank" rel="noopener">GitHub</a>
-                <a class="btn btn-outline" href="https://github.com/jacobbarrera2024-sketch/secplus-sensei/blob/main/docs/PORTFOLIO.md" target="_blank" rel="noopener">Case study</a>
+                <a class="btn btn-primary" href="https://github.com/jacobbarrera2024-sketch/secplus-sensei" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                <a class="btn btn-outline" href="https://github.com/jacobbarrera2024-sketch/secplus-sensei/blob/main/docs/PORTFOLIO.md" target="_blank" rel="noopener noreferrer">Case study</a>
               </div>
             </div>
           </article>
-
-          <!-- Duplicate this block when you add project #2, #3, etc. -->
-          <article class="project-item project-soon reveal" aria-hidden="true">
-            <div class="project-thumb">+</div>
-            <div>
-              <div class="project-meta">Coming soon</div>
-              <h3>Next project</h3>
-              <p>Room for your second portfolio piece — web app, SaaS tool, or client work.</p>
-            </div>
-          </article>
         </div>
       </div>
     </section>
 
-    <section id="skills">
+    <section id="skills" aria-labelledby="skills-heading">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Skills</h2>
-          <p>Technologies and practices I use across projects.</p>
+          <h2 id="skills-heading">Skills</h2>
+          <p>Technologies and practices used across client and personal projects.</p>
         </div>
         <div class="skills-grid">
           <div class="skill-card reveal">
-            <h4>Desktop &amp; web</h4>
-            <p>Electron, vanilla JavaScript, HTML/CSS, responsive layouts, local and cloud persistence.</p>
+            <h3>Desktop &amp; web</h3>
+            <p>Electron, vanilla JavaScript, HTML/CSS, responsive layouts, and persistent local or cloud data.</p>
           </div>
           <div class="skill-card reveal">
-            <h4>AI features</h4>
-            <p>Claude and OpenAI APIs, bring-your-own-key flows, chat UIs, content enrichment.</p>
+            <h3>AI features</h3>
+            <p>Claude and OpenAI APIs, bring-your-own-key flows, chat interfaces, and content enrichment.</p>
           </div>
           <div class="skill-card reveal">
-            <h4>Product delivery</h4>
-            <p>Installers, auto-update, onboarding, export/import, error handling, privacy-conscious UX.</p>
+            <h3>Product delivery</h3>
+            <p>Installers, auto-update, onboarding, export/import, error handling, and privacy-conscious UX.</p>
           </div>
           <div class="skill-card reveal">
-            <h4>Content &amp; data</h4>
-            <p>Structured content systems, quizzes, dashboards, analytics, gamification when it fits.</p>
+            <h3>Content systems</h3>
+            <p>Structured learning content, quizzes, dashboards, analytics, and gamification when appropriate.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="services" class="alt">
+    <section id="services" class="alt" aria-labelledby="services-heading">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Services</h2>
-          <p>What I take on as a freelance developer.</p>
+          <h2 id="services-heading">Services</h2>
+          <p>Freelance and contract work I take on.</p>
         </div>
         <div class="services-grid">
           <div class="service-card reveal">
-            <h4>Custom applications</h4>
-            <p>Desktop or web apps built to your spec — UI, backend logic, and deployment included.</p>
+            <h3>Custom applications</h3>
+            <p>Desktop or web apps built to your requirements — UI, logic, and deployment included.</p>
           </div>
           <div class="service-card reveal">
-            <h4>Study &amp; training tools</h4>
-            <p>Flashcards, quizzes, progress tracking, and exam-style simulations for any subject.</p>
+            <h3>Study &amp; training tools</h3>
+            <p>Flashcards, quizzes, progress tracking, and exam-style simulations for any subject or certification.</p>
           </div>
           <div class="service-card reveal">
-            <h4>AI integration</h4>
-            <p>Add chat, explanations, or automation to an existing product or greenfield build.</p>
+            <h3>AI integration</h3>
+            <p>Chat, explanations, or automation added to an existing product or a new build from scratch.</p>
           </div>
           <div class="service-card reveal">
-            <h4>Internal tools</h4>
-            <p>Dashboards, admin panels, and workflow apps that save your team time.</p>
+            <h3>Internal tools</h3>
+            <p>Dashboards, admin panels, and workflow apps that help teams move faster.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="contact-section" aria-labelledby="contact-heading">
       <div class="container">
         <div class="contact-box reveal">
-          <h2>Get in touch</h2>
+          <h2 id="contact-heading">Get in touch</h2>
           <p>
-            Have a project in mind? Send a message — I'll respond with a clear plan and honest timeline.
+            Have a project in mind? Reach out on LinkedIn or email — I'll reply with a
+            clear scope and honest timeline.
           </p>
           <div class="contact-links">
-            <a class="btn btn-primary" href="https://www.linkedin.com/in/" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="btn btn-outline" href="https://github.com/jacobbarrera2024-sketch" target="_blank" rel="noopener">GitHub</a>
-            <a class="btn btn-outline" href="mailto:hello@example.com">Email</a>
+            <a class="btn btn-primary" id="linkedinLink" href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a class="btn btn-outline" data-github href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="btn btn-outline" id="emailLink" href="#">Email</a>
           </div>
         </div>
       </div>
@@ -171,7 +180,11 @@
   <footer>
     <div class="container footer-inner">
       <span>© <span id="year"></span> Jacob</span>
-      <span><a href="https://github.com/jacobbarrera2024-sketch" target="_blank" rel="noopener">GitHub</a></span>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/jacobbarrera2024-sketch" data-github target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
     </div>
   </footer>
 
