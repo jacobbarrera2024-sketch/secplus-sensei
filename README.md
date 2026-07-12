@@ -1,72 +1,159 @@
-# SecPlus Sensei
+<p align="center">
+  <img src="assets/icon-512.png" alt="SecPlus Sensei" width="128" />
+</p>
 
-A polished, offline-first desktop study app for the **CompTIA Security+ (SY0-701)** exam. Built as a single-file vanilla-JS application packaged with Electron — flashcards with true spaced repetition, adaptive practice quizzes, full timed exam simulations, acronym drills, a readiness dashboard with gamification, and an *optional* AI tutor you power with your own key.
+<h1 align="center">SecPlus Sensei</h1>
 
-> **Unofficial study aid — not affiliated with or endorsed by CompTIA.** "CompTIA" and "Security+" are trademarks of CompTIA, Inc. This project is an independent learning tool.
+<p align="center">
+  <strong>Offline-first CompTIA Security+ (SY0-701) desktop study app</strong><br>
+  Flashcards · Spaced repetition · Exam simulation · Optional AI tutor
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/version-1.1.7-blue" alt="version" />
+  <img src="https://img.shields.io/badge/platform-Windows-0078D6" alt="Windows" />
+  <img src="https://img.shields.io/badge/Electron-35-47848F" alt="Electron" />
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT" />
+</p>
+
+<p align="center">
+  <a href="docs/GO_LIVE.md"><strong>Go-live checklist</strong></a> ·
+  <a href="docs/PORTFOLIO.md"><strong>Portfolio case study</strong></a> ·
+  <a href="docs/FREELANCE_COPY.md"><strong>Freelance copy templates</strong></a> ·
+  <a href="docs/SCREENSHOTS.md"><strong>Screenshot guide</strong></a>
+</p>
+
+> **Unofficial study aid** — not affiliated with or endorsed by CompTIA. "CompTIA" and "Security+" are trademarks of CompTIA, Inc.
+
+---
+
+## At a glance
+
+| | |
+|---|---|
+| **Built in** | ~3 days (solo) |
+| **Flashcards** | 452 across all 5 SY0-701 domains |
+| **Questions** | 507 (MCQ, multi-select, PBQs) |
+| **Stack** | Electron · Vanilla JS · Three.js · Claude API (optional) |
+| **Privacy** | Local-first · No accounts · No telemetry |
+
+---
+
+## Features
+
+- **SM-2 spaced repetition** — ease factors, intervals, leeches, mastered tracking, keyboard shortcuts
+- **Adaptive quizzes** — weak-domain weighting, instant feedback, missed-question flashcard suggestions
+- **90-minute exam simulator** — PBQs first, scaled scoring (100–900), per-domain breakdown, attempt history
+- **Readiness dashboard** — domain-weighted %, XP/levels, daily quests, achievements, streaks, study plans
+- **Acronym rapid-fire** — drill all term cards until you know them cold
+- **Optional AI tutor** (BYOK Anthropic Claude) — optimize cards, embedded card chat, quiz explanations
+- **Custom cards** — add your own, export/import full state as JSON
+- **Desktop packaging** — Windows NSIS installer, auto-update, progress survives reinstalls
 
 ---
 
 ## Screenshots
 
-<!-- Add screenshots/GIFs here before publishing. Suggested shots:
-     Dashboard (readiness + quests), a flashcard mid-review, the exam simulator, and the AI tutor. -->
+_Add 3–4 captures to `docs/screenshots/` — see [docs/SCREENSHOTS.md](docs/SCREENSHOTS.md). Takes ~15 min._
 
-_Screenshots coming soon — drop PNGs/GIFs in an `docs/` folder and link them here._
+<!--
+<p align="center">
+  <img src="docs/screenshots/dashboard.png" alt="Dashboard" width="720" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/study.png" alt="Study" width="350" />
+  <img src="docs/screenshots/exam.png" alt="Exam" width="350" />
+</p>
+-->
 
 ---
 
-## Highlights
+## For recruiters & clients
 
-- **452 flashcards + 500+ practice questions** (single-answer, multi-select, and performance-based questions) authored across **all five SY0-701 domains**, weighted to match the real exam blueprint.
-- **Real spaced repetition** — an SM-2-style scheduler with ease factors, intervals, lapses, leech detection, and "mastered" tracking.
-- **Adaptive quizzing** that weights your weakest domains, plus a **90-minute exam simulator** (PBQs first, scaled scoring, per-domain breakdown, and attempt history).
-- **Readiness dashboard** with domain-weighted scoring, XP/levels, daily quests, achievements, streaks, and a 20/30/60-day study plan.
-- **Optional AI tutor** (bring-your-own-key **Anthropic Claude**) to optimize cards, explain missed questions, and generate follow-up flashcards. The entire app works fully offline without it.
-- **Local-first & private** — no accounts, no signup, no telemetry. Progress is saved to your device and survives updates, with an automatic backup copy.
-- **Custom content** — add your own flashcards, then export/import your full study state as JSON.
+This repo demonstrates **end-to-end product delivery**: real exam content, desktop installer, update pipeline, onboarding, gamification, and responsible optional AI — not a tutorial todo app.
 
-## Tech stack
+**Full case study → [docs/PORTFOLIO.md](docs/PORTFOLIO.md)**
 
-- **Electron** desktop shell (`main.js`, `preload.js`) with `contextIsolation: true` and `nodeIntegration: false`.
-- **Vanilla JavaScript, HTML, and CSS** — the whole app is one self-contained `secplus-sensei.html` (no framework, hash-based routing, single global state object).
-- **Three.js** for the animated 3D header logo.
-- **electron-builder** (NSIS) for the Windows installer, with an in-app update flow.
-- Optional **Anthropic Claude** API for AI features (user-supplied key).
+**Ready-to-paste profile copy → [docs/FREELANCE_COPY.md](docs/FREELANCE_COPY.md)**
 
-## Getting started (development)
+---
+
+## Quick start (development)
 
 ```bash
+git clone https://github.com/jacobbarrera2024-sketch/secplus-sensei.git
+cd secplus-sensei
 npm install
-npm start        # launches the Electron app
+npm start
 ```
 
-## Build a Windows installer
+## Build Windows installer
 
 ```bash
-npm run build          # electron-builder --win nsis  -> dist/
+npm run build
 ```
 
-On Windows you can also run `Build SecPlus Sensei.bat`, which installs deps, syncs version files, renders the icon, builds the installer, and stages update files.
+Or on Windows: double-click **`Build SecPlus Sensei.bat`** (installs deps, syncs version, builds NSIS installer to `dist/`).
+
+End-user install/update instructions: **[README.txt](README.txt)**
+
+---
 
 ## Optional AI setup
 
-AI features are entirely optional and off by default. To enable them, add your own [Anthropic API key](https://console.anthropic.com) from the in-app Dashboard. Your key is stored locally on your device and is only ever sent directly to Anthropic when you invoke an AI feature.
+AI is **off by default**. The app works fully offline without it.
 
-> **Privacy note:** your key is stored in plain text in your local save file. If you export a backup, that file also contains the key — keep exported backups private.
+1. Get a free API key at [console.anthropic.com](https://console.anthropic.com)
+2. Open the app → **Dashboard** → paste key → Save
+3. Use Optimize, Card tutor, and quiz explanations as needed
+
+Your key stays on your device. The only network calls are your direct requests to Anthropic.
+
+> **Privacy:** keys are stored in plain text locally. Exported backups also contain your key — keep them private.
+
+---
+
+## Project structure
+
+```
+secplus-sensei/
+├── secplus-sensei.html   # Entire app (HTML + CSS + JS + seed content)
+├── main.js               # Electron main process
+├── preload.js            # Secure IPC bridge
+├── assets/               # App icons
+├── build/                # NSIS installer scripts
+├── docs/                 # Portfolio case study, freelance copy, screenshot guide
+├── package.json
+└── README.txt            # End-user install guide
+```
+
+---
 
 ## Data & persistence
 
-- **Desktop:** `%APPDATA%\SecPlus Sensei\progress.json` (with a `progress.backup.json` copy).
-- **Browser fallback:** `localStorage`.
-- Progress persists across app updates and reinstalls.
+| Platform | Location |
+|----------|----------|
+| Desktop | `%APPDATA%\SecPlus Sensei\progress.json` (+ backup copy) |
+| Browser | `localStorage` key `secplus_sensei_v1` |
 
-See [`README.txt`](README.txt) for end-user install/update instructions.
+Progress persists across app updates. First desktop launch auto-imports browser data if present.
 
-## Notes & scope
+---
 
-- The readiness percentage and simulated scaled score are **app-internal estimates** to guide your studying — they are not official CompTIA metrics and don't guarantee a passing result.
-- Distribution is currently **Windows (NSIS installer)**.
+## Notes
+
+- Readiness % and simulated exam scores are **in-app estimates** — not official CompTIA metrics.
+- Distribution is currently **Windows** (NSIS). macOS/Linux builds are possible but not packaged yet.
+- Release binaries are distributed via **GitHub Releases**, not committed to this repo.
+
+---
+
+## Author
+
+**Jacob** — developer, solo builder of SecPlus Sensei.
+
+---
 
 ## License
 
-No license is currently specified. All rights reserved by the author unless a license file is added.
+[MIT](LICENSE) — Copyright (c) 2026 Jacob

@@ -1,10 +1,29 @@
 {
   "name": "secplus-sensei",
   "productName": "SecPlus Sensei",
-  "version": "1.1.6",
-  "description": "CompTIA Security+ SY0-701 study app",
+  "version": "1.1.7",
+  "description": "CompTIA Security+ SY0-701 study app — flashcards, spaced repetition, exam simulation, optional AI tutor",
   "main": "main.js",
   "author": "Jacob",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jacobbarrera2024-sketch/secplus-sensei.git"
+  },
+  "homepage": "https://github.com/jacobbarrera2024-sketch/secplus-sensei#readme",
+  "bugs": {
+    "url": "https://github.com/jacobbarrera2024-sketch/secplus-sensei/issues"
+  },
+  "keywords": [
+    "security-plus",
+    "comptia",
+    "sy0-701",
+    "flashcards",
+    "spaced-repetition",
+    "electron",
+    "study-app",
+    "exam-prep"
+  ],
   "scripts": {
     "start": "electron .",
     "build:icon": "node build-icon.js",

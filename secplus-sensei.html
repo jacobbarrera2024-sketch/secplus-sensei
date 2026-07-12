@@ -409,10 +409,10 @@
 <div class="update-overlay" id="aboutOverlay">
   <div class="update-modal modal-wide">
     <h2 style="text-align:center">ℹ️ About SecPlus Sensei</h2>
-    <div class="ver-pill centered" id="aboutVerPill">v1.1.6</div>
+    <div class="ver-pill centered" id="aboutVerPill">v1.1.7/div>
     <div class="onb-block">
       <h4>What this is</h4>
-      <p style="margin:0;font-size:13px;color:var(--text);line-height:1.55">A CompTIA Security+ (SY0-701) study tool — flashcards with spaced repetition, practice quizzes, full exam simulations, and acronym drills, plus a dashboard that tracks your exam readiness. The whole thing works offline; no account, no signup, ever.</p>
+      <p style="margin:0;font-size:13px;color:var(--text);line-height:1.55">A CompTIA Security+ (SY0-701) study tool — flashcards with spaced repetition, practice quizzes, full exam simulations, and acronym drills, plus a dashboard that tracks your exam readiness. The whole thing works offline; no account, no signup, ever. Readiness % and simulated exam scores are in-app estimates — not official CompTIA metrics.</p>
     </div>
     <div class="onb-block">
       <h4>✨ How the optional AI works</h4>
@@ -509,7 +509,7 @@
     </div>
     <div class="card" style="margin-bottom:16px">
       <h2>Am I ready?</h2>
-      <div class="sub">All gates must be green before you book the exam.</div>
+      <div class="sub">All gates must be green before this app considers you ready. Readiness % and simulated exam scores are in-app estimates — not official CompTIA metrics.</div>
       <ul class="checklist" id="gateList"></ul>
     </div>
     <div class="card" style="margin-bottom:16px">
@@ -561,7 +561,7 @@
   <section id="exam" class="view">
     <div class="card" id="examSetup">
       <h2>Full exam simulation</h2>
-      <div class="sub">Mirrors the real thing: PBQs first, then multiple choice, 90-minute timer, no feedback until the end. You get a scaled score (100–900, pass = 750) with a per-domain breakdown. Passing a sim is required before the app says you're truly ready.</div>
+      <div class="sub">Mirrors the real thing: PBQs first, then multiple choice, 90-minute timer, no feedback until the end. You get a scaled score (100–900, pass = 750) with a per-domain breakdown. Scoring is a simplified in-app estimate, not CompTIA's official algorithm. Passing a sim is one of the app's readiness gates.</div>
       <div id="examBankInfo" class="hint"></div>
       <div class="toolbar"><button class="btn" id="startExam">Start exam simulation</button></div>
       <div id="examHistory"></div>
@@ -607,7 +607,7 @@
   <section id="manage" class="view">
     <div class="card">
       <h2>Manage cards</h2>
-      <div class="sub"><span id="mCount">0</span> flashcards • saved automatically in your browser</div>
+      <div class="sub"><span id="mCount">0</span> flashcards • <span id="mSaveHint">saved automatically</span></div>
       <div class="filter-row">
         <input id="mSearch" placeholder="Search…" />
         <select id="mDomainFilter"><option value="">All domains</option></select>
@@ -652,7 +652,7 @@ var DOMAINS=[
   {id:"d5",name:"5. Security Program Management",weight:20}
 ];
 var DAY=86400000, STORE_KEY="secplus_sensei_v1";
-var APP_VERSION="1.1.6", pendingSaveTimer=null;
+var APP_VERSION="1.1.7", pendingSaveTimer=null;
 
 var LEVEL_TITLES=["Recruit","Padawan","Analyst","Defender","Engineer","Operative","Specialist","Expert","Sensei","Exam Crusher"];
 var XP_QUEST_BONUS=75;
@@ -2055,6 +2055,8 @@ function initDesktopShell(){
     if(info&&info.version) APP_VERSION=info.version;
     var verEl=document.getElementById("appVersion");
     if(verEl) verEl.textContent=" v"+APP_VERSION;
+    var saveHint=document.getElementById("mSaveHint");
+    if(saveHint) saveHint.textContent="saved automatically on this device";
     if(window.SECPLUS_DESKTOP.onUpdateAvailable) SECPLUS_DESKTOP.onUpdateAvailable(showUpdateReadyBanner);
     return loadDesktopProgress().then(function(){
       checkForAppUpdate();
@@ -2427,7 +2429,7 @@ function finishExam(){
   var res=document.getElementById("examResult"); res.style.display="block";
   var domHtml=DOMAINS.map(function(d){var b=byDom[d.id];var p=b.t?Math.round(b.c/b.t*100):0;return '<div class="dom-row"><div class="dom-head"><span>'+d.name+'</span><span class="w">'+b.c+'/'+b.t+' • '+p+'%</span></div><div class="bar"><div style="width:'+p+'%"></div></div></div>';}).join("");
   var sug=suggestCards(missed);
-  res.innerHTML='<h2>'+(passed?"✅ PASS":"❌ Not yet")+' — Scaled score '+scaled+'/900</h2><div class="sub">Passing is 750. You got '+correct+' of '+examTotal+' correct ('+Math.round(pct*100)+'%). '+(passed?"This satisfies the exam-sim gate on your dashboard.":"Keep drilling your weak domains and retry.")+'</div>'+domHtml+'<div class="toolbar"><button class="btn" onclick="location.hash=\'dashboard\'">See readiness</button><button class="btn ghost" id="examAgain">Back to Exam</button></div>'+suggestionsHTML(sug);
+  res.innerHTML='<h2>'+(passed?"✅ PASS":"❌ Not yet")+' — Scaled score '+scaled+'/900</h2><div class="sub">Passing is 750 (in-app estimate). You got '+correct+' of '+examTotal+' correct ('+Math.round(pct*100)+'%). '+(passed?"This satisfies the exam-sim gate on your dashboard.":"Keep drilling your weak domains and retry.")+' Scaled scoring is simplified — not CompTIA\'s official algorithm.</div>'+domHtml+'<div class="toolbar"><button class="btn" onclick="location.hash=\'dashboard\'">See readiness</button><button class="btn ghost" id="examAgain">Back to Exam</button></div>'+suggestionsHTML(sug);
   document.getElementById("examAgain").onclick=function(){res.style.display="none";document.getElementById("examSetup").style.display="block";renderExamSetup();};
   wireSuggestions(sug);
   session=null;
@@ -2884,7 +2886,7 @@ function renderDashboard(){
     gateRow(passedExam,"Passed at least one full exam simulation (750+)")
   ].join("");
   var v=document.getElementById("verdict"),vs=document.getElementById("verdictSub");
-  if(gate){v.textContent="🎯 You're ready — book the exam!";vs.textContent="All gates are green. Use your voucher with confidence.";}
+  if(gate){v.textContent="🎯 All gates green — you're ready by this app's checklist!";vs.textContent="All gates are green. Book the exam when you feel confident — this app's metrics are estimates, not a CompTIA guarantee.";}
   else if(readiness>=70){v.textContent="🔥 Close — finish the checklist above.";vs.textContent="Knock out the remaining gate(s) and you're there.";}
   else if(readiness>=40){v.textContent="📚 Building solid ground.";vs.textContent="Follow your daily plan — focus your weak domain.";}
   else{v.textContent="🌱 Early days — keep going.";vs.textContent="Do Study + Quiz every day; the score climbs fast.";}
@@ -3293,6 +3295,8 @@ function init(){
     document.getElementById("aboutCloseBtn").onclick=closeAbout;
     document.getElementById("aboutOverlay").onclick=function(e){if(e.target.id==="aboutOverlay")closeAbout();};
     updateKeyStatus();
+    var saveHint=document.getElementById("mSaveHint");
+    if(saveHint&&!(window.SECPLUS_DESKTOP&&SECPLUS_DESKTOP.isDesktop)) saveHint.textContent="saved automatically in your browser";
     showOnboarding();
     document.addEventListener("keydown",function(e){
       var ae=document.activeElement;
