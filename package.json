@@ -1,7 +1,7 @@
 {
   "name": "secplus-sensei",
   "productName": "SecPlus Sensei",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "CompTIA Security+ SY0-701 study app",
   "main": "main.js",
   "author": "Jacob",

@@ -263,18 +263,6 @@
   @property --p { syntax:'<number>'; inherits:true; initial-value:0; }
   .ring { transition:--p .6s ease; }
 
-  /* Voice controls */
-  .voice-row { display:flex; align-items:center; gap:10px; margin-top:12px; flex-wrap:wrap; }
-  .mic-btn { width:46px; height:46px; border-radius:50%; border:1px solid var(--border); background:var(--panel-2);
-    color:var(--text); cursor:pointer; display:grid; place-items:center; font-size:18px; transition:all .15s ease; flex:none; }
-  .mic-btn:hover { border-color:var(--accent); transform:translateY(-1px); }
-  .mic-btn.rec { background:var(--again); border-color:var(--again); color:#fff; animation:pulse 1.1s ease-in-out infinite; }
-  @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(248,113,113,.55);} 50%{box-shadow:0 0 0 14px rgba(248,113,113,0);} }
-  .seg { display:inline-flex; border:1px solid var(--border); border-radius:10px; overflow:hidden; }
-  .seg button { background:transparent; color:var(--muted); border:none; padding:9px 14px; cursor:pointer; font-size:13px; font-weight:700; transition:all .12s ease; }
-  .seg button.on { background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#fff; }
-  .voice-hint { font-size:12px; color:var(--muted); }
-
   /* Memory palace — removed */
 
   /* Flashcard AI tutor (embedded on every card) */
@@ -421,7 +409,7 @@
 <div class="update-overlay" id="aboutOverlay">
   <div class="update-modal modal-wide">
     <h2 style="text-align:center">ℹ️ About SecPlus Sensei</h2>
-    <div class="ver-pill centered" id="aboutVerPill">v1.0.9</div>
+    <div class="ver-pill centered" id="aboutVerPill">v1.1.6</div>
     <div class="onb-block">
       <h4>What this is</h4>
       <p style="margin:0;font-size:13px;color:var(--text);line-height:1.55">A CompTIA Security+ (SY0-701) study tool — flashcards with spaced repetition, practice quizzes, full exam simulations, and acronym drills, plus a dashboard that tracks your exam readiness. The whole thing works offline; no account, no signup, ever.</p>
@@ -434,7 +422,7 @@
       <h4>FAQ &amp; known issues</h4>
       <ol class="faq">
         <li><b>Do I need an account?</b> No — no signup or login, ever.</li>
-        <li><b>Is my progress backed up?</b> Yes — use Manage → Export backup anytime to save a copy.</li>
+        <li><b>Is my progress backed up?</b> Yes — use Manage → Export backup anytime to save a copy. If you've saved an AI key, the backup contains it in plain text, so keep the file private.</li>
         <li><b>AI features aren't responding?</b> Check your API key on the Dashboard and your internet connection — everything else in the app works fine without it.</li>
         <li><b>App feels out of date?</b> It checks for updates automatically when you open it. If a new version is ready, you'll see a small banner — restart when you want, or it installs quietly when you close the app.</li>
       </ol>
@@ -595,7 +583,7 @@
   <section id="acronyms" class="view">
     <div class="card">
       <h2>Acronym rapid-fire</h2>
-      <div class="sub">Blitz the ~200 Security+ acronyms. Space = flip, then mark Known / Unknown. Unknowns loop back until you nail them.</div>
+      <div class="sub">Blitz the Security+ acronyms and key terms. Space = flip, then mark Known / Unknown. Unknowns loop back until you nail them.</div>
       <div id="acroArea"></div>
     </div>
   </section>
@@ -631,6 +619,7 @@
         <button class="btn ghost" id="importBtn">Import backup</button>
         <input type="file" id="importFile" accept="application/json" style="display:none" />
       </div>
+      <div class="disclaimer-note" style="margin-top:12px">Heads up: if you've saved an AI key, the backup file contains it in plain text. Keep exported backups private and don't share them.</div>
     </div>
   </section>
 </main>
@@ -663,7 +652,7 @@ var DOMAINS=[
   {id:"d5",name:"5. Security Program Management",weight:20}
 ];
 var DAY=86400000, STORE_KEY="secplus_sensei_v1";
-var APP_VERSION="1.1.5", pendingSaveTimer=null;
+var APP_VERSION="1.1.6", pendingSaveTimer=null;
 
 var LEVEL_TITLES=["Recruit","Padawan","Analyst","Defender","Engineer","Operative","Specialist","Expert","Sensei","Exam Crusher"];
 var XP_QUEST_BONUS=75;
@@ -1847,7 +1836,7 @@ var SEED_PBQ=[
     ["Initial access (e.g., phishing or exposed RDP)","Establish persistence","Escalate privileges","Move laterally and locate valuable data","Encrypt files and deliver the ransom demand"],
     "Ransomware operators gain access, persist, escalate, spread to find high-value data, and finally encrypt and extort."),
   // ---- V2 d5 PBQs ----
-  pbqMatch("d5","PBQ — Match each vendor agreement to its purpose.",
+  pbqMatch("d5","PBQ — Match each business agreement to its function.",
     [["SLA","Guarantees a measurable level of service with remedies"],["BPA","Defines responsibilities and terms between business partners"],["SOW","Specifies deliverables and timeline for a project"],["MSA","Sets overarching master terms for an ongoing relationship"]],
     "SLAs set service guarantees, BPAs govern partnerships, SOWs define project specifics, and MSAs establish the master terms above individual SOWs."),
   pbqMatch("d5","PBQ — Match each regulation or framework to its primary focus.",
@@ -1896,7 +1885,6 @@ var DEFAULT_MODEL="claude-haiku-4-5";
 var STALE_MODELS=["claude-3-5-sonnet-latest","claude-3-5-sonnet-20241022","claude-3-5-haiku-latest","claude-3-opus-latest"];
 var state={cards:[],questions:[],pbqs:[],examHistory:[],settings:{apiKey:"",model:DEFAULT_MODEL,soundOn:true},xp:{total:0},streak:{current:0,best:0,lastDate:"",totalDays:0},achievements:{},plan:{days:30,startDate:""},daily:{}};
 var lastWrong=null;
-var outputMode="text";
 
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
 function newCard(s){return{id:uid(),front:s.front,back:s.back,type:s.type,domain:s.domain,ease:2.5,interval:0,reps:0,lapses:0,correct:0,total:0,due:Date.now(),created:Date.now(),enrich:s.enrich||null,tutorChat:s.tutorChat||[]};}
@@ -2454,7 +2442,7 @@ function finishExam(){
 }
 function renderExamSetup(){
   var total=state.questions.length+state.pbqs.length;
-  document.getElementById("examBankInfo").textContent="Your bank has "+total+" questions ("+state.pbqs.length+" PBQs). The sim uses up to 90 — add more via the AI Tutor for a full-length exam.";
+  document.getElementById("examBankInfo").textContent="Your bank has "+total+" questions ("+state.pbqs.length+" PBQs). Each simulation draws up to 90, weighted across the five exam domains.";
   var h=state.examHistory.slice(-5).reverse().map(function(e){return '<div class="list-item"><div class="li-left"><div class="f">'+(e.passed?'<span class="badge ok">PASS</span>':'<span class="badge leech">FAIL</span>')+' '+e.scaled+'/900</div><div class="b">'+new Date(e.date).toLocaleString()+' • '+e.correct+'/'+e.total+'</div></div></div>';}).join("");
   document.getElementById("examHistory").innerHTML=h?('<h3 style="margin-top:18px">Recent attempts</h3>'+h):"";
 }
@@ -3109,10 +3097,9 @@ function sendCardChat(text){
       return applyCardUpdate(current,thinking,chat,text).then(function(ok){
         if(!ok)chat[thinking].text=(stripEnrichBlock(reply)||reply)+"\n\n(I couldn't parse a card update — try asking again: 'update the card with what we discussed'.)";
         renderCardTutorMsgs(); save();
-        speak(chat[thinking].text);
       }).catch(function(e){chat[thinking].text=friendlyAiError(e);renderCardTutorMsgs();save();});
     }
-    renderCardTutorMsgs(); save(); speak(reply);
+    renderCardTutorMsgs(); save();
   }).catch(function(e){chat[thinking].text=friendlyAiError(e);renderCardTutorMsgs();save();});
 }
 function parseEnrichText(t){
@@ -3168,11 +3155,6 @@ function callClaude(system,messages,maxTokens){
     throw new Error(data&&data.error?data.error.message:"No response");
   });
 }
-function speak(text){
-  if(outputMode!=="voice"||!window.speechSynthesis)return;
-  try{ speechSynthesis.cancel(); var u=new SpeechSynthesisUtterance(String(text).replace(/[*#`_>]/g,"")); u.rate=1.02; u.pitch=1; speechSynthesis.speak(u); }catch(e){}
-}
-
 function weakestDomain(){var w=null,wv=2;DOMAINS.forEach(function(d){var s=domainScore(d.id).score;if(s<wv){wv=s;w=d;}});return w;}
 
 /* ---------------- Flashcard suggestions (post quiz/exam) ---------------- */
@@ -3243,7 +3225,7 @@ var toastTimer;
 function toast(m){var t=document.getElementById("toast");t.textContent=m;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(function(){t.classList.remove("show");},1800);}
 
 /* ---------------- Export / Import ---------------- */
-function exportData(){var blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="secplus-sensei-backup.json";a.click();toast("Backup downloaded");}
+function exportData(){var blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="secplus-sensei-backup.json";a.click();toast(state.settings&&state.settings.apiKey?"Backup downloaded — contains your AI key, keep it private":"Backup downloaded");}
 function importData(file){
   if(!confirm("Importing will replace ALL current data (cards, questions, exam history) with this backup. Continue?"))return;
   var r=new FileReader();
