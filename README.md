@@ -17,11 +17,9 @@
 </p>
 
 <p align="center">
-  <a href="docs/WELCOME_HOME.md"><strong>Welcome home — start here</strong></a> ·
-  <a href="docs/GO_LIVE.md"><strong>Go-live checklist</strong></a> ·
-  <a href="website/"><strong>Portfolio website</strong></a> ·
-  <a href="docs/LINKEDIN_LAUNCH.md"><strong>LinkedIn launch</strong></a> ·
-  <a href="docs/ADD_PROJECT.md"><strong>Add project #2</strong></a>
+  <a href="docs/PORTFOLIO.md"><strong>Case study</strong></a> ·
+  <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/"><strong>Live portfolio</strong></a> ·
+  <a href="website/README.md"><strong>Website</strong></a>
 </p>
 
 > **Unofficial study aid** — not affiliated with or endorsed by CompTIA. "CompTIA" and "Security+" are trademarks of CompTIA, Inc.
@@ -34,7 +32,7 @@
 |---|---|
 | **Built in** | ~3 days (solo) |
 | **Flashcards** | 452 across all 5 SY0-701 domains |
-| **Questions** | 507 (MCQ, multi-select, PBQs) |
+| **Questions** | 481 (415 multiple-choice/multi-select + 66 PBQs) |
 | **Stack** | Electron · Vanilla JS · Three.js · Claude API (optional) |
 | **Privacy** | Local-first · No accounts · No telemetry |
 
@@ -53,29 +51,13 @@
 
 ---
 
-## Screenshots
-
-<p align="center">
-  <img src="docs/screenshots/dashboard.png" alt="Dashboard with readiness tracking and domain progress" width="720" />
-</p>
-
-<p align="center">
-  <img src="docs/screenshots/study.png" alt="Flashcard study view" width="350" />
-  &nbsp;&nbsp;
-  <img src="docs/screenshots/exam.png" alt="Exam simulation view" width="350" />
-</p>
-
-_Placeholder previews above — replace with real app captures anytime ([guide](docs/SCREENSHOTS.md))._
-
----
-
 ## For recruiters & clients
 
 This repo demonstrates **end-to-end product delivery**: real exam content, desktop installer, update pipeline, onboarding, gamification, and responsible optional AI — not a tutorial todo app.
 
 **Full case study → [docs/PORTFOLIO.md](docs/PORTFOLIO.md)**
 
-**Ready-to-paste profile copy → [docs/FREELANCE_COPY.md](docs/FREELANCE_COPY.md)**
+**Live portfolio → [jacobbarrera2024-sketch.github.io/secplus-sensei](https://jacobbarrera2024-sketch.github.io/secplus-sensei/)**
 
 ---
 
@@ -123,7 +105,7 @@ secplus-sensei/
 ├── preload.js            # Secure IPC bridge
 ├── assets/               # App icons
 ├── build/                # NSIS installer scripts
-├── docs/                 # Portfolio case study, freelance copy, screenshot guide
+├── docs/                 # Case study, screenshot guide
 ├── package.json
 └── README.txt            # End-user install guide
 ```
@@ -153,9 +135,7 @@ Progress persists across app updates. First desktop launch auto-imports browser 
 
 **Jacob** — developer, solo builder of SecPlus Sensei.
 
-- **Portfolio site:** [website/](website/) — deploy via GitHub Pages (see [website/README.md](website/README.md))
-- **Live URL (after Pages enabled):** `https://jacobbarrera2024-sketch.github.io/secplus-sensei/`
-- **Contact setup:** double-click `Setup Contact.bat` or run `node setup-contact.js`
+- **Portfolio site:** [jacobbarrera2024-sketch.github.io/secplus-sensei](https://jacobbarrera2024-sketch.github.io/secplus-sensei/)
 
 ---
 

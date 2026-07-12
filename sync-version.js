@@ -21,7 +21,7 @@ let html = fs.readFileSync(htmlPath, "utf8");
 html = html.replace(/var APP_VERSION="[^"]+"/, 'var APP_VERSION="' + ver + '"');
 fs.writeFileSync(htmlPath, html);
 
-const notePath = path.join(projectDir, "AI_VERSION_NOTE.md");
+const notePath = path.join(projectDir, "VERSION_NOTE.md");
 if (fs.existsSync(notePath)) {
   let note = fs.readFileSync(notePath, "utf8");
   note = note.replace(/\*\*Current version\*\*\s*\n\n\*\*[\d.]+\*\*/,
