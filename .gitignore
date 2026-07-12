@@ -1,3 +1,6 @@
 node_modules/
 dist*/
 build/SecPlus Sensei Updater.exe
+
+# Packaged build artifacts — distribute via GitHub Releases, not source control
+*.exe
