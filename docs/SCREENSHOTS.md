@@ -36,7 +36,3 @@ Add real app screenshots when you have them — the README and portfolio site in
 ## Optional: demo video
 
 A 60–90 second screen recording (Loom, OBS, or Win+G) walking through Dashboard → Study → Quiz is worth more than extra screenshots. Link it in LinkedIn Featured and Upwork portfolio.
-
-## Portfolio website
-
-Replace `website/assets/secplus-sensei-thumb.svg` with a real screenshot or a cropped app capture when ready.
