@@ -16,8 +16,8 @@ Edit the `SITE` object at the top of **`main.js`**:
 ```javascript
 var SITE = {
   name: "Jacob",
-  linkedin: "https://www.linkedin.com/in/YOUR-PROFILE",
-  email: "you@email.com",
+  linkedin: "https://www.linkedin.com/in/jacob-barrera-515683152",
+  email: "jacobbarrera.jb@gmail.com",
   github: "https://github.com/jacobbarrera2024-sketch"
 };
 ```

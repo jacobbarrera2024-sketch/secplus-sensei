@@ -5,7 +5,7 @@
   var SITE = {
     name: "Jacob",
     linkedin: "https://www.linkedin.com/in/jacob-barrera-515683152",
-    email: "hello@example.com",
+    email: "jacobbarrera.jb@gmail.com",
     github: "https://github.com/jacobbarrera2024-sketch"
   };
 
