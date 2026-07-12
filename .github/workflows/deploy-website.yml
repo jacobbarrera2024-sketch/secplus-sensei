@@ -1,3 +1,7 @@
+# Deploy portfolio website
+# If this fails: enable Pages at Settings → Pages → GitHub Actions first.
+# See docs/REPO_SETTINGS.md
+
 name: Deploy portfolio website
 
 on:

@@ -11,6 +11,7 @@ Everything below is ready. You built something real — this doc is just the las
 - **Portfolio website** — clean neutral design, mobile-responsive, project-ready for #2
 - **OG/social preview image** — looks good when you share the link on LinkedIn
 - **404 page**, sitemap, robots.txt for the site
+- **`Setup Contact.bat`** — enter LinkedIn + email in 30 seconds
 - **`Preview Website.bat`** — double-click to preview on PC (and iPhone via Wi-Fi)
 - **Deploy workflow** — auto-publishes `website/` when Pages is enabled
 
@@ -28,18 +29,15 @@ Everything below is ready. You built something real — this doc is just the las
 
 ### 2. Add your contact info (2 min)
 
-Edit **`website/main.js`** — top of file:
+**Easy way:** double-click **`Setup Contact.bat`** — enter LinkedIn + email, done.
 
-```javascript
-var SITE = {
-  name: "Jacob",
-  linkedin: "https://www.linkedin.com/in/YOUR-PROFILE",
-  email: "you@email.com",
-  github: "https://github.com/jacobbarrera2024-sketch"
-};
-```
+**Manual way:** edit **`website/main.js`** — top `SITE` object.
 
-Save → commit → push (or tell Cursor to push). Site redeploys automatically.
+Commit and push to redeploy the live site.
+
+### 2b. GitHub repo polish (2 min)
+
+See **[REPO_SETTINGS.md](REPO_SETTINGS.md)** — pin repo, fill About box, upload social preview image.
 
 ### 3. Pin & post (10 min)
 

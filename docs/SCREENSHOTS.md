@@ -1,6 +1,6 @@
 # Screenshot guide
 
-Add 3–4 PNG screenshots to `docs/screenshots/` to make the GitHub README pop. Takes about 15 minutes on your Windows PC.
+Placeholder previews are already in `docs/screenshots/` (dashboard, study, exam) and show in the README. **Replace them with real captures when you can** — takes ~15 minutes.
 
 ## What to capture
 

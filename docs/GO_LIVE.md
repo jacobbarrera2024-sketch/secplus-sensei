@@ -27,9 +27,9 @@ Do these when you get home. **~45–60 minutes total.**
 - [ ] Confirm README looks good
 - [ ] **Settings → General → Change visibility → Public** (if not already)
 - [ ] **Profile → Customize pins → pin this repo**
-- [ ] **Settings → Pages → Source → GitHub Actions** (enables portfolio site)
+- [ ] **Settings → Pages → Source → GitHub Actions** (see [REPO_SETTINGS.md](REPO_SETTINGS.md) for full repo polish)
 - [ ] After Pages deploys: **https://jacobbarrera2024-sketch.github.io/secplus-sensei/**
-- [ ] Edit `website/main.js` — set your real LinkedIn URL and email in the `SITE` object
+- [ ] Run **`Setup Contact.bat`** or edit `website/main.js` — LinkedIn + email
 
 ### 2. Screenshots (15 min) — optional but high impact
 
