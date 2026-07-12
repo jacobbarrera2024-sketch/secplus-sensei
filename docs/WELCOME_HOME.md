@@ -4,7 +4,7 @@ Everything below is ready. You built something real — this doc is just the las
 
 ---
 
-## What's done (while you were at work)
+## What's included
 
 - **SecPlus Sensei** polished to v1.1.7 — portfolio-ready app + repo
 - **Professional README**, MIT license, case study, freelance copy templates

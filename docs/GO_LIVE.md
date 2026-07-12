@@ -4,7 +4,7 @@ Do these when you get home. **~45–60 minutes total.**
 
 ---
 
-## Already done for you
+## Included in the repo
 
 - [x] App polished (disclaimers, copy fixes, privacy warnings)
 - [x] Professional README with badges and structure

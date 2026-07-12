@@ -1,6 +1,6 @@
 # GitHub repo settings (2 minutes)
 
-Do these once on github.com — the agent can't change them for you.
+Do these once on github.com — they must be changed in the GitHub web UI.
 
 ---
 

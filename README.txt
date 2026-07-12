@@ -24,7 +24,7 @@ YOUR PROGRESS IS ALWAYS SAVED
 
 UPDATES (exe only — no bat files)
 -----------------------------------
-  When we change the app, run  Build SecPlus Sensei.bat  on the dev PC.
+  When you change the app, run  Build SecPlus Sensei.bat  on the dev PC.
   That stages the new installer here:
 
     %APPDATA%\SecPlus Sensei\updates\SecPlus Sensei Setup.exe

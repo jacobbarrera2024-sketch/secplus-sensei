@@ -148,9 +148,9 @@ Still open to SOC Analyst, Cybersecurity Analyst, and IT Support roles (remote o
 
 ---
 
-## 9. Website (already done for you)
+## 9. Website
 
-Your LinkedIn URL is now wired into `website/main.js` and the live site HTML. You only need to add your **email** via `Setup Contact.bat` when you get home.
+Your LinkedIn URL is wired into `website/main.js` and the live site. Email is set to `jacobbarrera.jb@gmail.com`.
 
 ---
 
