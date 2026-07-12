@@ -51,22 +51,6 @@
 
 ---
 
-## Screenshots
-
-<p align="center">
-  <img src="docs/screenshots/dashboard.png" alt="Dashboard with readiness tracking and domain progress" width="720" />
-</p>
-
-<p align="center">
-  <img src="docs/screenshots/study.png" alt="Flashcard study view" width="350" />
-  &nbsp;&nbsp;
-  <img src="docs/screenshots/exam.png" alt="Exam simulation view" width="350" />
-</p>
-
-_Placeholder previews above — replace with real app captures anytime ([guide](docs/SCREENSHOTS.md))._
-
----
-
 ## For recruiters & clients
 
 This repo demonstrates **end-to-end product delivery**: real exam content, desktop installer, update pipeline, onboarding, gamification, and responsible optional AI — not a tutorial todo app.

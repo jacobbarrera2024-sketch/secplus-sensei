@@ -1,6 +1,6 @@
 # Screenshot guide
 
-Placeholder previews are already in `docs/screenshots/` (dashboard, study, exam) and show in the README. **Replace them with real captures when you can** — takes ~15 minutes.
+Add real app screenshots when you have them — the README and portfolio site intentionally omit wireframe placeholders until then.
 
 ## What to capture
 
@@ -17,9 +17,7 @@ Placeholder previews are already in `docs/screenshots/` (dashboard, study, exam)
 2. Navigate to each view
 3. Press **Win + Shift + S** → select area → save PNG
 4. Drop files into `docs/screenshots/`
-5. Update `README.md` Screenshots section — uncomment the image lines (template below)
-
-## README template (after you add images)
+5. Add a Screenshots section to `README.md`:
 
 ```markdown
 ## Screenshots
@@ -29,16 +27,16 @@ Placeholder previews are already in `docs/screenshots/` (dashboard, study, exam)
 </p>
 
 <p align="center">
-  <img src="docs/screenshots/study.png" alt="Flashcard study view" width="720" />
+  <img src="docs/screenshots/study.png" alt="Flashcard study view" width="350" />
   &nbsp;&nbsp;
-  <img src="docs/screenshots/exam.png" alt="Exam simulation" width="720" />
+  <img src="docs/screenshots/exam.png" alt="Exam simulation" width="350" />
 </p>
 ```
 
 ## Optional: demo video
 
-A 60–90 second screen recording (Loom, OBS, or Win+G) walking through Dashboard → Study → Quiz is worth more than a 5th screenshot. Link it in your LinkedIn Featured section and Upwork portfolio.
+A 60–90 second screen recording (Loom, OBS, or Win+G) walking through Dashboard → Study → Quiz is worth more than extra screenshots. Link it in LinkedIn Featured and Upwork portfolio.
 
-## Until screenshots are added
+## Portfolio website
 
-The README uses the app icon as a placeholder hero image. Replace it once you have real captures.
+Replace `website/assets/secplus-sensei-thumb.svg` with a real screenshot or a cropped app capture when ready.
