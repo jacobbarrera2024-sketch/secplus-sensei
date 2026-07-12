@@ -34,7 +34,7 @@
 |---|---|
 | **Built in** | ~3 days (solo) |
 | **Flashcards** | 452 across all 5 SY0-701 domains |
-| **Questions** | 507 (MCQ, multi-select, PBQs) |
+| **Questions** | 481 (415 multiple-choice/multi-select + 66 PBQs) |
 | **Stack** | Electron · Vanilla JS · Three.js · Claude API (optional) |
 | **Privacy** | Local-first · No accounts · No telemetry |
 

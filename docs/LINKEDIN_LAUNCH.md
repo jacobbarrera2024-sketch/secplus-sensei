@@ -24,7 +24,7 @@ Description: `Desktop & web apps — projects, skills, contact`
 **Link 2 — GitHub**  
 https://github.com/jacobbarrera2024-sketch/secplus-sensei  
 Title: `SecPlus Sensei`  
-Description: `Security+ study desktop app — 500+ questions, exam sim, Electron`
+Description: `Security+ study desktop app — 480+ questions, exam sim, Electron`
 
 ---
 
@@ -35,7 +35,7 @@ Description: `Security+ study desktop app — 500+ questions, exam sim, Electron
 ```
 Shipped my first portfolio piece — a full CompTIA Security+ desktop study app I built in 3 days.
 
-SecPlus Sensei: 450+ flashcards, 500+ practice questions, spaced repetition, exam simulation, and optional AI tutoring. Packaged as a Windows app with installer and auto-update.
+SecPlus Sensei: 450+ flashcards, 480+ practice questions, spaced repetition, exam simulation, and optional AI tutoring. Packaged as a Windows app with installer and auto-update.
 
 Tech: Electron, vanilla JavaScript, Three.js, Claude API.
 
@@ -51,7 +51,7 @@ Open to freelance work — Electron apps, study platforms, AI integration. DM me
 
 **Description:**
 ```
-Built a full-featured Electron desktop app for Security+ (SY0-701) exam prep: 450+ flashcards with SM-2 spaced repetition, 500+ practice questions, timed exam simulation, readiness dashboard, and optional Claude AI tutoring.
+Built a full-featured Electron desktop app for Security+ (SY0-701) exam prep: 450+ flashcards with SM-2 spaced repetition, 480+ practice questions, timed exam simulation, readiness dashboard, and optional Claude AI tutoring.
 
 Tech: Electron, vanilla JavaScript, Three.js, electron-builder, local-first persistence, auto-update.
 
@@ -71,7 +71,7 @@ Select: **Freelance** and/or **Contract**
 ## Step 5: First DM (send 3–5 tonight)
 
 ```
-Hi [Name] — I'm a developer who builds desktop and web apps. I just shipped a Security+ study desktop app (Electron, 500+ questions, exam sim) and put my portfolio live:
+Hi [Name] — I'm a developer who builds desktop and web apps. I just shipped a Security+ study desktop app (Electron, 480+ questions, exam sim) and put my portfolio live:
 
 https://jacobbarrera2024-sketch.github.io/secplus-sensei/
 

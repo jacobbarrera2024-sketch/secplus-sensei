@@ -27,7 +27,7 @@ I'm a cybersecurity graduate with hands-on experience in vulnerability managemen
 
 I'm at my best when things get complicated. During team projects, I stepped up to lead when others were stuck — breaking down technical problems into clear steps and documenting solutions so everyone could follow along. Troubleshooting, analysis, and structured problem-solving are where I thrive.
 
-I'm currently studying for CompTIA Security+ — and I built SecPlus Sensei, a full Windows desktop study app for the SY0-701 exam: 450+ flashcards, 500+ practice questions, spaced repetition, exam simulation, and optional AI tutoring. I designed, coded, and packaged it solo in three days (Electron, vanilla JavaScript). It’s proof that I don’t just study security — I build tools for it.
+I'm currently studying for CompTIA Security+ — and I built SecPlus Sensei, a full Windows desktop study app for the SY0-701 exam: 450+ flashcards, 480+ practice questions, spaced repetition, exam simulation, and optional AI tutoring. I designed, coded, and packaged it solo in three days (Electron, vanilla JavaScript). It’s proof that I don’t just study security — I build tools for it.
 
 Open to:
 • Entry-level cybersecurity roles — SOC Analyst, Cybersecurity Analyst, IT Support, Vulnerability Management (remote or Texas)
@@ -58,7 +58,7 @@ Click **Add position** (or **Add project** under Projects section if you prefer)
 Built and shipped a complete CompTIA Security+ (SY0-701) study application for Windows — solo, in three days.
 
 • 452 flashcards with SM-2 spaced repetition across all 5 exam domains
-• 500+ practice questions including performance-based questions
+• 480+ practice questions including performance-based questions
 • 90-minute timed exam simulator with scaled scoring
 • Readiness dashboard, gamification, optional Claude AI tutor (bring-your-own-key)
 • Packaged with Windows installer, auto-update, and local-first persistence
@@ -83,7 +83,7 @@ Portfolio: https://jacobbarrera2024-sketch.github.io/secplus-sensei/
 **Link 2**
 - URL: `https://github.com/jacobbarrera2024-sketch/secplus-sensei`
 - Title: `SecPlus Sensei — GitHub`
-- Description: `Security+ study desktop app — 500+ questions, exam sim, Electron`
+- Description: `Security+ study desktop app — 480+ questions, exam sim, Electron`
 
 ---
 
@@ -122,7 +122,7 @@ Studying for Security+ and decided to build the study tool I wished existed.
 
 SecPlus Sensei — a full Windows desktop app I built in 3 days:
 → 450+ flashcards with spaced repetition
-→ 500+ practice questions & exam simulation
+→ 480+ practice questions & exam simulation
 → Optional AI tutoring
 → Electron + vanilla JavaScript
 

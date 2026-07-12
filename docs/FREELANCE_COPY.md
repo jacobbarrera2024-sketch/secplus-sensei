@@ -12,7 +12,7 @@ Copy these into Upwork, Fiverr, LinkedIn, or proposal messages.
 
 **SecPlus Sensei** — CompTIA Security+ Desktop Study App
 
-Built a full-featured Electron desktop app for Security+ (SY0-701) exam prep: 450+ flashcards with SM-2 spaced repetition, 500+ practice questions, timed exam simulation, readiness dashboard with gamification, and optional Claude AI tutoring (bring-your-own-key).
+Built a full-featured Electron desktop app for Security+ (SY0-701) exam prep: 450+ flashcards with SM-2 spaced repetition, 480+ practice questions, timed exam simulation, readiness dashboard with gamification, and optional Claude AI tutoring (bring-your-own-key).
 
 Tech: Electron, vanilla JavaScript, Three.js, electron-builder, local-first persistence, auto-update pipeline.
 
@@ -32,7 +32,7 @@ Proof of ability to ship complete products — not just code snippets.
 
 ## LinkedIn — About (short paragraph)
 
-I build desktop and web applications end to end — from UI and logic to installers, persistence, and optional AI features. Recent work: SecPlus Sensei, a Security+ study desktop app with spaced repetition, exam simulation, and 500+ authored questions, built in three days. Open to contract work on Electron apps, study/quiz platforms, and AI-integrated tools.
+I build desktop and web applications end to end — from UI and logic to installers, persistence, and optional AI features. Recent work: SecPlus Sensei, a Security+ study desktop app with spaced repetition, exam simulation, and 480+ authored questions, built in three days. Open to contract work on Electron apps, study/quiz platforms, and AI-integrated tools.
 
 Portfolio: https://jacobbarrera2024-sketch.github.io/secplus-sensei/
 
@@ -57,7 +57,7 @@ Portfolio: https://jacobbarrera2024-sketch.github.io/secplus-sensei/
 **Title:** SecPlus Sensei — Security+ Desktop Study App
 
 **Description:**
-Full-featured CompTIA Security+ (SY0-701) study application. Includes 452 flashcards, 500+ quiz questions, SM-2 spaced repetition, timed exam simulation, readiness dashboard, XP/quests/achievements, and optional AI tutor. Packaged as a Windows installer with auto-update and local progress persistence.
+Full-featured CompTIA Security+ (SY0-701) study application. Includes 452 flashcards, 480+ quiz questions, SM-2 spaced repetition, timed exam simulation, readiness dashboard, XP/quests/achievements, and optional AI tutor. Packaged as a Windows installer with auto-update and local progress persistence.
 
 **Skills:** Electron, JavaScript, HTML/CSS, Desktop Applications, AI Integration
 
@@ -79,7 +79,7 @@ Full-featured CompTIA Security+ (SY0-701) study application. Includes 452 flashc
 
 Need a custom Electron app, a study/quiz platform, or AI features in your product? I deliver working software — UI, logic, data persistence, and packaging — not half-finished demos.
 
-**Recent work:** SecPlus Sensei — a Security+ study desktop app with 500+ questions, exam simulation, gamification, and optional AI tutor. Built solo in 3 days.
+**Recent work:** SecPlus Sensei — a Security+ study desktop app with 480+ questions, exam simulation, gamification, and optional AI tutor. Built solo in 3 days.
 
 **I can build:**
 - Electron / Windows desktop apps
@@ -97,7 +97,7 @@ Portfolio: https://jacobbarrera2024-sketch.github.io/secplus-sensei/
 
 ## Cold outreach DM (LinkedIn / email)
 
-Hi [Name] — I'm a developer who builds desktop and web apps with optional AI integration. I recently shipped SecPlus Sensei, a full Security+ study desktop app (flashcards, exam sim, 500+ questions, Electron) in three days: https://jacobbarrera2024-sketch.github.io/secplus-sensei/
+Hi [Name] — I'm a developer who builds desktop and web apps with optional AI integration. I recently shipped SecPlus Sensei, a full Security+ study desktop app (flashcards, exam sim, 480+ questions, Electron) in three days: https://jacobbarrera2024-sketch.github.io/secplus-sensei/
 
 If you ever need contract help on a similar tool — training app, internal dashboard, Electron wrapper, AI features — I'd be glad to chat. Happy to do a quick walkthrough.
 

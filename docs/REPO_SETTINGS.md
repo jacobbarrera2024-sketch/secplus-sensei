@@ -17,7 +17,7 @@ On the repo main page → click the **gear** next to "About":
 
 | Field | Suggested value |
 |-------|-----------------|
-| **Description** | CompTIA Security+ desktop study app + developer portfolio. Electron, 500+ questions, exam sim. |
+| **Description** | CompTIA Security+ desktop study app + developer portfolio. Electron, 480+ questions, exam sim. |
 | **Website** | `https://jacobbarrera2024-sketch.github.io/secplus-sensei/` |
 | **Topics** | `electron` `javascript` `portfolio` `desktop-app` `study-app` `security-plus` |
 
