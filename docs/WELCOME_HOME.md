@@ -43,7 +43,7 @@ See **[REPO_SETTINGS.md](REPO_SETTINGS.md)** — pin repo, fill About box, uploa
 
 - **GitHub profile** → pin `secplus-sensei` repo
 - **LinkedIn Featured** → portfolio site URL + GitHub repo
-- Copy/paste from **[LINKEDIN_LAUNCH.md](LINKEDIN_LAUNCH.md)** — post or add project entry
+- Copy/paste from **[LINKEDIN_JACOB.md](LINKEDIN_JACOB.md)** — written for your actual profile (cyber + dev)
 - Optional tonight: Upwork + Fiverr from **[FREELANCE_COPY.md](FREELANCE_COPY.md)**
 
 ---
