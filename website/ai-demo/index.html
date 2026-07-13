@@ -49,23 +49,11 @@
 
     <div class="main-column">
       <header class="mobile-header">
-        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Open menu">
-          <span class="menu-icon" aria-hidden="true"></span>
-        </button>
         <div class="mobile-title">
           <strong id="mobilePageTitle">Practice</strong>
-          <span>SecPlus AI Demo</span>
+          <span id="mobileStatus">SecPlus AI Demo</span>
         </div>
       </header>
-
-      <div class="mobile-backdrop" id="mobileBackdrop" hidden></div>
-      <nav class="mobile-drawer" id="mobileDrawer" aria-label="Choose a page" hidden>
-        <p class="drawer-label">Go to</p>
-        <button class="nav-item active" type="button" data-page="practice">Practice</button>
-        <button class="nav-item" type="button" data-page="api">API Setup</button>
-        <button class="nav-item" type="button" data-page="custom">Custom Question</button>
-        <div class="drawer-status" id="drawerStatus">No API key saved</div>
-      </nav>
 
       <main class="content">
         <!-- Page: Practice -->
@@ -177,6 +165,12 @@
         <p class="disclaimer">Unofficial study aid — not affiliated with or endorsed by CompTIA.</p>
         <p>Built by <strong>Jacob</strong> · <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/">Portfolio</a> · <a href="https://github.com/jacobbarrera2024-sketch/secplus-sensei/blob/main/docs/PORTFOLIO.md">Case Study</a></p>
       </footer>
+
+      <nav class="mobile-tabs" aria-label="Page navigation">
+        <button class="tab-item active" type="button" data-page="practice">Practice</button>
+        <button class="tab-item" type="button" data-page="api">API Setup</button>
+        <button class="tab-item" type="button" data-page="custom">Custom</button>
+      </nav>
     </div>
   </div>
 

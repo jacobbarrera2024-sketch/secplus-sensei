@@ -53,9 +53,8 @@
     if (els.keyStatusText) {
       els.keyStatusText.textContent = text;
     }
-    if (els.drawerStatus) {
-      els.drawerStatus.textContent = text;
-      els.drawerStatus.classList.toggle("ready", ready);
+    if (els.mobileStatus) {
+      els.mobileStatus.textContent = ready ? "AI ready · SecPlus AI Demo" : "No API key · SecPlus AI Demo";
     }
     if (els.explainBtn) {
       els.explainBtn.title = ready
@@ -78,37 +77,9 @@
   }
 
   function setActiveNav(pageId) {
-    document.querySelectorAll(".nav-item[data-page]").forEach(function (btn) {
+    document.querySelectorAll(".nav-item[data-page], .tab-item[data-page]").forEach(function (btn) {
       btn.classList.toggle("active", btn.getAttribute("data-page") === pageId);
     });
-  }
-
-  function closeMobileMenu() {
-    if (els.mobileDrawer) {
-      els.mobileDrawer.classList.remove("open");
-      els.mobileDrawer.hidden = true;
-    }
-    if (els.mobileBackdrop) {
-      els.mobileBackdrop.classList.remove("open");
-      els.mobileBackdrop.hidden = true;
-    }
-    if (els.menuBtn) {
-      els.menuBtn.setAttribute("aria-expanded", "false");
-    }
-  }
-
-  function openMobileMenu() {
-    if (els.mobileDrawer) {
-      els.mobileDrawer.classList.add("open");
-      els.mobileDrawer.hidden = false;
-    }
-    if (els.mobileBackdrop) {
-      els.mobileBackdrop.classList.add("open");
-      els.mobileBackdrop.hidden = false;
-    }
-    if (els.menuBtn) {
-      els.menuBtn.setAttribute("aria-expanded", "true");
-    }
   }
 
   function showPage(pageId, updateHash) {
@@ -132,32 +103,13 @@
     }
 
     window.scrollTo({ top: 0, behavior: "smooth" });
-    closeMobileMenu();
   }
 
   function initNav() {
-    document.querySelectorAll(".nav-item[data-page]").forEach(function (btn) {
+    document.querySelectorAll(".nav-item[data-page], .tab-item[data-page]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         showPage(btn.getAttribute("data-page"));
       });
-    });
-
-    if (els.menuBtn) {
-      els.menuBtn.addEventListener("click", function () {
-        if (els.mobileDrawer && els.mobileDrawer.classList.contains("open")) {
-          closeMobileMenu();
-        } else {
-          openMobileMenu();
-        }
-      });
-    }
-
-    if (els.mobileBackdrop) {
-      els.mobileBackdrop.addEventListener("click", closeMobileMenu);
-    }
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeMobileMenu();
     });
 
     var hash = (location.hash || "#practice").replace("#", "");
@@ -441,11 +393,8 @@
       apiTutorial: $("apiTutorial"),
       sidebarStatus: $("sidebarStatus"),
       keyStatusText: $("keyStatusText"),
-      drawerStatus: $("drawerStatus"),
-      mobileDrawer: $("mobileDrawer"),
-      mobileBackdrop: $("mobileBackdrop"),
-      menuBtn: $("menuBtn"),
-      mobilePageTitle: $("mobilePageTitle")
+      mobilePageTitle: $("mobilePageTitle"),
+      mobileStatus: $("mobileStatus")
     };
 
     loadSettings();
