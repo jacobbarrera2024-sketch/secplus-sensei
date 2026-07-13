@@ -5,11 +5,18 @@
   var TUTORIAL_KEY = "secplus_ai_demo_tutorial_seen";
   var DEFAULT_MODEL = "claude-haiku-4-5";
 
+  var PAGE_TITLES = {
+    practice: "Practice",
+    api: "API Setup",
+    custom: "Custom Question"
+  };
+
   var state = {
     apiKey: "",
     model: DEFAULT_MODEL,
     current: null,
-    selected: -1
+    selected: -1,
+    page: "practice"
   };
 
   var els = {};
@@ -46,8 +53,9 @@
     if (els.keyStatusText) {
       els.keyStatusText.textContent = text;
     }
-    if (els.mobileDot) {
-      els.mobileDot.classList.toggle("ready", ready);
+    if (els.drawerStatus) {
+      els.drawerStatus.textContent = text;
+      els.drawerStatus.classList.toggle("ready", ready);
     }
     if (els.explainBtn) {
       els.explainBtn.title = ready
@@ -69,48 +77,91 @@
       .replace(/"/g, "&quot;");
   }
 
-  function setActiveNav(sectionId) {
-    document.querySelectorAll(".nav-item[data-section]").forEach(function (link) {
-      link.classList.toggle("active", link.getAttribute("data-section") === sectionId);
+  function setActiveNav(pageId) {
+    document.querySelectorAll(".nav-item[data-page]").forEach(function (btn) {
+      btn.classList.toggle("active", btn.getAttribute("data-page") === pageId);
     });
   }
 
-  function initNav() {
-    var sectionIds = ["practice", "api", "custom"];
+  function closeMobileMenu() {
+    if (els.mobileDrawer) {
+      els.mobileDrawer.classList.remove("open");
+      els.mobileDrawer.hidden = true;
+    }
+    if (els.mobileBackdrop) {
+      els.mobileBackdrop.classList.remove("open");
+      els.mobileBackdrop.hidden = true;
+    }
+    if (els.menuBtn) {
+      els.menuBtn.setAttribute("aria-expanded", "false");
+    }
+  }
 
-    document.querySelectorAll(".nav-item[data-section]").forEach(function (link) {
-      link.addEventListener("click", function () {
-        setActiveNav(link.getAttribute("data-section"));
-        if (els.mobileNav) {
-          els.mobileNav.classList.remove("open");
-          if (els.menuBtn) els.menuBtn.setAttribute("aria-expanded", "false");
-        }
+  function openMobileMenu() {
+    if (els.mobileDrawer) {
+      els.mobileDrawer.classList.add("open");
+      els.mobileDrawer.hidden = false;
+    }
+    if (els.mobileBackdrop) {
+      els.mobileBackdrop.classList.add("open");
+      els.mobileBackdrop.hidden = false;
+    }
+    if (els.menuBtn) {
+      els.menuBtn.setAttribute("aria-expanded", "true");
+    }
+  }
+
+  function showPage(pageId, updateHash) {
+    if (!PAGE_TITLES[pageId]) pageId = "practice";
+    state.page = pageId;
+
+    document.querySelectorAll(".page-view").forEach(function (view) {
+      var isActive = view.getAttribute("data-page") === pageId;
+      view.classList.toggle("active", isActive);
+      view.hidden = !isActive;
+    });
+
+    setActiveNav(pageId);
+
+    if (els.mobilePageTitle) {
+      els.mobilePageTitle.textContent = PAGE_TITLES[pageId];
+    }
+
+    if (updateHash !== false) {
+      history.replaceState(null, "", "#" + pageId);
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    closeMobileMenu();
+  }
+
+  function initNav() {
+    document.querySelectorAll(".nav-item[data-page]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        showPage(btn.getAttribute("data-page"));
       });
     });
 
-    if ("IntersectionObserver" in window) {
-      var observer = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              setActiveNav(entry.target.id);
-            }
-          });
-        },
-        { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
-      );
-      sectionIds.forEach(function (id) {
-        var el = document.getElementById(id);
-        if (el) observer.observe(el);
+    if (els.menuBtn) {
+      els.menuBtn.addEventListener("click", function () {
+        if (els.mobileDrawer && els.mobileDrawer.classList.contains("open")) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
       });
     }
 
-    if (els.menuBtn && els.mobileNav) {
-      els.menuBtn.addEventListener("click", function () {
-        var open = els.mobileNav.classList.toggle("open");
-        els.menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
-      });
+    if (els.mobileBackdrop) {
+      els.mobileBackdrop.addEventListener("click", closeMobileMenu);
     }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeMobileMenu();
+    });
+
+    var hash = (location.hash || "#practice").replace("#", "");
+    showPage(PAGE_TITLES[hash] ? hash : "practice", false);
   }
 
   function renderQuestion(q) {
@@ -260,10 +311,8 @@
     if (!state.current) return;
     if (!state.apiKey) {
       setStatus("Add your API key in API Setup first.", "error");
-      if (els.apiTutorial) {
-        els.apiTutorial.open = true;
-        document.getElementById("api").scrollIntoView({ behavior: "smooth" });
-      }
+      showPage("api");
+      if (els.apiTutorial) els.apiTutorial.open = true;
       return;
     }
 
@@ -327,7 +376,7 @@
       exp: null
     });
 
-    document.getElementById("practice").scrollIntoView({ behavior: "smooth" });
+    showPage("practice");
     setStatus("Custom question loaded — select an answer, then try Explain with AI.", "ok");
   }
 
@@ -392,16 +441,17 @@
       apiTutorial: $("apiTutorial"),
       sidebarStatus: $("sidebarStatus"),
       keyStatusText: $("keyStatusText"),
-      mobileDot: $("mobileDot"),
-      mobileNav: $("mobileNav"),
-      menuBtn: $("menuBtn")
+      drawerStatus: $("drawerStatus"),
+      mobileDrawer: $("mobileDrawer"),
+      mobileBackdrop: $("mobileBackdrop"),
+      menuBtn: $("menuBtn"),
+      mobilePageTitle: $("mobilePageTitle")
     };
 
     loadSettings();
     els.apiKey.value = state.apiKey;
     els.apiModel.value = state.model || DEFAULT_MODEL;
     updateKeyStatus();
-    initNav();
 
     if (!state.apiKey && !localStorage.getItem(TUTORIAL_KEY) && els.apiTutorial) {
       els.apiTutorial.open = true;
@@ -416,6 +466,7 @@
       }
     }
 
+    initNav();
     bind();
   }
 
