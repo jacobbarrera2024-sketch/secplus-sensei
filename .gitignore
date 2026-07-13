@@ -4,3 +4,6 @@ build/SecPlus Sensei Updater.exe
 
 # Packaged build artifacts — distribute via GitHub Releases, not source control
 *.exe
+
+# Local maintainer checklist (not published)
+HOME_CHECKLIST.md
