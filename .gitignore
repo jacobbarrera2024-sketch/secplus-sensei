@@ -4,3 +4,9 @@ build/SecPlus Sensei Updater.exe
 
 # Packaged build artifacts — distribute via GitHub Releases, not source control
 *.exe
+
+# Local dev / capture artifacts — not for source control
+.screenshot-userdata/
+docs/screenshots/*.png
+HOME_CHECKLIST.md
+scripts/
