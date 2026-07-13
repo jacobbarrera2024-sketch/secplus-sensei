@@ -32,6 +32,23 @@
     return d.toISOString().slice(0, 10);
   }
 
+  function fmtDate(iso) {
+    if (!iso) return "—";
+    var parts = iso.split("-");
+    if (parts.length !== 3) return iso;
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var m = Number(parts[1]) - 1;
+    if (m < 0 || m > 11) return iso;
+    return months[m] + " " + Number(parts[2]) + ", " + parts[0];
+  }
+
+  function setPreviewLine(el, text) {
+    if (!el) return;
+    var val = text ? String(text).trim() : "";
+    el.textContent = val;
+    el.hidden = !val;
+  }
+
   function fmtMoney(n) {
     return "$" + (Number(n) || 0).toFixed(2);
   }
@@ -158,19 +175,19 @@
     els.docPreview.className = "doc-preview theme-" + state.theme;
     els.pvTitle.textContent = isQuote ? "QUOTE" : "INVOICE";
     els.pvNumber.textContent = state.number || (isQuote ? "QTE-001" : "INV-001");
-    els.pvDate.textContent = state.date || "—";
-    els.pvDue.textContent = state.dueDate || "—";
+    els.pvDate.textContent = fmtDate(state.date);
+    els.pvDue.textContent = fmtDate(state.dueDate);
     els.pvDueLabel.textContent = isQuote ? "Valid until" : "Due";
 
     els.pvBizName.textContent = state.business.name || "Your name";
-    els.pvBizEmail.textContent = state.business.email;
-    els.pvBizPhone.textContent = state.business.phone;
-    els.pvBizAddress.textContent = state.business.address;
+    setPreviewLine(els.pvBizEmail, state.business.email);
+    setPreviewLine(els.pvBizPhone, state.business.phone);
+    setPreviewLine(els.pvBizAddress, state.business.address);
 
     els.pvClientName.textContent = state.client.name || "Client name";
-    els.pvClientCompany.textContent = state.client.company;
-    els.pvClientEmail.textContent = state.client.email;
-    els.pvClientAddress.textContent = state.client.address;
+    setPreviewLine(els.pvClientCompany, state.client.company);
+    setPreviewLine(els.pvClientEmail, state.client.email);
+    setPreviewLine(els.pvClientAddress, state.client.address);
 
     els.pvLines.innerHTML = state.lines.map(function (line) {
       if (!line.desc && !line.rate) return "";
@@ -275,6 +292,9 @@
     document.querySelectorAll(".tab").forEach(function (tab) {
       tab.classList.toggle("active", tab.getAttribute("data-panel") === name);
     });
+    if (isPreview) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   }
 
   function bind() {
