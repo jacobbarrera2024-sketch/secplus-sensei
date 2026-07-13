@@ -19,119 +19,137 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <div class="page">
-    <header class="topbar">
-      <div class="container topbar-inner">
-        <a class="brand" href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/" aria-label="Back to portfolio">
-          <img src="assets/icon.png" alt="" width="40" height="40" />
-          <div>
-            <strong>SecPlus AI Demo</strong>
-            <span>Security+ assessment explainer</span>
-          </div>
-        </a>
-        <div class="topbar-actions">
-          <div class="key-status" id="keyStatus" aria-live="polite">
-            <span class="key-dot" id="keyDot" aria-hidden="true"></span>
-            <span id="keyStatusText">No API key</span>
-          </div>
-          <a class="top-link" href="https://github.com/jacobbarrera2024-sketch/secplus-sensei" target="_blank" rel="noopener noreferrer">Desktop app</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Demo navigation">
+      <a class="sidebar-brand" href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/">
+        <img src="assets/icon.png" alt="" width="36" height="36" />
+        <div>
+          <strong>SecPlus AI Demo</strong>
+          <span>Security+ Assessment Explainer</span>
         </div>
+      </a>
+
+      <nav class="sidebar-nav">
+        <p class="nav-label">Sections</p>
+        <a class="nav-item active" href="#practice" data-section="practice">Practice</a>
+        <a class="nav-item" href="#api" data-section="api">API Setup</a>
+        <a class="nav-item" href="#custom" data-section="custom">Custom Question</a>
+      </nav>
+
+      <div class="sidebar-status" id="sidebarStatus">
+        <span class="status-dot" id="keyDot" aria-hidden="true"></span>
+        <span id="keyStatusText">No API key saved</span>
       </div>
-    </header>
 
-    <main id="main" class="container">
-      <section class="hero">
-        <p class="eyebrow">Portfolio demo · BYOK Claude · No install</p>
-        <h1>Practice a question. Get an AI explanation.</h1>
-        <p class="hero-lead">
-          Pick a CompTIA Security+ (SY0-701) sample question, check your answer, then ask Claude to break down
-          why it’s right — your API key stays in this browser only.
-        </p>
-        <ol class="steps" aria-label="How to use this demo">
-          <li><span>1</span> Choose a question</li>
-          <li><span>2</span> Select an answer</li>
-          <li><span>3</span> Explain with AI</li>
-        </ol>
-      </section>
+      <div class="sidebar-links">
+        <a href="https://github.com/jacobbarrera2024-sketch/secplus-sensei" target="_blank" rel="noopener noreferrer">Full Desktop App</a>
+        <a href="https://github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/ai-demo" target="_blank" rel="noopener noreferrer">Source Code</a>
+      </div>
+    </aside>
 
-      <section class="card question-panel">
-        <div class="card-head">
-          <div>
-            <h2>Practice question</h2>
-            <p class="sub">Eight SY0-701 samples from SecPlus Sensei — or paste your own below.</p>
-          </div>
-          <span class="domain-tag" id="qMeta"></span>
+    <div class="main-column">
+      <header class="mobile-header">
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+        <div class="mobile-title">
+          <strong>SecPlus AI Demo</strong>
+          <span>Security+ Assessment Explainer</span>
         </div>
+        <span class="mobile-dot" id="mobileDot" aria-hidden="true"></span>
+      </header>
 
-        <div class="pill-row" id="questionPills" aria-label="Sample questions"></div>
+      <nav class="mobile-nav" id="mobileNav" aria-label="Mobile sections">
+        <a class="nav-item active" href="#practice" data-section="practice">Practice</a>
+        <a class="nav-item" href="#api" data-section="api">API Setup</a>
+        <a class="nav-item" href="#custom" data-section="custom">Custom</a>
+      </nav>
 
-        <div class="q-stem" id="qStem"></div>
-        <div class="options" id="qOptions" role="radiogroup" aria-label="Answer choices"></div>
+      <main class="content">
+        <section class="page-intro">
+          <p class="eyebrow">Portfolio Demo · BYOK Claude · No Install</p>
+          <h1>Practice a Question. Get an AI Explanation.</h1>
+          <p class="intro-lead">
+            Pick a CompTIA Security+ (SY0-701) sample question, check your answer, then ask Claude to explain
+            why it’s right. Your API key stays in this browser only.
+          </p>
+        </section>
 
-        <div class="toolbar">
-          <button class="btn" id="checkBtn" type="button">Check answer</button>
-          <button class="btn btn-ai" id="explainBtn" type="button">
-            <span class="btn-label">Explain with AI</span>
-            <span class="spinner" id="explainSpinner" hidden aria-hidden="true"></span>
-          </button>
-          <button class="btn ghost" id="revealBtn" type="button">Built-in explanation</button>
-        </div>
-
-        <div class="status" id="status" aria-live="polite"></div>
-
-        <div class="result-box" id="resultBox" hidden>
-          <h3 id="resultTitle">Explanation</h3>
-          <div id="resultBody"></div>
-        </div>
-      </section>
-
-      <div class="side-grid">
-        <section class="card">
-          <div class="card-head">
+        <section class="panel" id="practice">
+          <div class="panel-head">
             <div>
-              <h2>API settings</h2>
-              <p class="sub">Optional — AI works only after you add a free Anthropic key.</p>
+              <h2>Practice</h2>
+              <p>Eight SY0-701 samples from SecPlus Sensei.</p>
+            </div>
+            <span class="domain-tag" id="qMeta"></span>
+          </div>
+
+          <div class="pill-row" id="questionPills" aria-label="Sample questions"></div>
+
+          <div class="q-stem" id="qStem"></div>
+          <div class="options" id="qOptions" role="radiogroup" aria-label="Answer choices"></div>
+
+          <div class="toolbar">
+            <button class="btn" id="checkBtn" type="button">Check Answer</button>
+            <button class="btn btn-ai" id="explainBtn" type="button">
+              <span class="btn-label">Explain with AI</span>
+              <span class="spinner" id="explainSpinner" hidden aria-hidden="true"></span>
+            </button>
+            <button class="btn ghost" id="revealBtn" type="button">Built-in Explanation</button>
+          </div>
+
+          <div class="status" id="status" aria-live="polite"></div>
+
+          <div class="result-box" id="resultBox" hidden>
+            <h3 id="resultTitle">Explanation</h3>
+            <div id="resultBody"></div>
+          </div>
+        </section>
+
+        <section class="panel" id="api">
+          <div class="panel-head">
+            <div>
+              <h2>API Setup</h2>
+              <p>Optional — enable AI explanations with a free Anthropic key.</p>
             </div>
           </div>
 
           <details class="tutorial" id="apiTutorial">
-            <summary>How to get a free API key</summary>
+            <summary>How to Get a Free API Key</summary>
             <ol>
               <li>Open <a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer">console.anthropic.com</a> and create a free account.</li>
-              <li>Go to <strong>Settings → API Keys</strong> (or use the button below).</li>
+              <li>Go to <strong>Settings → API Keys</strong>.</li>
               <li>Click <strong>Create Key</strong>, name it (e.g. “SecPlus demo”), and copy the key.</li>
-              <li>Paste it here — it starts with <code>sk-ant-</code>.</li>
-              <li>Click <strong>Save key</strong>. You’re ready for <strong>Explain with AI</strong>.</li>
+              <li>Paste it below — it starts with <code>sk-ant-</code>.</li>
+              <li>Click <strong>Save Key</strong>, then use <strong>Explain with AI</strong> on any question.</li>
             </ol>
-            <p class="tutorial-note">Keys include free trial credits. This demo never sends your key to any server except Anthropic.</p>
+            <p class="tutorial-note">Keys include free trial credits. This demo only sends your key to Anthropic — never to a backend of mine.</p>
           </details>
 
           <div class="field">
-            <label for="apiKey">Anthropic API key</label>
+            <label for="apiKey">Anthropic API Key</label>
             <div class="input-row">
               <input id="apiKey" type="password" placeholder="sk-ant-..." autocomplete="off" spellcheck="false" />
               <button class="btn ghost sm" id="toggleKeyBtn" type="button" aria-label="Show API key">Show</button>
             </div>
           </div>
           <div class="field">
-            <label for="apiModel">Model <span class="label-hint">(default: Haiku — fast &amp; cheap)</span></label>
+            <label for="apiModel">Model <span class="label-hint">(Haiku — fast &amp; cheap)</span></label>
             <input id="apiModel" value="claude-haiku-4-5" spellcheck="false" />
           </div>
           <div class="toolbar">
-            <button class="btn" id="saveKeyBtn" type="button">Save key</button>
+            <button class="btn" id="saveKeyBtn" type="button">Save Key</button>
             <button class="btn ghost" id="clearKeyBtn" type="button">Clear</button>
             <a class="btn ghost" href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener noreferrer">Open Anthropic ↗</a>
           </div>
           <p class="muted-note">Stored in <code>localStorage</code> on this device only. No backend, no accounts, no telemetry.</p>
         </section>
 
-        <section class="card">
-          <div class="card-head">
+        <section class="panel" id="custom">
+          <div class="panel-head">
             <div>
-              <h2>Custom question</h2>
-              <p class="sub">Paste any assessment item to try the same AI explainer flow.</p>
+              <h2>Custom Question</h2>
+              <p>Paste any assessment item to try the same AI explainer flow.</p>
             </div>
           </div>
 
@@ -140,27 +158,20 @@
             <textarea id="customStem" rows="3" placeholder="Paste a practice question here…"></textarea>
           </div>
           <div class="field">
-            <label for="customOpts">Answer choices <span class="label-hint">(one per line)</span></label>
+            <label for="customOpts">Answer Choices <span class="label-hint">(one per line)</span></label>
             <textarea id="customOpts" rows="4" placeholder="Choice A&#10;Choice B&#10;Choice C&#10;Choice D"></textarea>
           </div>
           <div class="toolbar">
-            <button class="btn ghost" id="loadCustomBtn" type="button">Load custom question</button>
+            <button class="btn" id="loadCustomBtn" type="button">Load Custom Question</button>
           </div>
         </section>
-      </div>
-    </main>
+      </main>
 
-    <footer class="footer">
-      <div class="container footer-inner">
+      <footer class="footer">
         <p class="disclaimer">Unofficial study aid — not affiliated with or endorsed by CompTIA.</p>
-        <p>Built by <strong>Jacob</strong> · Companion to <a href="https://github.com/jacobbarrera2024-sketch/secplus-sensei" target="_blank" rel="noopener noreferrer">SecPlus Sensei</a> (desktop)</p>
-        <div class="footer-links">
-          <a href="https://github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/ai-demo" target="_blank" rel="noopener noreferrer">Source</a>
-          <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/" target="_blank" rel="noopener noreferrer">Portfolio</a>
-          <a href="https://github.com/jacobbarrera2024-sketch/secplus-sensei/blob/main/docs/PORTFOLIO.md" target="_blank" rel="noopener noreferrer">Case study</a>
-        </div>
-      </div>
-    </footer>
+        <p>Built by <strong>Jacob</strong> · <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/">Portfolio</a> · <a href="https://github.com/jacobbarrera2024-sketch/secplus-sensei/blob/main/docs/PORTFOLIO.md">Case Study</a></p>
+      </footer>
+    </div>
   </div>
 
   <script src="questions.js"></script>

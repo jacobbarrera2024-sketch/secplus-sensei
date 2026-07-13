@@ -38,16 +38,21 @@
 
   function updateKeyStatus() {
     var ready = !!state.apiKey;
-    if (els.keyStatus) {
-      els.keyStatus.classList.toggle("ready", ready);
+    var text = ready ? "AI ready" : "No API key saved";
+
+    if (els.sidebarStatus) {
+      els.sidebarStatus.classList.toggle("ready", ready);
     }
     if (els.keyStatusText) {
-      els.keyStatusText.textContent = ready ? "AI ready" : "No API key";
+      els.keyStatusText.textContent = text;
+    }
+    if (els.mobileDot) {
+      els.mobileDot.classList.toggle("ready", ready);
     }
     if (els.explainBtn) {
       els.explainBtn.title = ready
         ? "Get a Claude explanation for this question"
-        : "Add your Anthropic API key first";
+        : "Add your Anthropic API key in API Setup first";
     }
   }
 
@@ -62,6 +67,50 @@
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
+  }
+
+  function setActiveNav(sectionId) {
+    document.querySelectorAll(".nav-item[data-section]").forEach(function (link) {
+      link.classList.toggle("active", link.getAttribute("data-section") === sectionId);
+    });
+  }
+
+  function initNav() {
+    var sectionIds = ["practice", "api", "custom"];
+
+    document.querySelectorAll(".nav-item[data-section]").forEach(function (link) {
+      link.addEventListener("click", function () {
+        setActiveNav(link.getAttribute("data-section"));
+        if (els.mobileNav) {
+          els.mobileNav.classList.remove("open");
+          if (els.menuBtn) els.menuBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              setActiveNav(entry.target.id);
+            }
+          });
+        },
+        { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
+      );
+      sectionIds.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+    }
+
+    if (els.menuBtn && els.mobileNav) {
+      els.menuBtn.addEventListener("click", function () {
+        var open = els.mobileNav.classList.toggle("open");
+        els.menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    }
   }
 
   function renderQuestion(q) {
@@ -146,13 +195,13 @@
       setStatus("No built-in explanation for custom questions — try Explain with AI.", "error");
       return;
     }
-    showResult("Built-in explanation", "<p>" + esc(state.current.exp) + "</p>");
+    showResult("Built-in Explanation", "<p>" + esc(state.current.exp) + "</p>");
     setStatus("Showing built-in explanation (works without AI).", "ok");
   }
 
   function friendlyAiError(err) {
     var m = err && err.message ? err.message : String(err || "unknown error");
-    if (/401|invalid.*key|authentication/i.test(m)) return "Invalid API key — open the tutorial and double-check your key.";
+    if (/401|invalid.*key|authentication/i.test(m)) return "Invalid API key — open API Setup and double-check your key.";
     if (/rate.?limit|429|overloaded|529/i.test(m)) return "Anthropic is busy — wait a moment and try again.";
     if (/credit|billing|insufficient/i.test(m)) return "Your Anthropic account may be out of credits.";
     return m;
@@ -210,10 +259,10 @@
   function explainWithAi() {
     if (!state.current) return;
     if (!state.apiKey) {
-      setStatus("Add your API key first — expand “How to get a free API key” for steps.", "error");
+      setStatus("Add your API key in API Setup first.", "error");
       if (els.apiTutorial) {
         els.apiTutorial.open = true;
-        els.apiTutorial.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        document.getElementById("api").scrollIntoView({ behavior: "smooth" });
       }
       return;
     }
@@ -242,7 +291,7 @@
 
     callClaude(system, prompt)
       .then(function (text) {
-        showResult("AI explanation", formatAiResponse(text));
+        showResult("AI Explanation", formatAiResponse(text));
         setStatus("AI explanation ready.", "ok");
       })
       .catch(function (err) {
@@ -271,15 +320,15 @@
 
     renderQuestion({
       id: "custom",
-      domain: "Custom question",
+      domain: "Custom Question",
       stem: stem,
       opts: opts,
       ans: -1,
       exp: null
     });
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setStatus("Custom question loaded — select an answer, then try AI explain.", "ok");
+    document.getElementById("practice").scrollIntoView({ behavior: "smooth" });
+    setStatus("Custom question loaded — select an answer, then try Explain with AI.", "ok");
   }
 
   function bind() {
@@ -309,9 +358,7 @@
     });
 
     els.apiTutorial.addEventListener("toggle", function () {
-      if (els.apiTutorial.open) {
-        localStorage.setItem(TUTORIAL_KEY, "1");
-      }
+      if (els.apiTutorial.open) localStorage.setItem(TUTORIAL_KEY, "1");
     });
 
     els.checkBtn.addEventListener("click", checkAnswer);
@@ -343,14 +390,18 @@
       revealBtn: $("revealBtn"),
       loadCustomBtn: $("loadCustomBtn"),
       apiTutorial: $("apiTutorial"),
-      keyStatus: $("keyStatus"),
-      keyStatusText: $("keyStatusText")
+      sidebarStatus: $("sidebarStatus"),
+      keyStatusText: $("keyStatusText"),
+      mobileDot: $("mobileDot"),
+      mobileNav: $("mobileNav"),
+      menuBtn: $("menuBtn")
     };
 
     loadSettings();
     els.apiKey.value = state.apiKey;
     els.apiModel.value = state.model || DEFAULT_MODEL;
     updateKeyStatus();
+    initNav();
 
     if (!state.apiKey && !localStorage.getItem(TUTORIAL_KEY) && els.apiTutorial) {
       els.apiTutorial.open = true;
