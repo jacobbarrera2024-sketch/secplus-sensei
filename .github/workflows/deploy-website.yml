@@ -10,6 +10,7 @@ on:
       - "website/**"
       - "ai-demo/**"
       - "quick-quote/**"
+      - "sheet-dash/**"
       - ".github/workflows/deploy-website.yml"
   workflow_dispatch:
 
@@ -39,10 +40,11 @@ jobs:
 
       - name: Sync demos into website
         run: |
-          rm -rf website/ai-demo website/quick-quote
+          rm -rf website/ai-demo website/quick-quote website/sheet-dash
           cp -r ai-demo website/ai-demo
           cp -r quick-quote website/quick-quote
-          rm -rf website/ai-demo/.github website/quick-quote/.github 2>/dev/null || true
+          cp -r sheet-dash website/sheet-dash
+          rm -rf website/ai-demo/.github website/quick-quote/.github website/sheet-dash/.github 2>/dev/null || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

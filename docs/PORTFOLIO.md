@@ -56,6 +56,7 @@ Electron · JavaScript · HTML/CSS · Three.js · electron-builder · Anthropic 
 - **Portfolio:** [jacobbarrera2024-sketch.github.io/secplus-sensei](https://jacobbarrera2024-sketch.github.io/secplus-sensei/)
 - **Web demo:** [AI assessment explainer](https://jacobbarrera2024-sketch.github.io/secplus-sensei/ai-demo/) — browser-based BYOK Claude tutoring
 - **QuickQuote:** [Invoice & quote generator](https://jacobbarrera2024-sketch.github.io/secplus-sensei/quick-quote/) — small business web tool demo
+- **SheetDash:** [CSV to dashboard](https://jacobbarrera2024-sketch.github.io/secplus-sensei/sheet-dash/) — spreadsheet upload, charts, sortable table
 - **Screenshot guide:** [docs/SCREENSHOTS.md](SCREENSHOTS.md)
 
 ---
