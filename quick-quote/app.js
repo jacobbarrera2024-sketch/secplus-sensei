@@ -23,13 +23,18 @@
   }
 
   function todayISO() {
-    return new Date().toISOString().slice(0, 10);
+    var d = new Date();
+    return d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
   }
 
   function addDaysISO(days) {
     var d = new Date();
     d.setDate(d.getDate() + days);
-    return d.toISOString().slice(0, 10);
+    return d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
+  }
+
+  function pad2(n) {
+    return n < 10 ? "0" + n : String(n);
   }
 
   function fmtDate(iso) {
@@ -178,6 +183,9 @@
     els.pvDate.textContent = fmtDate(state.date);
     els.pvDue.textContent = fmtDate(state.dueDate);
     els.pvDueLabel.textContent = isQuote ? "Valid until" : "Due";
+    if (els.pvClientHeading) {
+      els.pvClientHeading.textContent = isQuote ? "Prepared for" : "Bill to";
+    }
 
     els.pvBizName.textContent = state.business.name || "Your name";
     setPreviewLine(els.pvBizEmail, state.business.email);
@@ -203,6 +211,8 @@
 
     els.pvSubtotal.textContent = fmtMoney(sub);
     els.pvTax.textContent = fmtMoney(tax) + (state.taxRate ? " (" + state.taxRate + "%)" : "");
+    var taxRow = els.pvTax && els.pvTax.closest(".total-row");
+    if (taxRow) taxRow.hidden = !state.taxRate;
     els.pvTotal.textContent = fmtMoney(total);
     els.pvNotes.textContent = state.notes;
     els.pvNotes.hidden = !state.notes;
@@ -223,11 +233,40 @@
       var raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return false;
       var saved = JSON.parse(raw);
-      Object.keys(state).forEach(function (key) {
-        if (saved[key] !== undefined) state[key] = saved[key];
-      });
-      if (!state.lines || !state.lines.length) {
-        state.lines = [{ desc: "", qty: 1, rate: 0 }];
+      if (!saved || typeof saved !== "object") return false;
+
+      if (saved.docType === "invoice" || saved.docType === "quote") state.docType = saved.docType;
+      if (typeof saved.number === "string") state.number = saved.number;
+      if (typeof saved.date === "string") state.date = saved.date;
+      if (typeof saved.dueDate === "string") state.dueDate = saved.dueDate;
+      if (typeof saved.taxRate === "number") state.taxRate = saved.taxRate;
+      if (typeof saved.notes === "string") state.notes = saved.notes;
+      if (saved.theme === "classic" || saved.theme === "slate" || saved.theme === "mint") state.theme = saved.theme;
+
+      if (saved.business && typeof saved.business === "object") {
+        state.business = {
+          name: saved.business.name || "",
+          email: saved.business.email || "",
+          phone: saved.business.phone || "",
+          address: saved.business.address || ""
+        };
+      }
+      if (saved.client && typeof saved.client === "object") {
+        state.client = {
+          name: saved.client.name || "",
+          company: saved.client.company || "",
+          email: saved.client.email || "",
+          address: saved.client.address || ""
+        };
+      }
+      if (Array.isArray(saved.lines) && saved.lines.length) {
+        state.lines = saved.lines.map(function (line) {
+          return {
+            desc: line.desc || "",
+            qty: Number(line.qty) || 0,
+            rate: Number(line.rate) || 0
+          };
+        });
       }
       return true;
     } catch (e) {
@@ -280,6 +319,9 @@
       notes: "",
       theme: state.theme
     };
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (e) { /* ignore */ }
     writeForm();
     renderPreview();
     setStatus("New document started.", "ok");
@@ -326,7 +368,12 @@
     els.printBtn.addEventListener("click", function () {
       readForm();
       renderPreview();
-      window.print();
+      if (window.matchMedia("(max-width: 900px)").matches) {
+        showPanel("preview");
+        setTimeout(function () { window.print(); }, 350);
+      } else {
+        window.print();
+      }
     });
 
     document.querySelectorAll(".tab").forEach(function (tab) {
@@ -370,6 +417,7 @@
       pvBizEmail: $("pvBizEmail"),
       pvBizPhone: $("pvBizPhone"),
       pvBizAddress: $("pvBizAddress"),
+      pvClientHeading: $("pvClientHeading"),
       pvClientName: $("pvClientName"),
       pvClientCompany: $("pvClientCompany"),
       pvClientEmail: $("pvClientEmail"),
