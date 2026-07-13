@@ -9,6 +9,7 @@ on:
     paths:
       - "website/**"
       - "ai-demo/**"
+      - "quick-quote/**"
       - ".github/workflows/deploy-website.yml"
   workflow_dispatch:
 
@@ -36,11 +37,12 @@ jobs:
         with:
           enablement: true
 
-      - name: Sync AI demo into website
+      - name: Sync demos into website
         run: |
-          rm -rf website/ai-demo
+          rm -rf website/ai-demo website/quick-quote
           cp -r ai-demo website/ai-demo
-          rm -rf website/ai-demo/.github
+          cp -r quick-quote website/quick-quote
+          rm -rf website/ai-demo/.github website/quick-quote/.github 2>/dev/null || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
