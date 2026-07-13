@@ -36,11 +36,15 @@
   }
 
   function saveSettings() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      apiKey: state.apiKey,
-      model: state.model
-    }));
-    updateKeyStatus();
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        apiKey: state.apiKey,
+        model: state.model
+      }));
+      updateKeyStatus();
+    } catch (e) {
+      setStatus("Could not save settings — storage may be unavailable.", "error", "api");
+    }
   }
 
   function updateKeyStatus() {

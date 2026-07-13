@@ -308,7 +308,15 @@ code {
     width: calc(100% - 32px);
     padding-bottom: calc(36px + 72px);
   }
-  .domain-tag { display: none; }
+  .panel-head {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .domain-tag {
+    max-width: 100%;
+    text-align: left;
+    align-self: flex-start;
+  }
 }
 
 .content {
