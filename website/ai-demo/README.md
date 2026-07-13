@@ -2,7 +2,7 @@
 
 Browser-based **Security+ assessment explainer** with optional **bring-your-own-key (BYOK) Claude** tutoring.
 
-Try it live: **https://jacobbarrera2024-sketch.github.io/secplus-ai-demo/**
+Try it live: **https://jacobbarrera2024-sketch.github.io/secplus-sensei/ai-demo/**
 
 Companion to the full desktop study app: [SecPlus Sensei](https://github.com/jacobbarrera2024-sketch/secplus-sensei)
 
@@ -30,8 +30,8 @@ Companion to the full desktop study app: [SecPlus Sensei](https://github.com/jac
 ## Run locally
 
 ```bash
-git clone https://github.com/jacobbarrera2024-sketch/secplus-ai-demo.git
-cd secplus-ai-demo
+git clone https://github.com/jacobbarrera2024-sketch/secplus-sensei.git
+cd secplus-sensei/ai-demo
 npx --yes serve .
 ```
 

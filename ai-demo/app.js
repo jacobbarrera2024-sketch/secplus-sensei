@@ -2,6 +2,7 @@
   "use strict";
 
   var STORAGE_KEY = "secplus_ai_demo_v1";
+  var TUTORIAL_KEY = "secplus_ai_demo_tutorial_seen";
   var DEFAULT_MODEL = "claude-haiku-4-5";
 
   var state = {
@@ -32,6 +33,22 @@
       apiKey: state.apiKey,
       model: state.model
     }));
+    updateKeyStatus();
+  }
+
+  function updateKeyStatus() {
+    var ready = !!state.apiKey;
+    if (els.keyStatus) {
+      els.keyStatus.classList.toggle("ready", ready);
+    }
+    if (els.keyStatusText) {
+      els.keyStatusText.textContent = ready ? "AI ready" : "No API key";
+    }
+    if (els.explainBtn) {
+      els.explainBtn.title = ready
+        ? "Get a Claude explanation for this question"
+        : "Add your Anthropic API key first";
+    }
   }
 
   function setStatus(msg, type) {
@@ -51,7 +68,7 @@
     state.current = q;
     state.selected = -1;
 
-    els.qMeta.textContent = q.domain || "Custom question";
+    els.qMeta.textContent = q.domain || "Custom";
     els.qStem.textContent = q.stem;
     els.qOptions.innerHTML = q.opts.map(function (opt, i) {
       return (
@@ -67,10 +84,12 @@
         var idx = Number(row.getAttribute("data-idx"));
         state.selected = idx;
         Array.prototype.forEach.call(els.qOptions.querySelectorAll(".option"), function (o) {
-          o.classList.remove("selected", "correct");
+          o.classList.remove("selected", "correct", "wrong");
         });
         row.classList.add("selected");
         row.querySelector("input").checked = true;
+        els.resultBox.hidden = true;
+        setStatus("");
       });
     });
 
@@ -80,7 +99,8 @@
 
   function renderPills() {
     els.questionPills.innerHTML = SAMPLE_QUESTIONS.map(function (q, i) {
-      return '<button class="pill" type="button" data-q="' + i + '">Q' + (i + 1) + "</button>";
+      var short = q.domain.split(" ")[0];
+      return '<button class="pill" type="button" data-q="' + i + '" title="' + esc(q.domain) + '">Q' + (i + 1) + " · " + esc(short) + "</button>";
     }).join("");
 
     Array.prototype.forEach.call(els.questionPills.querySelectorAll(".pill"), function (pill) {
@@ -98,6 +118,7 @@
     els.resultTitle.textContent = title;
     els.resultBody.innerHTML = html;
     els.resultBox.hidden = false;
+    els.resultBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
   function checkAnswer() {
@@ -109,30 +130,50 @@
 
     var correct = state.selected === state.current.ans;
     Array.prototype.forEach.call(els.qOptions.querySelectorAll(".option"), function (row, i) {
-      row.classList.toggle("correct", i === state.current.ans);
+      row.classList.remove("correct", "wrong");
+      if (i === state.current.ans) row.classList.add("correct");
+      else if (i === state.selected) row.classList.add("wrong");
     });
 
-    setStatus(correct ? "Correct." : "Not quite — see the correct option highlighted.", correct ? "ok" : "error");
+    setStatus(
+      correct ? "Correct — nice work." : "Not quite — the correct answer is highlighted in green.",
+      correct ? "ok" : "error"
+    );
   }
 
   function revealBuiltIn() {
     if (!state.current || state.current.exp == null) {
-      setStatus("No built-in explanation for this custom question.", "error");
+      setStatus("No built-in explanation for custom questions — try Explain with AI.", "error");
       return;
     }
-    showResult(
-      "Built-in explanation",
-      "<p>" + esc(state.current.exp) + "</p>"
-    );
+    showResult("Built-in explanation", "<p>" + esc(state.current.exp) + "</p>");
     setStatus("Showing built-in explanation (works without AI).", "ok");
   }
 
   function friendlyAiError(err) {
     var m = err && err.message ? err.message : String(err || "unknown error");
-    if (/401|invalid.*key|authentication/i.test(m)) return "Invalid API key — check console.anthropic.com";
-    if (/rate.?limit|429|overloaded|529/i.test(m)) return "Anthropic is rate-limiting — wait and retry";
-    if (/credit|billing|insufficient/i.test(m)) return "Anthropic account may be out of credits";
+    if (/401|invalid.*key|authentication/i.test(m)) return "Invalid API key — open the tutorial and double-check your key.";
+    if (/rate.?limit|429|overloaded|529/i.test(m)) return "Anthropic is busy — wait a moment and try again.";
+    if (/credit|billing|insufficient/i.test(m)) return "Your Anthropic account may be out of credits.";
     return m;
+  }
+
+  function formatAiResponse(text) {
+    var lines = text.split("\n").map(function (l) { return l.trim(); }).filter(Boolean);
+    var html = "";
+    var inList = false;
+
+    lines.forEach(function (line) {
+      if (/^[-*•]/.test(line)) {
+        if (!inList) { html += "<ul>"; inList = true; }
+        html += "<li>" + esc(line.replace(/^[-*•]\s*/, "")) + "</li>";
+      } else {
+        if (inList) { html += "</ul>"; inList = false; }
+        html += "<p>" + esc(line) + "</p>";
+      }
+    });
+    if (inList) html += "</ul>";
+    return html || "<p>" + esc(text) + "</p>";
   }
 
   function callClaude(system, userContent) {
@@ -160,20 +201,29 @@
       });
   }
 
+  function setExplainLoading(on) {
+    els.explainBtn.disabled = on;
+    els.explainSpinner.hidden = !on;
+    els.explainBtn.querySelector(".btn-label").textContent = on ? "Thinking…" : "Explain with AI";
+  }
+
   function explainWithAi() {
     if (!state.current) return;
     if (!state.apiKey) {
-      setStatus("Add your Anthropic API key first (free at console.anthropic.com).", "error");
+      setStatus("Add your API key first — expand “How to get a free API key” for steps.", "error");
+      if (els.apiTutorial) {
+        els.apiTutorial.open = true;
+        els.apiTutorial.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
       return;
     }
 
-    var btn = els.explainBtn;
-    btn.disabled = true;
+    setExplainLoading(true);
     setStatus("Asking Claude…");
 
     var q = state.current;
     var selectedText = state.selected >= 0 ? q.opts[state.selected] : "(no answer selected)";
-    var correctText = q.opts[q.ans];
+    var correctText = typeof q.ans === "number" && q.opts[q.ans] ? q.opts[q.ans] : "(not set for custom)";
 
     var prompt =
       "Question: " + q.stem + "\n\n" +
@@ -188,32 +238,18 @@
 
     var system =
       "You are a concise CompTIA Security+ tutor. Be accurate, practical, and exam-focused. " +
-      "Do not mention that you are an AI. Unofficial study aid — not affiliated with CompTIA.";
+      "Unofficial study aid — not affiliated with CompTIA.";
 
     callClaude(system, prompt)
       .then(function (text) {
-        var html = text
-          .split("\n")
-          .map(function (line) { return line.trim(); })
-          .filter(Boolean)
-          .map(function (line) {
-            if (/^[-*•]/.test(line)) return "<li>" + esc(line.replace(/^[-*•]\s*/, "")) + "</li>";
-            return "<p>" + esc(line) + "</p>";
-          })
-          .join("");
-
-        if (html.indexOf("<li>") >= 0) {
-          html = "<ul>" + html.replace(/<p><li>/g, "<li>").replace(/<\/li><\/p>/g, "</li>") + "</ul>";
-        }
-
-        showResult("AI explanation", html);
+        showResult("AI explanation", formatAiResponse(text));
         setStatus("AI explanation ready.", "ok");
       })
       .catch(function (err) {
         setStatus(friendlyAiError(err), "error");
       })
       .finally(function () {
-        btn.disabled = false;
+        setExplainLoading(false);
       });
   }
 
@@ -238,19 +274,44 @@
       domain: "Custom question",
       stem: stem,
       opts: opts,
-      ans: 0,
+      ans: -1,
       exp: null
     });
 
-    setStatus("Custom question loaded. AI can still explain — built-in answer not set.", "ok");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setStatus("Custom question loaded — select an answer, then try AI explain.", "ok");
   }
 
   function bind() {
     els.saveKeyBtn.addEventListener("click", function () {
       state.apiKey = els.apiKey.value.trim();
       state.model = els.apiModel.value.trim() || DEFAULT_MODEL;
+      if (!state.apiKey) {
+        setStatus("Paste your API key before saving.", "error");
+        return;
+      }
       saveSettings();
-      setStatus("API settings saved locally.", "ok");
+      setStatus("API key saved on this device.", "ok");
+    });
+
+    els.clearKeyBtn.addEventListener("click", function () {
+      state.apiKey = "";
+      els.apiKey.value = "";
+      saveSettings();
+      setStatus("API key cleared.", "ok");
+    });
+
+    els.toggleKeyBtn.addEventListener("click", function () {
+      var show = els.apiKey.type === "password";
+      els.apiKey.type = show ? "text" : "password";
+      els.toggleKeyBtn.textContent = show ? "Hide" : "Show";
+      els.toggleKeyBtn.setAttribute("aria-label", show ? "Hide API key" : "Show API key");
+    });
+
+    els.apiTutorial.addEventListener("toggle", function () {
+      if (els.apiTutorial.open) {
+        localStorage.setItem(TUTORIAL_KEY, "1");
+      }
     });
 
     els.checkBtn.addEventListener("click", checkAnswer);
@@ -274,15 +335,26 @@
       resultTitle: $("resultTitle"),
       resultBody: $("resultBody"),
       saveKeyBtn: $("saveKeyBtn"),
+      clearKeyBtn: $("clearKeyBtn"),
+      toggleKeyBtn: $("toggleKeyBtn"),
       checkBtn: $("checkBtn"),
       explainBtn: $("explainBtn"),
+      explainSpinner: $("explainSpinner"),
       revealBtn: $("revealBtn"),
-      loadCustomBtn: $("loadCustomBtn")
+      loadCustomBtn: $("loadCustomBtn"),
+      apiTutorial: $("apiTutorial"),
+      keyStatus: $("keyStatus"),
+      keyStatusText: $("keyStatusText")
     };
 
     loadSettings();
     els.apiKey.value = state.apiKey;
     els.apiModel.value = state.model || DEFAULT_MODEL;
+    updateKeyStatus();
+
+    if (!state.apiKey && !localStorage.getItem(TUTORIAL_KEY) && els.apiTutorial) {
+      els.apiTutorial.open = true;
+    }
 
     renderPills();
     if (SAMPLE_QUESTIONS.length) {
