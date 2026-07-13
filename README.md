@@ -19,6 +19,7 @@
 <p align="center">
   <a href="docs/PORTFOLIO.md"><strong>Case study</strong></a> ·
   <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/ai-demo/"><strong>Web demo</strong></a> ·
+  <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/quick-quote/"><strong>QuickQuote</strong></a> ·
   <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/"><strong>Portfolio</strong></a> ·
   <a href="website/README.md"><strong>Website</strong></a>
 </p>
@@ -61,6 +62,8 @@ This repo demonstrates **end-to-end product delivery**: real exam content, deskt
 **Live portfolio → [jacobbarrera2024-sketch.github.io/secplus-sensei](https://jacobbarrera2024-sketch.github.io/secplus-sensei/)**
 
 **Try the web demo → [AI assessment explainer](https://jacobbarrera2024-sketch.github.io/secplus-sensei/ai-demo/)** (no install, BYOK Claude)
+
+**QuickQuote → [Invoice & quote generator](https://jacobbarrera2024-sketch.github.io/secplus-sensei/quick-quote/)** (business tool demo, PDF export)
 
 ---
 
@@ -113,7 +116,8 @@ secplus-sensei/
 ├── main.js               # Electron main process
 ├── preload.js            # Secure IPC bridge
 ├── ai-demo/              # BYOK web demo (source — synced to website/ on deploy)
-├── website/              # Portfolio site + deployed ai-demo copy (GitHub Pages)
+├── quick-quote/          # Invoice & quote generator (source — synced on deploy)
+├── website/              # Portfolio site + deployed demo copies (GitHub Pages)
 ├── assets/               # App icons
 ├── build/                # NSIS installer scripts
 ├── docs/                 # Case study, screenshot guide

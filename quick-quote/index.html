@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Free invoice and quote generator — build professional PDFs in the browser. No signup, no backend, drafts saved locally." />
+  <meta name="author" content="Jacob" />
+  <meta name="theme-color" content="#0f766e" />
+  <meta property="og:title" content="QuickQuote — Invoice &amp; Quote Generator" />
+  <meta property="og:description" content="Create invoices and quotes in your browser. Line items, tax, PDF export, local drafts — built as a portfolio business tool." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jacobbarrera2024-sketch.github.io/secplus-sensei/quick-quote/" />
+  <meta property="og:image" content="https://jacobbarrera2024-sketch.github.io/secplus-sensei/quick-quote/assets/icon.svg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="QuickQuote — Invoice &amp; Quote Generator" />
+  <meta name="twitter:description" content="Browser-based invoice and quote builder with PDF export. No backend required." />
+  <title>QuickQuote — Invoice &amp; Quote Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/quick-quote/" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/">
+      <img src="assets/icon.svg" alt="" width="32" height="32" />
+      <div>
+        <strong>QuickQuote</strong>
+        <span>Invoice &amp; quote generator</span>
+      </div>
+    </a>
+    <div class="topbar-actions">
+      <button class="btn ghost sm" id="sampleBtn" type="button">Load sample</button>
+      <button class="btn ghost sm" id="newBtn" type="button">New</button>
+      <button class="btn sm" id="saveBtn" type="button">Save draft</button>
+      <button class="btn primary sm" id="printBtn" type="button">Print / PDF</button>
+    </div>
+  </header>
+
+  <nav class="mobile-tabs" aria-label="Editor navigation">
+    <button class="tab active" type="button" data-panel="edit">Edit</button>
+    <button class="tab" type="button" data-panel="preview">Preview</button>
+  </nav>
+
+  <div class="app-layout">
+    <aside class="editor panel-edit" id="panelEdit">
+      <p class="eyebrow">Portfolio demo · No signup · Local save</p>
+
+      <section class="card">
+        <h2>Document</h2>
+        <div class="field-row">
+          <div class="field">
+            <label for="docType">Type</label>
+            <select id="docType">
+              <option value="invoice">Invoice</option>
+              <option value="quote">Quote</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="docNumber">Number</label>
+            <input id="docNumber" type="text" placeholder="INV-001" />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="docDate">Date</label>
+            <input id="docDate" type="date" />
+          </div>
+          <div class="field">
+            <label for="dueDate">Due / valid until</label>
+            <input id="dueDate" type="date" />
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Your business</h2>
+        <div class="field">
+          <label for="bizName">Name / company</label>
+          <input id="bizName" type="text" placeholder="Jacob Barrera" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="bizEmail">Email</label>
+            <input id="bizEmail" type="email" placeholder="you@email.com" />
+          </div>
+          <div class="field">
+            <label for="bizPhone">Phone</label>
+            <input id="bizPhone" type="tel" placeholder="(555) 123-4567" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="bizAddress">Address</label>
+          <textarea id="bizAddress" rows="2" placeholder="City, State"></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Client</h2>
+        <div class="field">
+          <label for="clientName">Name</label>
+          <input id="clientName" type="text" placeholder="Client name" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="clientCompany">Company</label>
+            <input id="clientCompany" type="text" placeholder="Acme Co." />
+          </div>
+          <div class="field">
+            <label for="clientEmail">Email</label>
+            <input id="clientEmail" type="email" placeholder="client@email.com" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="clientAddress">Address</label>
+          <textarea id="clientAddress" rows="2" placeholder="Client address"></textarea>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <h2>Line items</h2>
+          <button class="btn ghost sm" id="addLineBtn" type="button">+ Add row</button>
+        </div>
+        <div class="line-table-wrap">
+          <table class="line-table" id="lineTable">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Qty</th>
+                <th>Rate</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="lineBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Totals &amp; notes</h2>
+        <div class="field-row">
+          <div class="field">
+            <label for="taxRate">Tax rate (%)</label>
+            <input id="taxRate" type="number" min="0" max="100" step="0.1" value="0" />
+          </div>
+          <div class="field">
+            <label for="theme">Theme</label>
+            <select id="theme">
+              <option value="classic">Classic</option>
+              <option value="slate">Slate</option>
+              <option value="mint">Mint</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="notes">Notes / payment terms</label>
+          <textarea id="notes" rows="3" placeholder="Payment due within 14 days. Thank you for your business."></textarea>
+        </div>
+      </section>
+
+      <p class="status" id="status" aria-live="polite"></p>
+    </aside>
+
+    <main class="preview-wrap panel-preview" id="panelPreview">
+      <article class="doc-preview theme-classic" id="docPreview">
+        <header class="doc-header">
+          <div class="doc-brand">
+            <h1 id="pvTitle">INVOICE</h1>
+            <p class="doc-number" id="pvNumber"></p>
+          </div>
+          <div class="doc-meta">
+            <p><span>Date</span> <strong id="pvDate"></strong></p>
+            <p><span id="pvDueLabel">Due</span> <strong id="pvDue"></strong></p>
+          </div>
+        </header>
+
+        <div class="doc-parties">
+          <div>
+            <h3>From</h3>
+            <p class="party-name" id="pvBizName"></p>
+            <p id="pvBizEmail"></p>
+            <p id="pvBizPhone"></p>
+            <p id="pvBizAddress"></p>
+          </div>
+          <div>
+            <h3>Bill to</h3>
+            <p class="party-name" id="pvClientName"></p>
+            <p id="pvClientCompany"></p>
+            <p id="pvClientEmail"></p>
+            <p id="pvClientAddress"></p>
+          </div>
+        </div>
+
+        <table class="doc-lines">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Qty</th>
+              <th>Rate</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody id="pvLines"></tbody>
+        </table>
+
+        <div class="doc-totals">
+          <div class="totals-box">
+            <div class="total-row"><span>Subtotal</span><strong id="pvSubtotal"></strong></div>
+            <div class="total-row"><span>Tax</span><strong id="pvTax"></strong></div>
+            <div class="total-row grand"><span>Total</span><strong id="pvTotal"></strong></div>
+          </div>
+        </div>
+
+        <footer class="doc-notes" id="pvNotes"></footer>
+      </article>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>Built by <strong>Jacob</strong> · <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/">Portfolio</a> · <a href="https://github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/quick-quote">Source</a></p>
+    <p class="fine">Drafts save in this browser only. Use Print → Save as PDF for a shareable file.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
