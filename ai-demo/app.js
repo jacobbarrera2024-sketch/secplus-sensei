@@ -63,9 +63,12 @@
     }
   }
 
-  function setStatus(msg, type) {
-    els.status.textContent = msg || "";
-    els.status.className = "status" + (type ? " " + type : "");
+  function setStatus(msg, type, page) {
+    page = page || state.page || "practice";
+    var el = page === "api" ? els.apiStatus : page === "custom" ? els.customStatus : els.status;
+    if (!el) return;
+    el.textContent = msg || "";
+    el.className = "status" + (type ? " " + type : "");
   }
 
   function esc(text) {
@@ -98,6 +101,8 @@
       els.mobilePageTitle.textContent = PAGE_TITLES[pageId];
     }
 
+    document.title = PAGE_TITLES[pageId] + " — SecPlus AI Demo";
+
     if (updateHash !== false) {
       history.replaceState(null, "", "#" + pageId);
     }
@@ -114,6 +119,11 @@
 
     var hash = (location.hash || "#practice").replace("#", "");
     showPage(PAGE_TITLES[hash] ? hash : "practice", false);
+
+    window.addEventListener("hashchange", function () {
+      var h = (location.hash || "#practice").replace("#", "");
+      if (PAGE_TITLES[h] && h !== state.page) showPage(h, false);
+    });
   }
 
   function renderQuestion(q) {
@@ -175,6 +185,10 @@
 
   function checkAnswer() {
     if (!state.current) return;
+    if (state.current.ans < 0) {
+      setStatus("Custom questions don't have a set answer — use Explain with AI instead.", "error");
+      return;
+    }
     if (state.selected < 0) {
       setStatus("Select an answer first.", "error");
       return;
@@ -262,8 +276,8 @@
   function explainWithAi() {
     if (!state.current) return;
     if (!state.apiKey) {
-      setStatus("Add your API key in API Setup first.", "error");
       showPage("api");
+      setStatus("Add your API key in API Setup first.", "error", "api");
       if (els.apiTutorial) els.apiTutorial.open = true;
       return;
     }
@@ -311,7 +325,7 @@
       .filter(Boolean);
 
     if (!stem || opts.length < 2) {
-      setStatus("Add a question and at least two answer choices.", "error");
+      setStatus("Add a question and at least two answer choices.", "error", "custom");
       return;
     }
 
@@ -337,18 +351,18 @@
       state.apiKey = els.apiKey.value.trim();
       state.model = els.apiModel.value.trim() || DEFAULT_MODEL;
       if (!state.apiKey) {
-        setStatus("Paste your API key before saving.", "error");
+        setStatus("Paste your API key before saving.", "error", "api");
         return;
       }
       saveSettings();
-      setStatus("API key saved on this device.", "ok");
+      setStatus("API key saved on this device. Switch to Practice to use Explain with AI.", "ok", "api");
     });
 
     els.clearKeyBtn.addEventListener("click", function () {
       state.apiKey = "";
       els.apiKey.value = "";
       saveSettings();
-      setStatus("API key cleared.", "ok");
+      setStatus("API key cleared.", "ok", "api");
     });
 
     els.toggleKeyBtn.addEventListener("click", function () {
@@ -391,6 +405,8 @@
       revealBtn: $("revealBtn"),
       loadCustomBtn: $("loadCustomBtn"),
       apiTutorial: $("apiTutorial"),
+      apiStatus: $("apiStatus"),
+      customStatus: $("customStatus"),
       sidebarStatus: $("sidebarStatus"),
       keyStatusText: $("keyStatusText"),
       mobilePageTitle: $("mobilePageTitle"),

@@ -18,7 +18,8 @@
 
 <p align="center">
   <a href="docs/PORTFOLIO.md"><strong>Case study</strong></a> ·
-  <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/"><strong>Live portfolio</strong></a> ·
+  <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/ai-demo/"><strong>Web demo</strong></a> ·
+  <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/"><strong>Portfolio</strong></a> ·
   <a href="website/README.md"><strong>Website</strong></a>
 </p>
 
@@ -58,6 +59,8 @@ This repo demonstrates **end-to-end product delivery**: real exam content, deskt
 **Full case study → [docs/PORTFOLIO.md](docs/PORTFOLIO.md)**
 
 **Live portfolio → [jacobbarrera2024-sketch.github.io/secplus-sensei](https://jacobbarrera2024-sketch.github.io/secplus-sensei/)**
+
+**Try the web demo → [AI assessment explainer](https://jacobbarrera2024-sketch.github.io/secplus-sensei/ai-demo/)** (no install, BYOK Claude)
 
 ---
 

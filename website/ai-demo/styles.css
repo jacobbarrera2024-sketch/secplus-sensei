@@ -581,6 +581,12 @@ input:focus, textarea:focus {
   font-size: 0.84rem;
   border-top: 1px solid var(--border);
 }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .page-view { animation: none; }
+  .tab-item, .option, .pill { transition: none; }
+}
+
 .disclaimer { margin: 0 0 6px; font-size: 0.78rem; color: #6b7c96; }
 
 @media (max-width: 520px) {

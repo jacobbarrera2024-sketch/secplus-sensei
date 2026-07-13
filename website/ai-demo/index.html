@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="Free Security+ practice questions with optional BYOK Claude AI explanations. Try the web demo — full desktop study app on GitHub." />
   <meta name="author" content="Jacob" />
   <meta name="theme-color" content="#0b1020" />
@@ -16,6 +16,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" href="assets/icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/icon.png" />
+  <link rel="canonical" href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/ai-demo/" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -135,6 +137,7 @@
               <a class="btn ghost" href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener noreferrer">Open Anthropic ↗</a>
             </div>
             <p class="muted-note">Stored in <code>localStorage</code> on this device only. No backend, no accounts, no telemetry.</p>
+            <div class="status" id="apiStatus" aria-live="polite"></div>
           </section>
         </div>
 
@@ -157,6 +160,7 @@
             <div class="toolbar">
               <button class="btn" id="loadCustomBtn" type="button">Load into Practice</button>
             </div>
+            <div class="status" id="customStatus" aria-live="polite"></div>
           </section>
         </div>
       </main>
