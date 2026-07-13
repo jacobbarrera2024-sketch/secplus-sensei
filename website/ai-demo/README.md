@@ -6,6 +6,8 @@ Try it live: **https://jacobbarrera2024-sketch.github.io/secplus-sensei/ai-demo/
 
 Companion to the full desktop study app: [SecPlus Sensei](https://github.com/jacobbarrera2024-sketch/secplus-sensei)
 
+> **Note:** Edit files in `ai-demo/` only. The copy under `website/ai-demo/` is synced automatically when the portfolio site deploys.
+
 ---
 
 ## What it demonstrates

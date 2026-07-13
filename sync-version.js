@@ -19,6 +19,7 @@ fs.writeFileSync(path.join(projectDir, "CURRENT_VERSION.txt"), ver + "\n");
 const htmlPath = path.join(projectDir, "secplus-sensei.html");
 let html = fs.readFileSync(htmlPath, "utf8");
 html = html.replace(/var APP_VERSION="[^"]+"/, 'var APP_VERSION="' + ver + '"');
+html = html.replace(/id="aboutVerPill">v[\d.]+<\/div>/, 'id="aboutVerPill">v' + ver + '</div>');
 fs.writeFileSync(htmlPath, html);
 
 const notePath = path.join(projectDir, "VERSION_NOTE.md");

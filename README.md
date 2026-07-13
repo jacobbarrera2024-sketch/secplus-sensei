@@ -64,6 +64,12 @@ This repo demonstrates **end-to-end product delivery**: real exam content, deskt
 
 ---
 
+## Screenshots
+
+Real app captures coming soon — follow [docs/SCREENSHOTS.md](docs/SCREENSHOTS.md) on Windows (`Win+Shift+S`) to add dashboard, study, and exam views to the README.
+
+---
+
 ## Quick start (development)
 
 ```bash
@@ -106,6 +112,8 @@ secplus-sensei/
 ├── secplus-sensei.html   # Entire app (HTML + CSS + JS + seed content)
 ├── main.js               # Electron main process
 ├── preload.js            # Secure IPC bridge
+├── ai-demo/              # BYOK web demo (source — synced to website/ on deploy)
+├── website/              # Portfolio site + deployed ai-demo copy (GitHub Pages)
 ├── assets/               # App icons
 ├── build/                # NSIS installer scripts
 ├── docs/                 # Case study, screenshot guide
