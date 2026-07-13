@@ -230,8 +230,7 @@ code {
   display: none;
 }
 
-.mobile-backdrop,
-.mobile-drawer {
+.mobile-tabs {
   display: none;
 }
 
@@ -243,14 +242,13 @@ code {
   .mobile-header {
     display: flex;
     align-items: center;
-    gap: 12px;
     padding: 14px 20px;
     border-bottom: 1px solid var(--border);
     background: rgba(10, 15, 28, 0.96);
     backdrop-filter: blur(12px);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 50;
   }
 
   .mobile-title { flex: 1; min-width: 0; }
@@ -266,94 +264,50 @@ code {
     margin-top: 1px;
   }
 
-  .menu-btn {
-    width: 40px;
-    height: 40px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    background: var(--bg-card);
-    cursor: pointer;
-    display: grid;
-    place-items: center;
-    padding: 0;
-    flex-shrink: 0;
-  }
-  .menu-icon {
-    width: 16px;
-    height: 2px;
-    background: var(--text);
-    position: relative;
-    display: block;
-  }
-  .menu-icon::before,
-  .menu-icon::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 16px;
-    height: 2px;
-    background: var(--text);
-  }
-  .menu-icon::before { top: -5px; }
-  .menu-icon::after { top: 5px; }
-
-  /* Fixed drawer — always visible when open, regardless of scroll */
-  .mobile-backdrop {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 110;
-    background: rgba(0, 0, 0, 0.55);
-  }
-  .mobile-backdrop.open { display: block; }
-
-  .mobile-drawer {
-    display: none;
-    position: fixed;
-    top: 69px;
-    left: 12px;
-    right: 12px;
-    z-index: 120;
-    flex-direction: column;
-    gap: 6px;
-    padding: 14px;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    background: var(--bg-card);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
-  }
-  .mobile-drawer.open {
+  .mobile-tabs {
     display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(13, 20, 36, 0.98);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border);
+    padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px));
+    gap: 6px;
   }
 
-  .drawer-label {
-    margin: 0 0 4px;
-    padding: 0 4px;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #6b7c96;
-  }
-
-  .drawer-status {
-    margin-top: 8px;
-    padding: 10px 12px;
-    border-radius: 10px;
+  .tab-item {
+    flex: 1;
+    appearance: none;
     border: 1px solid var(--border);
-    background: var(--bg-alt);
+    border-radius: 10px;
+    background: var(--bg-card);
+    color: var(--muted);
+    font: inherit;
     font-size: 0.78rem;
     font-weight: 600;
-    color: var(--muted);
+    padding: 10px 6px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
   }
-  .drawer-status.ready {
-    border-color: rgba(52, 211, 153, 0.35);
-    color: #a7f3d0;
-    background: rgba(52, 211, 153, 0.08);
+  .tab-item:hover { color: var(--text); }
+  .tab-item.active {
+    color: #fff;
+    background: var(--accent-soft);
+    border-color: rgba(79, 140, 255, 0.4);
   }
 
-  .content { width: calc(100% - 32px); padding-top: 20px; }
-  .footer { width: calc(100% - 32px); }
+  .content {
+    width: calc(100% - 32px);
+    padding-top: 20px;
+    padding-bottom: 88px;
+  }
+  .footer {
+    width: calc(100% - 32px);
+    padding-bottom: calc(36px + 72px);
+  }
   .domain-tag { display: none; }
 }
 
