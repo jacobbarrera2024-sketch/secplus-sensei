@@ -258,12 +258,16 @@
         messages: [{ role: "user", content: userContent }]
       })
     })
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
-        if (data && data.content && data.content[0] && data.content[0].text) {
-          return data.content[0].text;
-        }
-        throw new Error(data && data.error ? data.error.message : "No response from Claude");
+      .then(function (r) {
+        return r.json().then(function (data) {
+          if (!r.ok) {
+            throw new Error(data && data.error ? data.error.message : "Request failed (" + r.status + ")");
+          }
+          if (data && data.content && data.content[0] && data.content[0].text) {
+            return data.content[0].text;
+          }
+          throw new Error(data && data.error ? data.error.message : "No response from Claude");
+        });
       });
   }
 
