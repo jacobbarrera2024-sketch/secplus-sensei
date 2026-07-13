@@ -64,6 +64,8 @@ This repo demonstrates **end-to-end product delivery**: real exam content, deskt
 
 **Try the web demo → [AI assessment explainer](https://jacobbarrera2024-sketch.github.io/secplus-sensei/ai-demo/)** (no install, BYOK Claude)
 
+**QuickQuote → [Invoice & quote generator](https://jacobbarrera2024-sketch.github.io/secplus-sensei/quick-quote/)** (business tool, PDF export)
+
 **SheetDash → [CSV to dashboard](https://jacobbarrera2024-sketch.github.io/secplus-sensei/sheet-dash/)** (upload spreadsheet, instant charts)
 
 ---
