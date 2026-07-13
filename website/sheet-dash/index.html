@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Free CSV dashboard — upload a spreadsheet and get instant charts and a sortable table. No signup, no backend, runs in your browser." />
+  <meta name="author" content="Jacob" />
+  <meta name="theme-color" content="#4f46e5" />
+  <meta property="og:title" content="SheetDash — CSV to Dashboard" />
+  <meta property="og:description" content="Turn a CSV into charts and a sortable table in seconds. Browser-based data dashboard demo." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jacobbarrera2024-sketch.github.io/secplus-sensei/sheet-dash/" />
+  <meta property="og:image" content="https://jacobbarrera2024-sketch.github.io/secplus-sensei/sheet-dash/assets/icon.svg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="SheetDash — CSV to Dashboard" />
+  <meta name="twitter:description" content="Upload CSV → instant dashboard. No backend required." />
+  <title>SheetDash — CSV to Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/sheet-dash/" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/">
+      <img src="assets/icon.svg" alt="" width="32" height="32" />
+      <div>
+        <strong>SheetDash</strong>
+        <span>CSV → dashboard</span>
+      </div>
+    </a>
+    <div class="topbar-actions">
+      <button class="btn ghost sm" id="sampleBtn" type="button">Load sample</button>
+      <button class="btn ghost sm" id="clearBtn" type="button">Clear</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <p class="eyebrow">Portfolio demo · No upload to server · Runs locally</p>
+
+    <section class="dropzone" id="dropzone">
+      <input type="file" id="fileInput" accept=".csv,text/csv" hidden />
+      <div class="drop-inner">
+        <p class="drop-title">Drop a CSV here</p>
+        <p class="drop-sub">or <button class="link-btn" id="browseBtn" type="button">browse files</button></p>
+        <p class="drop-hint">First row = column headers. Numeric columns auto-chart.</p>
+      </div>
+    </section>
+
+    <p class="status" id="status" aria-live="polite"></p>
+
+    <div class="dashboard" id="dashboard" hidden>
+      <div class="stats-row" id="statsRow"></div>
+
+      <div class="charts" id="charts"></div>
+
+      <section class="table-card">
+        <div class="table-head">
+          <h2>Data table</h2>
+          <p id="tableMeta"></p>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="dataTable">
+            <thead id="tableHead"></thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Built by <strong>Jacob</strong> · <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/">Portfolio</a> · <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/quick-quote/">QuickQuote</a> · <a href="https://github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/sheet-dash">Source</a></p>
+    <p class="fine">Your file never leaves this browser — parsing happens on your device only.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
