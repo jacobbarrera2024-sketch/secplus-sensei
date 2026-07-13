@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free Security+ practice questions with optional BYOK Claude AI explanations. Try the web demo — full desktop study app on GitHub." />
+  <meta name="author" content="Jacob" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta property="og:title" content="SecPlus AI Demo — Security+ Assessment Explainer" />
+  <meta property="og:description" content="Browser-based Security+ quiz with bring-your-own-key Claude AI tutoring. Built by the SecPlus Sensei developer." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jacobbarrera2024-sketch.github.io/secplus-sensei/ai-demo/" />
+  <meta property="og:image" content="https://jacobbarrera2024-sketch.github.io/secplus-sensei/ai-demo/assets/icon.png" />
+  <title>SecPlus AI Demo — Security+ Assessment Explainer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/icon.png" type="image/png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <img src="assets/icon.png" alt="SecPlus Sensei icon" width="44" height="44" />
+        <div>
+          <h1>SecPlus AI Demo</h1>
+          <p>Security+ assessment explainer · BYOK Claude</p>
+        </div>
+      </div>
+      <span class="badge">Live web demo</span>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <h2>API settings</h2>
+        <p class="sub">AI is optional. Your Anthropic key stays in this browser only.</p>
+
+        <div class="field">
+          <label for="apiKey">Anthropic API key</label>
+          <input id="apiKey" type="password" placeholder="sk-ant-..." autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="apiModel">Model</label>
+          <input id="apiModel" value="claude-haiku-4-5" />
+        </div>
+        <div class="toolbar">
+          <button class="btn" id="saveKeyBtn" type="button">Save key</button>
+          <a class="btn ghost" href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener noreferrer">Get free key ↗</a>
+        </div>
+        <p class="muted-note">Requests go directly from your browser to Anthropic. No backend, no accounts, no telemetry.</p>
+      </section>
+
+      <section class="card">
+        <h2>Custom question</h2>
+        <p class="sub">Paste any assessment question, or pick a sample below.</p>
+
+        <div class="field">
+          <label for="customStem">Question</label>
+          <textarea id="customStem" placeholder="Paste a practice question here…"></textarea>
+        </div>
+        <div class="field">
+          <label for="customOpts">Answer choices (one per line)</label>
+          <textarea id="customOpts" placeholder="Choice A&#10;Choice B&#10;Choice C&#10;Choice D"></textarea>
+        </div>
+        <div class="toolbar">
+          <button class="btn ghost" id="loadCustomBtn" type="button">Use custom question</button>
+        </div>
+      </section>
+
+      <section class="card question-panel">
+        <h2>Practice question</h2>
+        <p class="sub">Pick a sample Security+ (SY0-701) question, select an answer, then ask AI to explain.</p>
+
+        <div class="pill-row" id="questionPills" aria-label="Sample questions"></div>
+
+        <div class="q-meta" id="qMeta"></div>
+        <div class="q-stem" id="qStem"></div>
+        <div class="options" id="qOptions" role="radiogroup" aria-label="Answer choices"></div>
+
+        <div class="toolbar">
+          <button class="btn" id="checkBtn" type="button">Check answer</button>
+          <button class="btn" id="explainBtn" type="button">Explain with AI</button>
+          <button class="btn ghost" id="revealBtn" type="button">Show built-in explanation</button>
+        </div>
+
+        <div class="status" id="status" aria-live="polite"></div>
+
+        <div class="result-box" id="resultBox" hidden>
+          <h3 id="resultTitle">Explanation</h3>
+          <div id="resultBody"></div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>Web demo by Jacob · Companion to the full <strong>SecPlus Sensei</strong> desktop study app</p>
+      <div class="links">
+        <a href="https://github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/ai-demo" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://github.com/jacobbarrera2024-sketch/secplus-sensei" target="_blank" rel="noopener noreferrer">Full desktop app</a>
+        <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/" target="_blank" rel="noopener noreferrer">Portfolio</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
