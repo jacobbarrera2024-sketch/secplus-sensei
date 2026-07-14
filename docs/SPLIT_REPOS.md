@@ -181,7 +181,7 @@ hashtable-ordering issue in the script — it's fixed now.
 
 ```cmd
 cd C:\Users\Jacob\Documents\MyRobloxGame\secplus-sensei
-git pull origin main
+git pull origin cursor/split-repos-e295
 scripts\split-repos.bat
 ```
 
