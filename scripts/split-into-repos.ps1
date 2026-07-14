@@ -31,11 +31,22 @@ function Copy-Demo {
 }
 
 function Patch-File {
-  param([string]$Path, [hashtable]$Replacements)
+  # $Replacements MUST be an ordered collection (array of @{Find=;Replace=} or
+  # [ordered]@{}), never a plain @{} hashtable — plain hashtables do not
+  # preserve key order in PowerShell, which previously caused generic
+  # patterns (e.g. bare domain without "https://") to run before more
+  # specific ones and corrupt output (e.g. "https://https://...").
+  param([string]$Path, $Replacements)
   if (-not (Test-Path $Path)) { return }
   $text = Get-Content $Path -Raw -Encoding UTF8
-  foreach ($key in $Replacements.Keys) {
-    $text = $text -replace [regex]::Escape($key), $Replacements[$key]
+  if ($Replacements -is [System.Collections.Specialized.OrderedDictionary]) {
+    foreach ($key in $Replacements.Keys) {
+      $text = $text -replace [regex]::Escape($key), $Replacements[$key]
+    }
+  } else {
+    foreach ($pair in $Replacements) {
+      $text = $text -replace [regex]::Escape($pair.Find), $pair.Replace
+    }
   }
   Set-Content -Path $Path -Value $text -Encoding UTF8 -NoNewline
 }
@@ -68,27 +79,24 @@ Set-Content -Path (Join-Path $PortDir ".gitignore") -Value "node_modules/`n.DS_S
 
 $index = Join-Path $PortDir "index.html"
 if (Test-Path $index) {
-  Patch-File $index @{
-    'href="ai-demo/"' = 'href="/secplus-ai-demo/"'
-    'src="ai-demo/' = 'src="/secplus-ai-demo/'
-    'href="quick-quote/"' = 'href="/quick-quote/"'
-    'src="quick-quote/' = 'src="/quick-quote/'
-    'href="sheet-dash/"' = 'href="/sheet-dash/"'
-    'src="sheet-dash/' = 'src="/sheet-dash/'
-    "https://$GhUser.github.io/secplus-sensei/ai-demo/" = "$PagesBase/secplus-ai-demo/"
-    "https://$GhUser.github.io/secplus-sensei/quick-quote/" = "$PagesBase/quick-quote/"
-    "https://$GhUser.github.io/secplus-sensei/sheet-dash/" = "$PagesBase/sheet-dash/"
-    "https://$GhUser.github.io/secplus-sensei/" = "$PagesBase/"
-    'github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/ai-demo' = "github.com/$GhUser/secplus-ai-demo/tree/main"
-    'github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/quick-quote' = "github.com/$GhUser/quick-quote/tree/main"
-    'github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/sheet-dash' = "github.com/$GhUser/sheet-dash/tree/main"
-    'src="/secplus-ai-demo/assets/icon.png"' = "src=`"$PagesBase/secplus-ai-demo/assets/icon.png`""
-    'src="/quick-quote/assets/icon.svg"' = "src=`"$PagesBase/quick-quote/assets/icon.svg`""
-    'src="/sheet-dash/assets/icon.svg"' = "src=`"$PagesBase/sheet-dash/assets/icon.svg`""
-    'href="/secplus-ai-demo/"' = "href=`"$PagesBase/secplus-ai-demo/`""
-    'href="/quick-quote/"' = "href=`"$PagesBase/quick-quote/`""
-    'href="/sheet-dash/"' = "href=`"$PagesBase/sheet-dash/`""
-  }
+  # Order matters: full absolute-URL rewrites (longest/most specific) must
+  # run before the shorter relative-href rewrites so nothing gets patched
+  # twice or left half-converted.
+  Patch-File $index @(
+    @{ Find = 'github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/ai-demo'; Replace = "github.com/$GhUser/secplus-ai-demo/tree/main" }
+    @{ Find = 'github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/quick-quote'; Replace = "github.com/$GhUser/quick-quote/tree/main" }
+    @{ Find = 'github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/sheet-dash'; Replace = "github.com/$GhUser/sheet-dash/tree/main" }
+    @{ Find = "https://$GhUser.github.io/secplus-sensei/ai-demo/"; Replace = "$PagesBase/secplus-ai-demo/" }
+    @{ Find = "https://$GhUser.github.io/secplus-sensei/quick-quote/"; Replace = "$PagesBase/quick-quote/" }
+    @{ Find = "https://$GhUser.github.io/secplus-sensei/sheet-dash/"; Replace = "$PagesBase/sheet-dash/" }
+    @{ Find = "https://$GhUser.github.io/secplus-sensei/"; Replace = "$PagesBase/" }
+    @{ Find = 'href="ai-demo/"'; Replace = "href=`"$PagesBase/secplus-ai-demo/`"" }
+    @{ Find = 'src="ai-demo/'; Replace = "src=`"$PagesBase/secplus-ai-demo/" }
+    @{ Find = 'href="quick-quote/"'; Replace = "href=`"$PagesBase/quick-quote/`"" }
+    @{ Find = 'src="quick-quote/'; Replace = "src=`"$PagesBase/quick-quote/" }
+    @{ Find = 'href="sheet-dash/"'; Replace = "href=`"$PagesBase/sheet-dash/`"" }
+    @{ Find = 'src="sheet-dash/'; Replace = "src=`"$PagesBase/sheet-dash/" }
+  )
 }
 
 $sitemap = @"
@@ -117,26 +125,29 @@ $sitemap = @"
 </urlset>
 "@
 Set-Content -Path (Join-Path $PortDir "sitemap.xml") -Value $sitemap -Encoding UTF8
-Patch-File (Join-Path $PortDir "robots.txt") @{ '/secplus-sensei/sitemap.xml' = '/sitemap.xml' }
-Patch-File (Join-Path $PortDir "README.md") @{ '/secplus-sensei/' = '/' }
+Patch-File (Join-Path $PortDir "robots.txt") @(@{ Find = '/secplus-sensei/sitemap.xml'; Replace = '/sitemap.xml' })
+Patch-File (Join-Path $PortDir "README.md") @(@{ Find = '/secplus-sensei/'; Replace = '/' })
 
 function Patch-Demo {
   param([string]$Dir, [string]$Slug, [string]$RepoName)
   $live = "$PagesBase/$Slug/"
+  # Order matters: specific repo/slug-tagged patterns must run before the
+  # generic "secplus-sensei/tree/main" / "secplus-sensei/" catch-alls, or
+  # the catch-all will fire first and leave a stray trailing path segment
+  # (e.g. ".../quick-quote/tree/main/quick-quote") or a doubled protocol
+  # (e.g. "https://https://...").
   Get-ChildItem $Dir -File | Where-Object { $_.Extension -in '.html', '.md' } | ForEach-Object {
-    Patch-File $_.FullName @{
-      "https://$GhUser.github.io/secplus-sensei/$Slug/" = $live
-      "https://$GhUser.github.io/secplus-sensei/" = "$PagesBase/"
-      "github.com/$GhUser/secplus-sensei/tree/main/$RepoName" = "github.com/$GhUser/$Slug/tree/main"
-      "github.com/$GhUser/secplus-sensei/tree/main" = "github.com/$GhUser/$Slug/tree/main"
-      "cd secplus-sensei/$RepoName" = "cd $Slug"
-      "git clone https://github.com/$GhUser/secplus-sensei.git" = "git clone https://github.com/$GhUser/$Slug.git"
-      'jacobbarrera2024-sketch.github.io/secplus-sensei/ai-demo/' = "$PagesBase/secplus-ai-demo/"
-      'jacobbarrera2024-sketch.github.io/secplus-sensei/quick-quote/' = "$PagesBase/quick-quote/"
-      'jacobbarrera2024-sketch.github.io/secplus-sensei/sheet-dash/' = "$PagesBase/sheet-dash/"
-      'jacobbarrera2024-sketch.github.io/secplus-sensei/' = "$PagesBase/"
-      '/ai-demo/' = '/secplus-ai-demo/'
-    }
+    Patch-File $_.FullName @(
+      @{ Find = "github.com/$GhUser/secplus-sensei/tree/main/$RepoName"; Replace = "github.com/$GhUser/$Slug/tree/main" }
+      @{ Find = "https://$GhUser.github.io/secplus-sensei/$Slug/"; Replace = $live }
+      @{ Find = "https://$GhUser.github.io/secplus-sensei/ai-demo/"; Replace = "$PagesBase/secplus-ai-demo/" }
+      @{ Find = "https://$GhUser.github.io/secplus-sensei/quick-quote/"; Replace = "$PagesBase/quick-quote/" }
+      @{ Find = "https://$GhUser.github.io/secplus-sensei/sheet-dash/"; Replace = "$PagesBase/sheet-dash/" }
+      @{ Find = "https://$GhUser.github.io/secplus-sensei/"; Replace = "$PagesBase/" }
+      @{ Find = "github.com/$GhUser/secplus-sensei/tree/main"; Replace = "github.com/$GhUser/$Slug/tree/main" }
+      @{ Find = "cd secplus-sensei/$RepoName"; Replace = "cd $Slug" }
+      @{ Find = "git clone https://github.com/$GhUser/secplus-sensei.git"; Replace = "git clone https://github.com/$GhUser/$Slug.git" }
+    )
   }
 }
 

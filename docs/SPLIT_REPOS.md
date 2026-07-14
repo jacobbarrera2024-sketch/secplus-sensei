@@ -170,10 +170,49 @@ Keep the Electron app, docs, and point README links to the new URLs.
 
 ---
 
+## If you already split/pushed before this fix (broken links)
+
+An earlier version of `split-into-repos.ps1` had a bug: some links on the
+live demo sites render as `https://https://jacobbarrera2024-sketch.github.io/...`
+or as a repo URL with a doubled path segment. This was a PowerShell
+hashtable-ordering issue in the script — it's fixed now.
+
+**Fix (Windows Command Prompt):**
+
+```cmd
+cd C:\Users\Jacob\Documents\MyRobloxGame\secplus-sensei
+git pull origin main
+scripts\split-repos.bat
+```
+
+This regenerates `../secplus-split/` with corrected links. Then force-push
+just the three demo repos (safe here — they're brand-new solo repos with a
+single commit each, no collaborators):
+
+```cmd
+cd ..\secplus-split\secplus-ai-demo
+git push -u origin main --force
+
+cd ..\quick-quote
+git push -u origin main --force
+
+cd ..\sheet-dash
+git push -u origin main --force
+```
+
+You do **not** need to re-push the portfolio repo
+(`jacobbarrera2024-sketch.github.io`) — it deployed correctly.
+
+After pushing, each repo's **Deploy to GitHub Pages** workflow re-runs
+automatically. Wait ~30 seconds, then re-check the live demo links from the
+portfolio.
+
+---
+
 ## Troubleshooting
 
 - **`'bash' is not recognized`** (Windows CMD) — Use `scripts\split-repos.bat` and `scripts\push-repos-manual.bat` instead of the `.sh` scripts. Or open **Git Bash** (installed with Git for Windows) and run the bash commands there.
 - **`'gh' is not recognized`** — You don't need GitHub CLI. Create the four repos on https://github.com/new (empty, no README), then run `scripts\push-repos-manual.bat`.
 - **`gh: Resource not accessible`** — Run `gh auth login` on your machine as your GitHub account, or use Option A above without `gh`.
-- **Pages 404** — Wait 2–5 min after first deploy; confirm Actions tab shows green checkmark.
+- **Pages 404** — Check **Actions** for a red X on "Deploy to GitHub Pages". If `configure-pages` failed, enable **Source: GitHub Actions** in repo Settings → Pages, then **Re-run all jobs**. The portfolio root may work while demos are still failing.
 - **Portfolio icons missing** — Re-run deploy on demo repos first, then portfolio.
