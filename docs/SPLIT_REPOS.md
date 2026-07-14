@@ -44,9 +44,37 @@ This creates `../secplus-split/` with four ready-to-push git repos (demos + port
 
 ## Step 2 — Create GitHub repos and push
 
+### Option A — No `gh` CLI (easiest on Windows CMD)
+
+1. Open https://github.com/new while logged in as **jacobbarrera2024-sketch**
+2. Create **four empty public repos** (no README, no .gitignore, no license):
+
+   - `jacobbarrera2024-sketch.github.io`
+   - `secplus-ai-demo`
+   - `quick-quote`
+   - `sheet-dash`
+
+3. From `secplus-sensei` repo root:
+
+```cmd
+scripts\push-repos-manual.bat
+```
+
+Or push each folder yourself:
+
+```cmd
+cd C:\Users\Jacob\Documents\MyRobloxGame\secplus-split\jacobbarrera2024-sketch.github.io
+git remote add origin https://github.com/jacobbarrera2024-sketch/jacobbarrera2024-sketch.github.io.git
+git push -u origin main
+```
+
+Repeat for `secplus-ai-demo`, `quick-quote`, and `sheet-dash` (change folder name and repo URL each time).
+
+### Option B — With GitHub CLI
+
 Requires [GitHub CLI](https://cli.github.com/) logged in as **jacobbarrera2024-sketch** (`gh auth login`).
 
-### Windows (Command Prompt)
+#### Windows (Command Prompt)
 
 ```cmd
 scripts\push-repos.bat
@@ -121,7 +149,8 @@ Keep the Electron app, docs, and point README links to the new URLs.
 
 ## Troubleshooting
 
-- **`'bash' is not recognized`** (Windows CMD) — Use `scripts\split-repos.bat` and `scripts\push-repos.bat` instead of the `.sh` scripts. Or open **Git Bash** (installed with Git for Windows) and run the bash commands there.
-- **`gh: Resource not accessible`** — Run `gh auth login` on your machine as your GitHub account.
+- **`'bash' is not recognized`** (Windows CMD) — Use `scripts\split-repos.bat` and `scripts\push-repos-manual.bat` instead of the `.sh` scripts. Or open **Git Bash** (installed with Git for Windows) and run the bash commands there.
+- **`'gh' is not recognized`** — You don't need GitHub CLI. Create the four repos on https://github.com/new (empty, no README), then run `scripts\push-repos-manual.bat`.
+- **`gh: Resource not accessible`** — Run `gh auth login` on your machine as your GitHub account, or use Option A above without `gh`.
 - **Pages 404** — Wait 2–5 min after first deploy; confirm Actions tab shows green checkmark.
 - **Portfolio icons missing** — Re-run deploy on demo repos first, then portfolio.
