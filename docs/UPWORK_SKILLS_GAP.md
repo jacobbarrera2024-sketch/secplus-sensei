@@ -14,17 +14,17 @@
 
 ---
 
-## Summary stats (last updated: 2026-07-14)
+## Summary stats (last updated: 2026-07-14, batch 6)
 
 | Metric | Count |
 |--------|------:|
-| Job batches reviewed | 5 |
-| Individual jobs scanned | ~75+ |
+| Job batches reviewed | 6 |
+| Individual jobs scanned | ~85+ |
 | Jobs marked **Apply** | 2 (RSS Feed Collector, Landing Page $400) |
-| Jobs marked **Skip** | ~73 |
-| Unique skills requested across all jobs | 62 |
+| Jobs marked **Skip** | ~83 |
+| Unique skills requested across all jobs | 68 |
 | Skills you already have (portfolio-backed) | 12 |
-| Skills in gap list below | 50 |
+| Skills in gap list below | 56 |
 
 ---
 
@@ -34,30 +34,30 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 
 | Rank | Skill | Job mentions | You have? | Priority | Portfolio project idea |
 |-----:|-------|-------------:|:---------:|:--------:|------------------------|
-| 1 | **React** | 28 | ❌ | 🔴 HIGH | Rebuild QuickQuote in React, or small dashboard |
-| 2 | **Node.js** | 24 | ❌ | 🔴 HIGH | Simple REST API (file upload, RSS parser backend) |
-| 3 | **Next.js** | 18 | ❌ | 🔴 HIGH | Landing page + 1 API route (contact form or chat) |
-| 4 | **TypeScript** | 14 | ❌ | 🔴 HIGH | Same React/Next project in TS |
-| 5 | **Tailwind CSS** | 12 | ❌ | 🔴 HIGH | Re-skin landing page with Tailwind |
+| 1 | **React** | 30 | ❌ | 🔴 HIGH | Rebuild QuickQuote in React, or small dashboard |
+| 2 | **Node.js** | 28 | ❌ | 🔴 HIGH | Simple REST API (file upload, RSS parser backend) |
+| 3 | **Next.js** | 20 | ❌ | 🔴 HIGH | Landing page + 1 API route (contact form or chat) |
+| 4 | **TypeScript** | 16 | ❌ | 🔴 HIGH | Same React/Next project in TS |
+| 5 | **Tailwind CSS** | 13 | ❌ | 🔴 HIGH | Re-skin landing page with Tailwind |
 | 6 | **REST API integration** | 12 | partial | 🔴 HIGH | SheetDash pulling live API data |
 | 7 | **PostgreSQL** | 11 | ❌ | 🟠 MED | Todo app or quote tool with Supabase/Postgres |
-| 8 | **Supabase** | 10 | ❌ | 🟠 MED | Auth + DB demo (login + saved quotes) |
-| 9 | **OpenAI / LLM API** | 9 | partial | 🟠 MED | Expand SecPlus AI Demo → real API chat w/ streaming |
+| 8 | **Supabase** | 12 | ❌ | 🟠 MED | Auth + DB demo (login + saved quotes) |
+| 9 | **OpenAI / LLM API** | 10 | partial | 🟠 MED | Expand SecPlus AI Demo → real API chat w/ streaming |
 | 10 | **Express.js** | 8 | ❌ | 🟠 MED | Node server for RSS/export tool |
-| 11 | **MongoDB** | 7 | ❌ | 🟠 MED | MERN todo or marketplace clone (small) |
+| 11 | **MongoDB** | 8 | ❌ | 🟠 MED | MERN todo or marketplace clone (small) |
 | 12 | **Stripe** | 6 | ❌ | 🟠 MED | “Buy me a coffee” or subscription demo |
 | 13 | **Figma → code** | 6 | ❌ | 🔴 HIGH | **Do the $400 landing page style project for yourself** |
-| 14 | **WordPress** | 5 | ❌ | 🟡 LOW | Only if you want WP clients |
+| 14 | **WordPress** | 6 | ❌ | 🟡 LOW | Only if you want WP clients |
 | 15 | **PHP** | 5 | ❌ | 🟡 LOW | Legacy market; skip unless intentional |
-| 16 | **Python** | 5 | ❌ | 🟡 LOW | Script for data export (pairs with RSS job) |
-| 17 | **AWS / cloud deploy** | 5 | ❌ | 🟠 MED | Deploy Node app to Railway or Render |
-| 18 | **Vercel deployment** | 4 | ❌ | 🟠 MED | Host Next.js project on Vercel |
-| 19 | **GitHub Actions / CI/CD** | 4 | partial | 🟠 MED | You have Pages deploy; add test/lint workflow |
-| 20 | **Docker** | 4 | ❌ | 🟡 LOW | Containerize a small Node app |
+| 16 | **Python** | 6 | ❌ | 🟡 LOW | Script for data export (pairs with RSS job) |
+| 17 | **AWS / cloud deploy** | 6 | ❌ | 🟠 MED | Deploy Node app to Railway or Render |
+| 18 | **Vercel deployment** | 5 | ❌ | 🟠 MED | Host Next.js project on Vercel |
+| 19 | **GitHub Actions / CI/CD** | 5 | partial | 🟠 MED | You have Pages deploy; add test/lint workflow |
+| 20 | **Docker** | 5 | ❌ | 🟡 LOW | Containerize a small Node app |
 | 21 | **Redis** | 3 | ❌ | 🟡 LOW | Cache layer on API project |
 | 22 | **JWT / OAuth auth** | 3 | ❌ | 🟠 MED | Login on Supabase or NextAuth demo |
 | 23 | **n8n / Make.com / Zapier** | 4 | ❌ | 🟡 LOW | Automation niche; optional |
-| 24 | **Chrome Extension (Manifest V3)** | 3 | ❌ | 🟡 LOW | Simple tab tool or page highlighter |
+| 24 | **Chrome Extension (Manifest V3)** | 4 | ❌ | 🟡 LOW | Simple tab tool or page highlighter |
 | 25 | **React Native** | 3 | ❌ | 🟡 LOW | Different career path; defer |
 | 26 | **Web scraping / automation** | 3 | ❌ | 🟡 LOW | RSS collector backend counts |
 | 27 | **SEO / Core Web Vitals** | 3 | partial | 🟠 MED | Lighthouse 90+ on portfolio site |
@@ -68,15 +68,15 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 | 32 | **HIPAA / healthcare / FHIR** | 2 | ❌ | ⚪ SKIP | Compliance-heavy; not entry-level |
 | 33 | **FastAPI** | 1 | ❌ | 🟡 LOW | Python API alternative to Node |
 | 34 | **BigQuery** | 1 | ❌ | 🟡 LOW | Analytics niche |
-| 35 | **Django** | 1 | ❌ | 🟡 LOW | Python stack |
+| 35 | **Django** | 2 | ❌ | 🟡 LOW | Python stack |
 | 36 | **Angular** | 2 | ❌ | ⚪ SKIP | Declining vs React in your feed |
-| 37 | **Shopify** | 1 | ❌ | 🟡 LOW | E-commerce niche |
+| 37 | **Shopify / Liquid** | 2 | ❌ | 🟡 LOW | Custom Shopify 2.0 theme section demo |
 | 38 | **WooCommerce** | 1 | ❌ | 🟡 LOW | WordPress ecosystem |
 | 39 | **Web audio / video streaming** | 2 | ❌ | ⚪ SKIP | Specialized |
-| 40 | **FFmpeg / video automation** | 1 | ❌ | ⚪ SKIP | Specialized |
-| 41 | **X (Twitter) API** | 1 | ❌ | 🟡 LOW | Social API niche |
+| 40 | **FFmpeg / video automation** | 2 | ❌ | ⚪ SKIP | Specialized |
+| 41 | **X (Twitter) API** | 2 | ❌ | 🟡 LOW | Social API niche |
 | 42 | **WhatsApp Cloud API** | 1 | ❌ | 🟡 LOW | Messaging integration |
-| 43 | **Blockchain / Solidity / web3** | 1 | ❌ | ⚪ SKIP | Different specialty |
+| 43 | **Blockchain / Solidity / web3** | 2 | ❌ | ⚪ SKIP | Different specialty |
 | 44 | **Blender / Python plugins** | 1 | ❌ | ⚪ SKIP | Not web dev |
 | 45 | **DevOps / GCP / IAM / ECS** | 3 | ❌ | 🟡 LOW | Senior track |
 | 46 | **Material Design** | 1 | ❌ | 🟡 LOW | UI library |
@@ -84,6 +84,12 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 | 48 | **NestJS** | 1 | ❌ | 🟡 LOW | Enterprise Node |
 | 49 | **RAG / vector search / embeddings** | 2 | ❌ | 🟡 LOW | Advanced AI; after basic OpenAI chat |
 | 50 | **Tampermonkey / browser automation** | 1 | ❌ | ⚪ SKIP | Gray-area scraping work |
+| 51 | **Cloudflare** (CDN/DNS/WAF/caching) | 1 | ❌ | 🟡 LOW | Put portfolio on Cloudflare Pages + tune cache rules |
+| 52 | **Web performance** (TTFB, Core Web Vitals, regional latency) | 2 | partial | 🟠 MED | Lighthouse 90+ report on portfolio (pairs with SEO row) |
+| 53 | **AI image generation API** | 1 | ❌ | 🟡 LOW | Add image-gen to a demo (after basic OpenAI chat) |
+| 54 | **Cron / background jobs** (scheduled tasks) | 1 | ❌ | 🟠 MED | Scheduled post/job queue on Node or Supabase |
+| 55 | **Eleventy / static site generators** | 1 | ❌ | 🟡 LOW | Optional; Shopify agencies use similar workflows |
+| 56 | **Subscription apps** (Loop/Recharge/Skio) | 1 | ❌ | 🟡 LOW | Shopify-specific; defer unless going ecom |
 
 ### Skills you already cover (keep visible on Upwork)
 
@@ -149,6 +155,12 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 
 ### Batch 5 — Same as Batch 4 (user repost)
 No new skills; counts unchanged.
+
+### Batch 6 — Search `javascript` Most Recent (page 1, fresh posts)
+**Jobs:** 10 | **Apply:** 0 | **Skip:** 10  
+**Top gaps seen:** Cloudflare regional latency, Shopify 2.0/Liquid/Eleventy, AI fashion MVP (Next.js+Supabase+OpenAI image gen), AWS DevOps deploy, Django+React, Next.js $5 fix, blockchain, Chrome MV3+MongoDB, YouTube/FFmpeg tool, X/Twitter scheduler (React+Supabase+cron)  
+**New skills added:** Cloudflare, AI image generation API, cron/background jobs, Eleventy, Shopify Liquid, subscription app integrations  
+**Apply:** None — all senior, wrong stack, or unrealistic budget ($5 Next.js, $50 X dashboard, $400 AI MVP)
 
 ---
 
