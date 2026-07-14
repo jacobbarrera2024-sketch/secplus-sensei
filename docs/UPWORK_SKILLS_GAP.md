@@ -14,17 +14,17 @@
 
 ---
 
-## Summary stats (last updated: 2026-07-14, batch 6)
+## Summary stats (last updated: 2026-07-14, batch 7)
 
 | Metric | Count |
 |--------|------:|
-| Job batches reviewed | 6 |
-| Individual jobs scanned | ~85+ |
-| Jobs marked **Apply** | 2 (RSS Feed Collector, Landing Page $400) |
-| Jobs marked **Skip** | ~83 |
-| Unique skills requested across all jobs | 68 |
+| Job batches reviewed | 7 |
+| Individual jobs scanned | ~95+ |
+| Jobs marked **Apply** | 2–3 (RSS, Landing Page $400, optional: Simple CTA $100) |
+| Jobs marked **Skip** | ~92 |
+| Unique skills requested across all jobs | 72 |
 | Skills you already have (portfolio-backed) | 12 |
-| Skills in gap list below | 56 |
+| Skills in gap list below | 60 |
 
 ---
 
@@ -34,9 +34,9 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 
 | Rank | Skill | Job mentions | You have? | Priority | Portfolio project idea |
 |-----:|-------|-------------:|:---------:|:--------:|------------------------|
-| 1 | **React** | 30 | ❌ | 🔴 HIGH | Rebuild QuickQuote in React, or small dashboard |
+| 1 | **React** | 31 | ❌ | 🔴 HIGH | Rebuild QuickQuote in React, or small dashboard |
 | 2 | **Node.js** | 28 | ❌ | 🔴 HIGH | Simple REST API (file upload, RSS parser backend) |
-| 3 | **Next.js** | 20 | ❌ | 🔴 HIGH | Landing page + 1 API route (contact form or chat) |
+| 3 | **Next.js** | 21 | ❌ | 🔴 HIGH | Landing page + 1 API route (contact form or chat) |
 | 4 | **TypeScript** | 16 | ❌ | 🔴 HIGH | Same React/Next project in TS |
 | 5 | **Tailwind CSS** | 13 | ❌ | 🔴 HIGH | Re-skin landing page with Tailwind |
 | 6 | **REST API integration** | 12 | partial | 🔴 HIGH | SheetDash pulling live API data |
@@ -45,10 +45,10 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 | 9 | **OpenAI / LLM API** | 10 | partial | 🟠 MED | Expand SecPlus AI Demo → real API chat w/ streaming |
 | 10 | **Express.js** | 8 | ❌ | 🟠 MED | Node server for RSS/export tool |
 | 11 | **MongoDB** | 8 | ❌ | 🟠 MED | MERN todo or marketplace clone (small) |
-| 12 | **Stripe** | 6 | ❌ | 🟠 MED | “Buy me a coffee” or subscription demo |
-| 13 | **Figma → code** | 6 | ❌ | 🔴 HIGH | **Do the $400 landing page style project for yourself** |
-| 14 | **WordPress** | 6 | ❌ | 🟡 LOW | Only if you want WP clients |
-| 15 | **PHP** | 5 | ❌ | 🟡 LOW | Legacy market; skip unless intentional |
+| 12 | **Stripe** | 7 | ❌ | 🟠 MED | “Buy me a coffee” or subscription demo |
+| 13 | **Figma → code** | 7 | ❌ | 🔴 HIGH | **Do the $400 landing page style project for yourself** |
+| 14 | **WordPress** | 12 | ❌ | 🟡 LOW* | *Spiking in `html css` search — consider basic WP child theme demo |
+| 15 | **PHP** | 7 | ❌ | 🟡 LOW | Required for most WordPress customization jobs |
 | 16 | **Python** | 6 | ❌ | 🟡 LOW | Script for data export (pairs with RSS job) |
 | 17 | **AWS / cloud deploy** | 6 | ❌ | 🟠 MED | Deploy Node app to Railway or Render |
 | 18 | **Vercel deployment** | 5 | ❌ | 🟠 MED | Host Next.js project on Vercel |
@@ -64,13 +64,13 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 | 28 | **Google Sheets API** | 2 | ❌ | 🟠 MED | SheetDash → read/write Google Sheet |
 | 29 | **Airtable** | 2 | ❌ | 🟡 LOW | Data catalog clone for practice |
 | 30 | **HubSpot** | 1 | ❌ | 🟡 LOW | CRM-specific |
-| 31 | **Salesforce / Veeva CRM HTML** | 1 | partial | 🟠 MED | Self-contained HTML “detail page” demo |
+| 31 | **Salesforce / Veeva CRM HTML** | 2 | partial | 🟠 MED | Self-contained HTML “detail page” demo |
 | 32 | **HIPAA / healthcare / FHIR** | 2 | ❌ | ⚪ SKIP | Compliance-heavy; not entry-level |
 | 33 | **FastAPI** | 1 | ❌ | 🟡 LOW | Python API alternative to Node |
 | 34 | **BigQuery** | 1 | ❌ | 🟡 LOW | Analytics niche |
 | 35 | **Django** | 2 | ❌ | 🟡 LOW | Python stack |
 | 36 | **Angular** | 2 | ❌ | ⚪ SKIP | Declining vs React in your feed |
-| 37 | **Shopify / Liquid** | 2 | ❌ | 🟡 LOW | Custom Shopify 2.0 theme section demo |
+| 37 | **Shopify / Liquid** | 4 | ❌ | 🟡 LOW | Custom Shopify 2.0 theme section demo |
 | 38 | **WooCommerce** | 1 | ❌ | 🟡 LOW | WordPress ecosystem |
 | 39 | **Web audio / video streaming** | 2 | ❌ | ⚪ SKIP | Specialized |
 | 40 | **FFmpeg / video automation** | 2 | ❌ | ⚪ SKIP | Specialized |
@@ -90,6 +90,10 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 | 54 | **Cron / background jobs** (scheduled tasks) | 1 | ❌ | 🟠 MED | Scheduled post/job queue on Node or Supabase |
 | 55 | **Eleventy / static site generators** | 1 | ❌ | 🟡 LOW | Optional; Shopify agencies use similar workflows |
 | 56 | **Subscription apps** (Loop/Recharge/Skio) | 1 | ❌ | 🟡 LOW | Shopify-specific; defer unless going ecom |
+| 57 | **Webflow** | 1 | ❌ | 🟡 LOW | Agency CMS niche |
+| 58 | **Wix CMS** | 1 | ❌ | 🟡 LOW | Agency CMS niche |
+| 59 | **Email marketing integration** (Mailchimp/ConvertKit/etc.) | 1 | ❌ | 🟡 LOW | Newsletter signup + API hookup on a demo site |
+| 60 | **WordPress membership plugins** (MemberPress/Paid Memberships Pro) | 1 | ❌ | 🟡 LOW | Only if pursuing WP membership clients |
 
 ### Skills you already cover (keep visible on Upwork)
 
@@ -132,6 +136,8 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 |-----|-------------|
 | RSS Feed Collector | Vanilla JS / data export / parsing |
 | Front-End Landing Page $400 | HTML/CSS/JS + Tailwind (Tailwind is learn-on-job) |
+| Simple Call to Action Website $100 | Static HTML/CSS CTA site (confirm not WordPress-heavy) |
+| HTML for Veeva CRM ($65–80/hr) | Self-contained HTML/CSS/JS — stretch, needs enterprise polish |
 
 ---
 
@@ -161,6 +167,13 @@ No new skills; counts unchanged.
 **Top gaps seen:** Cloudflare regional latency, Shopify 2.0/Liquid/Eleventy, AI fashion MVP (Next.js+Supabase+OpenAI image gen), AWS DevOps deploy, Django+React, Next.js $5 fix, blockchain, Chrome MV3+MongoDB, YouTube/FFmpeg tool, X/Twitter scheduler (React+Supabase+cron)  
 **New skills added:** Cloudflare, AI image generation API, cron/background jobs, Eleventy, Shopify Liquid, subscription app integrations  
 **Apply:** None — all senior, wrong stack, or unrealistic budget ($5 Next.js, $50 X dashboard, $400 AI MVP)
+
+### Batch 7 — Search `html css` Most Recent (page 1)
+**Jobs:** 10 | **Apply:** 1 optional | **Skip:** 9  
+**Top gaps seen:** WordPress membership+Stripe+downloads (×6 WP jobs on this page alone), Veeva HTML/CSS/JS, Shopify/Wix/Webflow CMS, Figma→React $5  
+**New skills added:** Webflow, Wix, email marketing integration, WordPress membership plugins  
+**WordPress mentions:** +6 this batch (now **12 total**) — dominates `html css` search  
+**Apply:** Simple CTA Website $100 (optional — **unverified payment**). **Stretch:** Veeva HTML job. **Skip rest** including $10 look-and-feel and $5 WordPress fixes.
 
 ---
 
