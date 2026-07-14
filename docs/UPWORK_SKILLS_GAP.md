@@ -18,9 +18,9 @@
 
 | Metric | Count |
 |--------|------:|
-| Job batches reviewed | 7 |
+| Job batches reviewed | 8 |
 | Individual jobs scanned | ~95+ |
-| Jobs marked **Apply** | 2–3 (RSS, Landing Page $400, optional: Simple CTA $100) |
+| Jobs marked **Apply** | 3 submitted (RSS, Landing Page $400, Simple CTA $100) |
 | Jobs marked **Skip** | ~92 |
 | Unique skills requested across all jobs | 72 |
 | Skills you already have (portfolio-backed) | 12 |
@@ -136,7 +136,7 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 |-----|-------------|
 | RSS Feed Collector | Vanilla JS / data export / parsing |
 | Front-End Landing Page $400 | HTML/CSS/JS + Tailwind (Tailwind is learn-on-job) |
-| Simple Call to Action Website $100 | Static HTML/CSS CTA site (confirm not WordPress-heavy) |
+| Simple Call to Action Website $100 | ✅ **Submitted** — static HTML/CSS CTA site |
 | HTML for Veeva CRM ($65–80/hr) | Self-contained HTML/CSS/JS — stretch, needs enterprise polish |
 
 ---
@@ -174,6 +174,10 @@ No new skills; counts unchanged.
 **New skills added:** Webflow, Wix, email marketing integration, WordPress membership plugins  
 **WordPress mentions:** +6 this batch (now **12 total**) — dominates `html css` search  
 **Apply:** Simple CTA Website $100 (optional — **unverified payment**). **Stretch:** Veeva HTML job. **Skip rest** including $10 look-and-feel and $5 WordPress fixes.
+
+### Batch 8 — Same `html css` page 1 (repost)
+**Jobs:** 10 (duplicate of Batch 7) | **New applies:** 0  
+**Status:** Simple CTA $100 proposal **submitted** by user. No new skills. **Skip all** — already reviewed.
 
 ---
 
