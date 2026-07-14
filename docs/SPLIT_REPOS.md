@@ -119,9 +119,32 @@ git push -u origin main
 
 ## Step 3 — Enable GitHub Pages (each new repo)
 
+**Do this BEFORE re-running failed deploys** if workflows already ran on push.
+
 For **each** repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**
 
 The included workflow `deploy-pages.yml` runs on push to `main`.
+
+### If you see 404 after enabling Pages
+
+The first deploy often **fails** if the workflow ran before Pages was set to GitHub Actions. Fix:
+
+1. Confirm **Source: GitHub Actions** on that repo's Settings → Pages
+2. Open the repo's **Actions** tab
+3. Click the failed **Deploy to GitHub Pages** run (red X)
+4. Click **Re-run all jobs** (top right)
+
+Or: **Actions → Deploy to GitHub Pages → Run workflow → Run workflow**
+
+Repeat for each demo repo. Wait 2–5 minutes after green checkmarks.
+
+**Portfolio root** (should work once deploy succeeds): https://jacobbarrera2024-sketch.github.io/
+
+**Demo URLs** (only work after their repo deploy succeeds):
+
+- https://jacobbarrera2024-sketch.github.io/secplus-ai-demo/
+- https://jacobbarrera2024-sketch.github.io/quick-quote/
+- https://jacobbarrera2024-sketch.github.io/sheet-dash/
 
 ---
 
