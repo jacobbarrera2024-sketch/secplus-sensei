@@ -14,17 +14,17 @@
 
 ---
 
-## Summary stats (last updated: 2026-07-14, batch 7)
+## Summary stats (last updated: 2026-07-14, batch 9)
 
 | Metric | Count |
 |--------|------:|
-| Job batches reviewed | 8 |
-| Individual jobs scanned | ~95+ |
-| Jobs marked **Apply** | 3 submitted (RSS, Landing Page $400, Simple CTA $100) |
-| Jobs marked **Skip** | ~92 |
-| Unique skills requested across all jobs | 72 |
+| Job batches reviewed | 9 |
+| Individual jobs scanned | ~105+ |
+| Jobs marked **Apply** | 3 submitted + 2 recommended (Mockup impl., Static HTML health site) |
+| Jobs marked **Skip** | ~100 |
+| Unique skills requested across all jobs | 76 |
 | Skills you already have (portfolio-backed) | 12 |
-| Skills in gap list below | 60 |
+| Skills in gap list below | 64 |
 
 ---
 
