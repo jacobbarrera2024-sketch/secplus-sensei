@@ -18,7 +18,21 @@ Your portfolio moves from `/secplus-sensei/` to the **root** URL — cleaner for
 
 ## Step 1 — Generate the repos locally
 
-From the `secplus-sensei` repo root:
+From the `secplus-sensei` repo root.
+
+### Windows (Command Prompt — no bash needed)
+
+```cmd
+scripts\split-repos.bat
+```
+
+### Windows (PowerShell)
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\split-into-repos.ps1
+```
+
+### Mac / Linux / Git Bash
 
 ```bash
 bash scripts/split-into-repos.sh
@@ -29,6 +43,28 @@ This creates `../secplus-split/` with four ready-to-push git repos (demos + port
 ---
 
 ## Step 2 — Create GitHub repos and push
+
+Requires [GitHub CLI](https://cli.github.com/) logged in as **jacobbarrera2024-sketch** (`gh auth login`).
+
+### Windows (Command Prompt)
+
+```cmd
+scripts\push-repos.bat
+```
+
+### Windows (PowerShell)
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\push-split-repos.ps1
+```
+
+### Mac / Linux / Git Bash
+
+```bash
+bash scripts/push-split-repos.sh ../secplus-split
+```
+
+Or manually:
 
 ```bash
 cd ../secplus-split
@@ -85,6 +121,7 @@ Keep the Electron app, docs, and point README links to the new URLs.
 
 ## Troubleshooting
 
+- **`'bash' is not recognized`** (Windows CMD) — Use `scripts\split-repos.bat` and `scripts\push-repos.bat` instead of the `.sh` scripts. Or open **Git Bash** (installed with Git for Windows) and run the bash commands there.
 - **`gh: Resource not accessible`** — Run `gh auth login` on your machine as your GitHub account.
 - **Pages 404** — Wait 2–5 min after first deploy; confirm Actions tab shows green checkmark.
 - **Portfolio icons missing** — Re-run deploy on demo repos first, then portfolio.
