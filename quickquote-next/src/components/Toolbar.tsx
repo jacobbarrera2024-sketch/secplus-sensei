@@ -42,10 +42,11 @@ export function Toolbar({
       <div className="flex flex-wrap items-center gap-2">
         <input
           ref={fileRef}
+          id="import-json"
           type="file"
           accept="application/json,.json"
-          className="hidden"
-          aria-hidden
+          className="sr-only"
+          aria-label="Import JSON document"
           onChange={(e) => {
             const file = e.target.files?.[0];
             if (file) onImport(file);
@@ -54,6 +55,7 @@ export function Toolbar({
         />
         <button
           type="button"
+          aria-label="Load sample invoice"
           onClick={onLoadSample}
           className={`${baseBtn} bg-slate-100 text-slate-700 ring-slate-300 hover:bg-slate-200 focus:ring-slate-400`}
         >
@@ -61,6 +63,7 @@ export function Toolbar({
         </button>
         <button
           type="button"
+          aria-label="Start new document"
           onClick={onNew}
           className={`${baseBtn} bg-slate-100 text-slate-700 ring-slate-300 hover:bg-slate-200 focus:ring-slate-400`}
         >
@@ -68,6 +71,7 @@ export function Toolbar({
         </button>
         <button
           type="button"
+          aria-label="Import JSON document"
           onClick={() => fileRef.current?.click()}
           className={`${baseBtn} bg-slate-100 text-slate-700 ring-slate-300 hover:bg-slate-200 focus:ring-slate-400`}
         >
@@ -75,6 +79,7 @@ export function Toolbar({
         </button>
         <button
           type="button"
+          aria-label="Export document as JSON"
           onClick={onExport}
           className={`${baseBtn} bg-slate-100 text-slate-700 ring-slate-300 hover:bg-slate-200 focus:ring-slate-400`}
         >
@@ -82,14 +87,16 @@ export function Toolbar({
         </button>
         <button
           type="button"
-          onClick={onSave}
+          aria-label="Save draft to this device"
           title="Save draft (Ctrl+S)"
+          onClick={onSave}
           className={`${baseBtn} border border-teal-600 bg-white text-teal-700 ring-teal-500 hover:bg-teal-50 focus:ring-teal-500`}
         >
           Save
         </button>
         <button
           type="button"
+          aria-label="Print or save as PDF"
           onClick={onPrint}
           className={`${baseBtn} bg-teal-600 text-white ring-teal-500 hover:bg-teal-700 focus:ring-teal-500`}
         >

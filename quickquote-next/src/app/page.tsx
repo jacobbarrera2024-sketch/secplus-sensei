@@ -3,7 +3,13 @@ import { QuickQuote } from "@/components/QuickQuote";
 export default function Home() {
   return (
     <div className="flex min-h-full flex-col bg-slate-50">
-      <main className="flex-1">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-teal-600 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+      >
+        Skip to main content
+      </a>
+      <main id="main-content" className="flex-1">
         <QuickQuote />
       </main>
       <footer className="border-t border-slate-200 bg-white px-4 py-5 text-center text-sm text-slate-500 print:hidden">

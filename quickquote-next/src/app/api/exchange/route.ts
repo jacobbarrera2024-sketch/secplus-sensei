@@ -27,6 +27,7 @@ export async function GET(request: Request) {
     const upstream = await fetch(`${UPSTREAM}?from=${base}&to=${symbols}`, {
       headers: { Accept: "application/json" },
       next: { revalidate },
+      signal: AbortSignal.timeout(8000),
     });
 
     if (!upstream.ok) {

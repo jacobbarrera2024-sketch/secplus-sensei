@@ -37,11 +37,7 @@ export function QuickQuote() {
       skipAutoSave.current = false;
       return;
     }
-    const timer = window.setTimeout(() => {
-      if (saveDraft(doc)) {
-        setStatus({ message: "Draft auto-saved.", tone: "ok" });
-      }
-    }, 600);
+    const timer = window.setTimeout(() => saveDraft(doc), 600);
     return () => window.clearTimeout(timer);
   }, [doc, hydrated]);
 
@@ -121,6 +117,10 @@ export function QuickQuote() {
   }, [doc]);
 
   const handleImport = useCallback((file: File) => {
+    if (file.size > 1024 * 1024) {
+      setStatus({ message: "File too large (max 1 MB).", tone: "error" });
+      return;
+    }
     const reader = new FileReader();
     reader.onload = () => {
       const parsed = parseImportFile(String(reader.result ?? ""));
@@ -142,7 +142,7 @@ export function QuickQuote() {
       doc.number ||
       doc.client.name ||
       doc.lines.some((l) => l.desc || l.rate);
-    if (hasContent && !window.confirm("Start a new document? Your current draft stays saved until you overwrite it.")) {
+    if (hasContent && !window.confirm("Start a new document? The form will reset (your saved business info is kept).")) {
       return;
     }
     clearDraft();

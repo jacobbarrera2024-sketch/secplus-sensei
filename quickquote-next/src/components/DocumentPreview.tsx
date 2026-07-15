@@ -64,8 +64,8 @@ export function DocumentPreview({ doc }: { doc: QuoteDoc }) {
         </div>
       </div>
 
-      <div className="px-8">
-        <table className="w-full border-collapse text-sm">
+      <div className="overflow-x-auto px-8">
+        <table className="w-full min-w-[28rem] border-collapse text-sm">
           <thead>
             <tr className="border-b border-slate-300 text-left text-xs uppercase tracking-wide text-slate-500">
               <th className="py-2">Description</th>
