@@ -33,7 +33,7 @@ export function EditorPanel({
       </p>
 
       <Card title="Document">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field label="Type" htmlFor="docType">
             <Select
               id="docType"
@@ -81,7 +81,7 @@ export function EditorPanel({
               onChange={(e) => setBusiness({ name: e.target.value })}
             />
           </Field>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label="Email" htmlFor="bizEmail">
               <TextInput
                 id="bizEmail"
@@ -123,7 +123,7 @@ export function EditorPanel({
               onChange={(e) => setClient({ name: e.target.value })}
             />
           </Field>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label="Company" htmlFor="clientCompany">
               <TextInput
                 id="clientCompany"

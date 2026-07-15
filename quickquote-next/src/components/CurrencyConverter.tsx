@@ -77,7 +77,7 @@ export function CurrencyConverter({ base, total }: { base: string; total: number
           {others.slice(0, 6).map((c) => (
             <div
               key={c.code}
-              className="h-14 animate-pulse rounded-lg border border-slate-200 bg-slate-100"
+              className="h-14 animate-pulse rounded-lg border border-slate-200 bg-slate-100 motion-reduce:animate-none"
             />
           ))}
         </div>

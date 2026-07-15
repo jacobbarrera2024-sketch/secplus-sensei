@@ -26,11 +26,13 @@ export const metadata: Metadata = {
     description:
       "Browser-based invoice and quote builder with live currency rates and PDF export. Next.js + React + TypeScript + Tailwind.",
     type: "website",
+    images: [{ url: "/icon.svg", width: 64, height: 64, alt: "QuickQuote app icon" }],
   },
   twitter: {
     card: "summary",
     title: "QuickQuote — Invoice & Quote Generator",
     description: "Next.js portfolio demo: invoices, quotes, live FX rates, PDF export.",
+    images: ["/icon.svg"],
   },
 };
 
