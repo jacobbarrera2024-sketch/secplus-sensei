@@ -11,6 +11,7 @@ on:
       - "ai-demo/**"
       - "quick-quote/**"
       - "sheet-dash/**"
+      - "feed-collector/public/**"
       - ".github/workflows/deploy-website.yml"
   workflow_dispatch:
 
