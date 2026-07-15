@@ -45,10 +45,10 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 | 9 | **OpenAI / LLM API** | 10 | partial | 🟠 MED | Expand SecPlus AI Demo → real API chat w/ streaming |
 | 10 | **Express.js** | 8 | ❌ | 🟠 MED | Node server for RSS/export tool |
 | 11 | **MongoDB** | 8 | ❌ | 🟠 MED | MERN todo or marketplace clone (small) |
-| 12 | **Stripe** | 7 | ❌ | 🟠 MED | “Buy me a coffee” or subscription demo |
-| 13 | **Figma → code** | 7 | ❌ | 🔴 HIGH | **Do the $400 landing page style project for yourself** |
-| 14 | **WordPress** | 12 | ❌ | 🟡 LOW* | *Spiking in `html css` search — consider basic WP child theme demo |
-| 15 | **PHP** | 7 | ❌ | 🟡 LOW | Required for most WordPress customization jobs |
+| 12 | **Stripe** | 8 | ❌ | 🟠 MED | Stripe Payment Link on a static “Book Now” demo page |
+| 13 | **Figma → code** | 8 | ❌ | 🔴 HIGH | **Do the $400 landing page style project for yourself** |
+| 14 | **WordPress** | 15 | ❌ | 🟡 LOW* | *Spiking in `html css` search — consider basic WP child theme demo |
+| 15 | **PHP** | 8 | ❌ | 🟡 LOW | Required for most WordPress customization jobs |
 | 16 | **Python** | 6 | ❌ | 🟡 LOW | Script for data export (pairs with RSS job) |
 | 17 | **AWS / cloud deploy** | 6 | ❌ | 🟠 MED | Deploy Node app to Railway or Render |
 | 18 | **Vercel deployment** | 5 | ❌ | 🟠 MED | Host Next.js project on Vercel |
@@ -84,7 +84,7 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 | 48 | **NestJS** | 1 | ❌ | 🟡 LOW | Enterprise Node |
 | 49 | **RAG / vector search / embeddings** | 2 | ❌ | 🟡 LOW | Advanced AI; after basic OpenAI chat |
 | 50 | **Tampermonkey / browser automation** | 1 | ❌ | ⚪ SKIP | Gray-area scraping work |
-| 51 | **Cloudflare** (CDN/DNS/WAF/caching) | 1 | ❌ | 🟡 LOW | Put portfolio on Cloudflare Pages + tune cache rules |
+| 51 | **Cloudflare** (CDN/DNS/Pages) | 2 | partial | 🟠 MED | Move portfolio to Cloudflare Pages (health-coaching jobs ask for this) |
 | 52 | **Web performance** (TTFB, Core Web Vitals, regional latency) | 2 | partial | 🟠 MED | Lighthouse 90+ report on portfolio (pairs with SEO row) |
 | 53 | **AI image generation API** | 1 | ❌ | 🟡 LOW | Add image-gen to a demo (after basic OpenAI chat) |
 | 54 | **Cron / background jobs** (scheduled tasks) | 1 | ❌ | 🟠 MED | Scheduled post/job queue on Node or Supabase |
@@ -94,6 +94,10 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 | 58 | **Wix CMS** | 1 | ❌ | 🟡 LOW | Agency CMS niche |
 | 59 | **Email marketing integration** (Mailchimp/ConvertKit/etc.) | 1 | ❌ | 🟡 LOW | Newsletter signup + API hookup on a demo site |
 | 60 | **WordPress membership plugins** (MemberPress/Paid Memberships Pro) | 1 | ❌ | 🟡 LOW | Only if pursuing WP membership clients |
+| 61 | **Elementor Pro** | 1 | ❌ | 🟡 LOW | WP page builder niche |
+| 62 | **Calendly embed** | 1 | ❌ | 🟠 MED | Embed on static Book page (pairs with Stripe) |
+| 63 | **WCAG / accessibility audit** | 1 | partial | 🟠 MED | Contrast check on portfolio after CSS refactor |
+| 64 | **WebP / responsive images (srcset, lazy load)** | 1 | partial | 🟠 MED | Optimize images on portfolio site |
 
 ### Skills you already cover (keep visible on Upwork)
 
@@ -138,6 +142,8 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 | Front-End Landing Page $400 | HTML/CSS/JS + Tailwind (Tailwind is learn-on-job) |
 | Simple Call to Action Website $100 | ✅ **Submitted** — static HTML/CSS CTA site |
 | HTML for Veeva CRM ($65–80/hr) | Self-contained HTML/CSS/JS — stretch, needs enterprise polish |
+| **Website Developer — mockup implementation (USA)** | 🟢 **Apply now** — 10 pages from mockups, HTML/CSS, 5–10 proposals |
+| **Static HTML health site (zaytoonhealth.com)** | 🟡 Stretch — perfect stack; needs Stripe/Calendly proof |
 
 ---
 
@@ -178,6 +184,12 @@ No new skills; counts unchanged.
 ### Batch 8 — Same `html css` page 1 (repost)
 **Jobs:** 10 (duplicate of Batch 7) | **New applies:** 0  
 **Status:** Simple CTA $100 proposal **submitted** by user. No new skills. **Skip all** — already reviewed.
+
+### Batch 9 — Search `html css` page 3
+**Jobs:** 10 | **Apply:** 1 strong + 1 stretch | **Skip:** 8  
+**Top gaps seen:** Mockup→code (10 pages, USA verified), static HTML+Stripe+Calendly+Cloudflare Pages, Elementor migration, PHP UI redesign $30  
+**New skills added:** Elementor Pro, Calendly embed, WCAG audit, WebP/srcset  
+**Apply:** Website Developer mockup implementation (USA, 5–10 proposals). **Stretch:** Complete Static HTML health coaching site. **Skip:** $5–$30 jobs, WordPress/Elementor, PHP expert, LATAM, AI training.
 
 ---
 
