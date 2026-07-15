@@ -61,7 +61,8 @@ export function LineItems({
             onChange={(e) => onChange(line.id, { rate: Number(e.target.value) })}
             className={cell}
           />
-          <span className="self-center text-right text-sm font-semibold text-slate-700">
+          <span className="self-center text-right text-sm font-semibold text-slate-700 sm:col-auto">
+            <span className="mr-1 text-xs font-normal text-slate-400 sm:hidden">Amt</span>
             {formatMoney(lineAmount(line), currency)}
           </span>
           <button

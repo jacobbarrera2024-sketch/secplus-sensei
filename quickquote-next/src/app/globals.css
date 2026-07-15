@@ -23,7 +23,7 @@ body {
   outline-offset: 2px;
 }
 
-/* Print: show preview only, full width */
+/* Print: preview only, preserve brand colors in header */
 @media print {
   @page {
     margin: 12mm;
@@ -37,5 +37,10 @@ body {
     box-shadow: none !important;
     border: none !important;
     max-width: none !important;
+  }
+
+  #doc-preview .print-header {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 }

@@ -166,7 +166,7 @@ export function EditorPanel({
 
       <Card title="Totals, currency &amp; notes">
         <div className="space-y-4">
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <Field label="Tax rate (%)" htmlFor="taxRate">
               <TextInput
                 id="taxRate"

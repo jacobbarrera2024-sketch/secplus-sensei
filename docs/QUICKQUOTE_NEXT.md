@@ -1,32 +1,49 @@
 # Portfolio project: QuickQuote Next
 
-**Status:** Ready for Vercel deploy and Upwork portfolio  
+**Status:** ✅ Audited, polished, ready for Vercel deploy  
 **Path:** `quickquote-next/`  
-**Skills demonstrated:** React, Next.js, TypeScript, Tailwind CSS, Node.js, REST API integration, Vercel
+**PR:** [#24](https://github.com/jacobbarrera2024-sketch/secplus-sensei/pull/24)
 
 ## Elevator pitch (Upwork / LinkedIn)
 
-> Rebuilt my invoice generator in **Next.js + React + TypeScript + Tailwind**, with a **Node.js API route** for live currency conversion. Same UX as the vanilla version, plus auto-save, JSON export, and production-ready deploy on Vercel.
+> Rebuilt my invoice generator in **Next.js + React + TypeScript + Tailwind**, with a **Node.js API route** for live currency conversion. Auto-save, JSON import/export, print-to-PDF, deployed on Vercel.
 
-## Before you share live
+## When you get home
 
-1. Deploy to Vercel (Root Directory: `quickquote-next`)
-2. Update live URL in Upwork portfolio item and LinkedIn Featured
-3. Add screenshot of editor + preview side-by-side
+| Step | Action |
+|------|--------|
+| 1 | Merge PR #24, `git pull` |
+| 2 | Vercel → New Project → repo `secplus-sensei` → Root Directory: **`quickquote-next`** |
+| 3 | Deploy → copy live URL |
+| 4 | Test: Sample → currency tiles → Print/PDF |
+| 5 | Screenshot → Upwork portfolio + LinkedIn Featured |
+| 6 | Update Upwork overview: add React, Next.js, TypeScript, Tailwind, Node.js |
 
-## Upwork skills unlocked
+## Skills demonstrated
 
-| Skill | Proof in this repo |
-|-------|-------------------|
+| Skill | Proof |
+|-------|-------|
 | React | `src/components/*.tsx` |
-| Next.js | App Router, `src/app/` |
-| TypeScript | Strict mode, typed state |
-| Tailwind CSS | Utility classes throughout |
-| Node.js | `src/app/api/exchange/route.ts` |
-| REST API | Frankfurter proxy + client fetch |
-| Vercel | README deploy section |
+| Next.js | App Router, API routes |
+| TypeScript | Strict mode |
+| Tailwind CSS | v4 styling |
+| Node.js | `/api/exchange` |
+| REST API | Frankfurter proxy |
+| Vercel | README + `vercel.json` |
+
+## Audit log (latest)
+
+- JSON import + export round-trip
+- Confirm dialog on New document
+- Auto-save with status feedback
+- Loading skeleton on hydration
+- Print color preservation for invoice header
+- Mobile layout fixes (tax/currency grid, line amounts)
+- Removed unused scaffold assets
+- Dynamic metadataBase from Vercel URL
+- MIT LICENSE added
 
 ## Related
 
 - Vanilla version: `quick-quote/` (GitHub Pages)
-- Skills tracker: `docs/UPWORK_SKILLS_GAP.md` (on `cursor/upwork-skills-gap-e295` branch)
+- Skills tracker: `docs/UPWORK_SKILLS_GAP.md`

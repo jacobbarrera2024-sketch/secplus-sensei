@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -8,6 +8,10 @@ const inter = Inter({
   display: "swap",
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined);
+
 export const metadata: Metadata = {
   title: "QuickQuote — Invoice & Quote Generator (Next.js)",
   description:
@@ -16,7 +20,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
   },
-  metadataBase: new URL("https://quickquote-next.vercel.app"),
+  ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
   openGraph: {
     title: "QuickQuote — Invoice & Quote Generator",
     description:
@@ -28,6 +32,12 @@ export const metadata: Metadata = {
     title: "QuickQuote — Invoice & Quote Generator",
     description: "Next.js portfolio demo: invoices, quotes, live FX rates, PDF export.",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0f766e",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

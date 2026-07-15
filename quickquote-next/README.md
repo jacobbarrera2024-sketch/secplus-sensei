@@ -14,14 +14,25 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+## When you get home (5-minute checklist)
+
+1. `git pull` and merge [PR #24](https://github.com/jacobbarrera2024-sketch/secplus-sensei/pull/24)
+2. Go to [vercel.com/new](https://vercel.com/new) → import `secplus-sensei` repo
+3. Set **Root Directory** = `quickquote-next` → Deploy
+4. Open the live URL → click **Sample** → **Print / PDF** to verify
+5. Scroll to **Live currency check** — confirm FX tiles load
+6. Screenshot editor + preview → add **Upwork portfolio item** + **LinkedIn Featured**
+7. Optional: set `NEXT_PUBLIC_SITE_URL` in Vercel to your production URL (Open Graph)
+
 ## Features
 
 - **Invoice & quote builder** — line items, tax, themes (Classic / Slate / Mint)
 - **Live preview** — updates as you type; mobile Edit / Preview tabs
-- **Print / PDF** — browser print → Save as PDF
+- **Print / PDF** — browser print → Save as PDF (colored headers preserved)
 - **Local drafts** — auto-save + manual save (`Ctrl+S` / `Cmd+S`)
-- **Export JSON** — download the current document
-- **Live currency conversion** — `/api/exchange` proxies [Frankfurter](https://www.frankfurter.app/) rates server-side (USD, EUR, GBP, CAD, AUD, JPY, MXN, INR)
+- **Import / Export JSON** — round-trip documents
+- **New document confirm** — avoids accidental data loss
+- **Live currency conversion** — `/api/exchange` proxies Frankfurter rates server-side
 
 ## Tech stack
 
@@ -42,7 +53,7 @@ src/
 │   ├── page.tsx
 │   └── globals.css
 ├── components/                 # React UI
-└── lib/                        # Types, calc, storage, format
+└── lib/                        # Types, calc, storage, import, format
 ```
 
 ## Deploy on Vercel
@@ -63,6 +74,8 @@ This project closes the top skills gap from Upwork job analysis:
 - Vercel-ready deployment
 
 Original vanilla JS version: [quick-quote/](../quick-quote/)
+
+See also: [docs/QUICKQUOTE_NEXT.md](../docs/QUICKQUOTE_NEXT.md)
 
 ## License
 

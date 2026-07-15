@@ -3,11 +3,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { LineItem, Party, QuoteDoc } from "@/lib/types";
 import { emptyDoc, newLineId, sampleDoc } from "@/lib/sample";
-import { clearDraft, loadDraft, saveDraft } from "@/lib/storage";
+import { clearDraft, loadDraft, parseImportFile, saveDraft } from "@/lib/storage";
 import { downloadJson } from "@/lib/format";
 import { Toolbar } from "./Toolbar";
 import { EditorPanel } from "./EditorPanel";
 import { DocumentPreview } from "./DocumentPreview";
+import { LoadingShell } from "./LoadingShell";
 
 type Tab = "edit" | "preview";
 type Status = { message: string; tone: "ok" | "error" } | null;
@@ -19,7 +20,6 @@ export function QuickQuote() {
   const [hydrated, setHydrated] = useState(false);
   const skipAutoSave = useRef(true);
 
-  // Restore draft after mount (localStorage is client-only).
   useEffect(() => {
     const saved = loadDraft();
     queueMicrotask(() => {
@@ -31,14 +31,17 @@ export function QuickQuote() {
     });
   }, []);
 
-  // Auto-save after edits (debounced).
   useEffect(() => {
     if (!hydrated) return;
     if (skipAutoSave.current) {
       skipAutoSave.current = false;
       return;
     }
-    const timer = window.setTimeout(() => saveDraft(doc), 600);
+    const timer = window.setTimeout(() => {
+      if (saveDraft(doc)) {
+        setStatus({ message: "Draft auto-saved.", tone: "ok" });
+      }
+    }, 600);
     return () => window.clearTimeout(timer);
   }, [doc, hydrated]);
 
@@ -48,7 +51,6 @@ export function QuickQuote() {
     return () => window.clearTimeout(timer);
   }, [status]);
 
-  // Ctrl/Cmd + S to save draft.
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "s") {
@@ -118,7 +120,31 @@ export function QuickQuote() {
     setStatus({ message: "JSON exported.", tone: "ok" });
   }, [doc]);
 
+  const handleImport = useCallback((file: File) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const parsed = parseImportFile(String(reader.result ?? ""));
+      if (!parsed) {
+        setStatus({ message: "Invalid JSON file.", tone: "error" });
+        return;
+      }
+      skipAutoSave.current = true;
+      setDoc(parsed);
+      saveDraft(parsed);
+      setStatus({ message: "Document imported.", tone: "ok" });
+    };
+    reader.onerror = () => setStatus({ message: "Could not read file.", tone: "error" });
+    reader.readAsText(file);
+  }, []);
+
   const handleNew = useCallback(() => {
+    const hasContent =
+      doc.number ||
+      doc.client.name ||
+      doc.lines.some((l) => l.desc || l.rate);
+    if (hasContent && !window.confirm("Start a new document? Your current draft stays saved until you overwrite it.")) {
+      return;
+    }
     clearDraft();
     skipAutoSave.current = true;
     setDoc((prev) => ({
@@ -128,7 +154,7 @@ export function QuickQuote() {
       currency: prev.currency,
     }));
     setStatus({ message: "New document started.", tone: "ok" });
-  }, []);
+  }, [doc]);
 
   const handleSample = useCallback(() => {
     skipAutoSave.current = true;
@@ -146,11 +172,7 @@ export function QuickQuote() {
   }, []);
 
   if (!hydrated) {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center text-sm text-slate-500">
-        Loading…
-      </div>
-    );
+    return <LoadingShell />;
   }
 
   return (
@@ -159,6 +181,7 @@ export function QuickQuote() {
         onLoadSample={handleSample}
         onNew={handleNew}
         onSave={handleSave}
+        onImport={handleImport}
         onExport={handleExport}
         onPrint={handlePrint}
       />
@@ -197,6 +220,7 @@ export function QuickQuote() {
           />
           {status && (
             <p
+              role="status"
               aria-live="polite"
               className={`mt-3 text-sm font-medium ${
                 status.tone === "ok" ? "text-teal-700" : "text-red-600"
@@ -211,7 +235,7 @@ export function QuickQuote() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-400 lg:hidden print:hidden">
             Preview
           </p>
-          <div className="lg:sticky lg:top-20">
+          <div className="lg:sticky lg:top-[4.75rem]">
             <DocumentPreview doc={doc} />
           </div>
         </section>

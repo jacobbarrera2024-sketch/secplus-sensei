@@ -26,7 +26,7 @@ export function DocumentPreview({ doc }: { doc: QuoteDoc }) {
       id="doc-preview"
       className="mx-auto w-full max-w-[820px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm print:rounded-none print:border-0 print:shadow-none"
     >
-      <div className={`flex items-start justify-between gap-4 px-8 py-6 ${theme.headBg} ${theme.headText}`}>
+      <div className={`print-header flex items-start justify-between gap-4 px-8 py-6 ${theme.headBg} ${theme.headText}`}>
         <div>
           <h1 className="text-3xl font-black tracking-tight">{isQuote ? "QUOTE" : "INVOICE"}</h1>
           <p className="mt-1 text-sm opacity-90">

@@ -18,9 +18,11 @@ export default function Home() {
           ·{" "}
           <a
             className="font-medium text-teal-700 hover:underline"
-            href="https://github.com/jacobbarrera2024-sketch"
+            href="https://github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/quickquote-next"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            GitHub
+            Source
           </a>
         </p>
         <p className="mt-1 text-xs text-slate-400">
