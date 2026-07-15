@@ -20,6 +20,8 @@
   <a href="docs/PORTFOLIO.md"><strong>Case study</strong></a> ·
   <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/ai-demo/"><strong>Web demo</strong></a> ·
   <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/quick-quote/"><strong>QuickQuote</strong></a> ·
+  <a href="quickquote-next/"><strong>QuickQuote Next</strong></a> ·
+  <a href="feed-collector/"><strong>FeedCollector</strong></a> ·
   <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/sheet-dash/"><strong>SheetDash</strong></a> ·
   <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/"><strong>Portfolio</strong></a> ·
   <a href="website/README.md"><strong>Website</strong></a>
