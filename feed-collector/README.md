@@ -62,7 +62,7 @@ feed-collector/
 ## Deploy on Railway
 
 1. Import repo → set **Root Directory** = `feed-collector`
-2. Build: `npm run build`
+2. Build: `npm install --include=dev && npm run build`
 3. Start: `NODE_ENV=production npm start`
 4. Railway sets `PORT` automatically
 
