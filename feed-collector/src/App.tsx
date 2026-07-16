@@ -56,23 +56,19 @@ export function App() {
     setMessage("Feed removed.");
   }, []);
 
-  const handleLoadSamples = useCallback(() => {
-    setSavedFeeds(SAMPLE_FEEDS);
-    setMessage("Sample feeds loaded — click Fetch all.");
-  }, []);
-
-  const handleFetchAll = useCallback(async () => {
-    if (!savedFeeds.length) {
+  const handleFetchAll = useCallback(async (feedsOverride?: SavedFeed[]) => {
+    const feedsToFetch = feedsOverride ?? savedFeeds;
+    if (!feedsToFetch.length) {
       setMessage("Add at least one feed URL first.");
       return;
     }
 
     setStatus("loading");
     setErrors([]);
-    setMessage("");
+    setMessage("Fetching headlines…");
 
     try {
-      const result = await parseFeedBatch(savedFeeds.map((f) => f.url));
+      const result = await parseFeedBatch(feedsToFetch.map((f) => f.url));
       setFeeds(result.feeds);
       setErrors(result.errors);
       setStatus("ok");
@@ -87,6 +83,11 @@ export function App() {
       setMessage(error instanceof Error ? error.message : "Fetch failed.");
     }
   }, [savedFeeds]);
+
+  const handleLoadSamples = useCallback(() => {
+    setSavedFeeds(SAMPLE_FEEDS);
+    void handleFetchAll(SAMPLE_FEEDS);
+  }, [handleFetchAll]);
 
   const handleExport = useCallback(
     (format: "json" | "csv") => {
@@ -120,8 +121,10 @@ export function App() {
         feedCount={savedFeeds.length}
         onExportJson={() => handleExport("json")}
         onExportCsv={() => handleExport("csv")}
-        onFetchAll={handleFetchAll}
+        onFetchAll={() => void handleFetchAll()}
         loading={status === "loading"}
+        statusMessage={message}
+        statusTone={status === "error" ? "error" : status === "loading" ? "loading" : "ok"}
       />
 
       <main
@@ -172,16 +175,6 @@ export function App() {
             loading={status === "loading"}
             formatDate={formatDate}
           />
-
-          {message && (
-            <p
-              role="status"
-              aria-live="polite"
-              className={`text-sm font-medium ${status === "error" ? "text-red-600" : "text-blue-700"}`}
-            >
-              {message}
-            </p>
-          )}
         </section>
       </main>
 

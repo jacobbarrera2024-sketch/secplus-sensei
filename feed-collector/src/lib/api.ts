@@ -18,6 +18,7 @@ export async function parseFeedBatch(urls: string[]): Promise<BatchResult> {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ urls }),
+    signal: AbortSignal.timeout(45_000),
   });
   const json = (await res.json()) as BatchResult & { error?: string };
   if (!res.ok) throw new Error(json.error || `Request failed (${res.status})`);
