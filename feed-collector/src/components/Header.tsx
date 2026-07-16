@@ -5,6 +5,8 @@ export function Header({
   onExportJson,
   onExportCsv,
   loading,
+  statusMessage,
+  statusTone = "ok",
 }: {
   itemCount: number;
   feedCount: number;
@@ -12,12 +14,29 @@ export function Header({
   onExportJson: () => void;
   onExportCsv: () => void;
   loading: boolean;
+  statusMessage?: string;
+  statusTone?: "ok" | "error" | "loading";
 }) {
   const baseBtn =
     "inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60";
 
   return (
     <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 backdrop-blur">
+      {statusMessage && (
+        <p
+          role="status"
+          aria-live="polite"
+          className={`border-b px-4 py-2 text-center text-sm font-medium ${
+            statusTone === "error"
+              ? "border-red-200 bg-red-50 text-red-700"
+              : statusTone === "loading"
+                ? "border-blue-200 bg-blue-50 text-blue-800"
+                : "border-teal-200 bg-teal-50 text-teal-800"
+          }`}
+        >
+          {statusMessage}
+        </p>
+      )}
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3">
         <a
           href="https://jacobbarrera2024-sketch.github.io/"

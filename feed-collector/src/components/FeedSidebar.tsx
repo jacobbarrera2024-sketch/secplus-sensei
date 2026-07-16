@@ -77,7 +77,7 @@ export function FeedSidebar({
           onClick={onLoadSamples}
           className="mt-3 w-full rounded-lg border border-dashed border-slate-300 px-3 py-2 text-sm font-semibold text-blue-700 hover:border-blue-400 hover:bg-blue-50"
         >
-          Load sample feeds
+          Load sample feeds &amp; fetch
         </button>
       </section>
 
