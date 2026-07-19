@@ -1,24 +1,21 @@
 import { NextResponse } from "next/server";
 import { analyzeProblem } from "@/lib/ai";
 import { checkRateLimit } from "@/lib/rate-limit";
+import { analyzeBodySchema, getClientIp } from "@/lib/validation";
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as { problemDescription?: string };
-    const problemDescription = body.problemDescription?.trim() ?? "";
+    const body = (await request.json()) as unknown;
+    const parsed = analyzeBodySchema.safeParse(body);
 
-    if (problemDescription.length < 8) {
+    if (!parsed.success) {
       return NextResponse.json(
         { error: "Please enter at least a few words describing your project." },
         { status: 400 },
       );
     }
 
-    const ip =
-      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-      request.headers.get("x-real-ip") ??
-      "anonymous";
-
+    const ip = getClientIp(request);
     const { allowed, remaining } = checkRateLimit(`analyze:${ip}`);
     if (!allowed) {
       return NextResponse.json(
@@ -27,7 +24,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = await analyzeProblem(problemDescription);
+    const result = await analyzeProblem(parsed.data.problemDescription);
 
     return NextResponse.json({ ...result, remaining });
   } catch {

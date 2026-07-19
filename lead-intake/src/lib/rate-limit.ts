@@ -21,3 +21,11 @@ export function checkRateLimit(
   buckets.set(key, entry);
   return { allowed: true, remaining: limit - entry.count };
 }
+
+/** Per-IP limits for public endpoints (best-effort on serverless). */
+export function checkPublicRateLimit(
+  key: string,
+  limit = Number(process.env.PUBLIC_RATE_LIMIT_PER_HOUR ?? 30),
+) {
+  return checkRateLimit(key, limit);
+}

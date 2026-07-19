@@ -181,7 +181,7 @@ export function App() {
       <footer className="border-t border-slate-200 bg-white px-4 py-5 text-center text-sm text-slate-500">
         <p>
           Built by <strong className="text-slate-700">Jacob Barrera</strong> ·{" "}
-          <a className="font-medium text-blue-700 hover:underline" href="https://jacobbarrera2024-sketch.github.io/">
+          <a className="font-medium text-blue-700 hover:underline" href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/">
             Portfolio
           </a>{" "}
           ·{" "}

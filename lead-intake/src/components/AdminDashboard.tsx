@@ -18,11 +18,17 @@ const statusStyles: Record<LeadStatus, string> = {
   archived: "bg-slate-500/15 text-slate-300 border-slate-600/40",
 };
 
-export function AdminDashboard({ initialLeads }: { initialLeads: Lead[] }) {
+export function AdminDashboard({
+  initialLeads,
+  initialLoadError = null,
+}: {
+  initialLeads: Lead[];
+  initialLoadError?: string | null;
+}) {
   const router = useRouter();
   const [leads, setLeads] = useState<Lead[]>(initialLeads);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(initialLoadError);
   const [filter, setFilter] = useState<LeadStatus | "all">("all");
   const [query, setQuery] = useState("");
 
@@ -169,7 +175,10 @@ export function AdminDashboard({ initialLeads }: { initialLeads: Lead[] }) {
       </div>
 
       {error ? (
-        <p className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-100">
+        <p
+          role="alert"
+          className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-100"
+        >
           {error}
         </p>
       ) : null}
@@ -181,68 +190,116 @@ export function AdminDashboard({ initialLeads }: { initialLeads: Lead[] }) {
           No leads match this view yet. Submit a test request from the public form.
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-slate-800">
-          <table className="min-w-full divide-y divide-slate-800 text-left text-sm">
-            <thead className="bg-slate-900/80 text-xs uppercase tracking-wide text-slate-400">
-              <tr>
-                <th className="px-4 py-3">Submitted</th>
-                <th className="px-4 py-3">Contact</th>
-                <th className="px-4 py-3">Service</th>
-                <th className="px-4 py-3">AI summary</th>
-                <th className="px-4 py-3">Status</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800 bg-slate-950/40">
-              {filteredLeads.map((lead) => (
-                <tr key={lead.id} className="align-top">
-                  <td className="px-4 py-4 text-slate-300">
-                    {formatDate(lead.created_at)}
-                  </td>
-                  <td className="px-4 py-4">
-                    <p className="font-medium text-white">{lead.name}</p>
-                    <p className="text-slate-400">{lead.email}</p>
-                    {lead.company ? (
-                      <p className="text-slate-500">{lead.company}</p>
-                    ) : null}
-                  </td>
-                  <td className="px-4 py-4 text-slate-300">{lead.service}</td>
-                  <td className="px-4 py-4">
-                    <p className="max-w-md text-slate-300">
-                      {lead.ai_summary ?? lead.problem_description.slice(0, 140)}
-                    </p>
-                    {lead.ai_tags?.length ? (
-                      <div className="mt-2 flex flex-wrap gap-1.5">
-                        {lead.ai_tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="rounded-full bg-slate-800 px-2 py-0.5 text-[11px] text-slate-300"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    ) : null}
-                  </td>
-                  <td className="px-4 py-4">
-                    <select
-                      className={`rounded-lg border px-2 py-1.5 text-xs font-medium capitalize ${statusStyles[lead.status]}`}
-                      value={lead.status}
-                      onChange={(event) =>
-                        void updateStatus(lead.id, event.target.value as LeadStatus)
-                      }
-                    >
-                      {LEAD_STATUSES.map((status) => (
-                        <option key={status} value={status}>
-                          {status}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
+        <>
+          <div className="space-y-4 md:hidden">
+            {filteredLeads.map((lead) => (
+              <article
+                key={lead.id}
+                className="rounded-2xl border border-slate-800 bg-slate-900/40 p-4"
+              >
+                <p className="text-xs text-slate-500">{formatDate(lead.created_at)}</p>
+                <p className="mt-2 font-medium text-white">{lead.name}</p>
+                <p className="text-sm text-slate-400">{lead.email}</p>
+                <p className="mt-2 text-sm text-slate-300">{lead.service}</p>
+                <p className="mt-2 text-sm text-slate-400">
+                  {lead.ai_summary ?? lead.problem_description.slice(0, 140)}
+                </p>
+                <label className="mt-4 block">
+                  <span className="sr-only">Update status for {lead.name}</span>
+                  <select
+                    className={`w-full rounded-lg border px-2 py-2 text-xs font-medium capitalize ${statusStyles[lead.status]}`}
+                    value={lead.status}
+                    onChange={(event) =>
+                      void updateStatus(lead.id, event.target.value as LeadStatus)
+                    }
+                  >
+                    {LEAD_STATUSES.map((status) => (
+                      <option key={status} value={status}>
+                        {status}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </article>
+            ))}
+          </div>
+
+          <div className="hidden overflow-x-auto rounded-2xl border border-slate-800 md:block">
+            <table className="min-w-full divide-y divide-slate-800 text-left text-sm">
+              <thead className="bg-slate-900/80 text-xs uppercase tracking-wide text-slate-400">
+                <tr>
+                  <th scope="col" className="px-4 py-3">
+                    Submitted
+                  </th>
+                  <th scope="col" className="px-4 py-3">
+                    Contact
+                  </th>
+                  <th scope="col" className="px-4 py-3">
+                    Service
+                  </th>
+                  <th scope="col" className="px-4 py-3">
+                    AI summary
+                  </th>
+                  <th scope="col" className="px-4 py-3">
+                    Status
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="divide-y divide-slate-800 bg-slate-950/40">
+                {filteredLeads.map((lead) => (
+                  <tr key={lead.id} className="align-top">
+                    <td className="px-4 py-4 text-slate-300">
+                      {formatDate(lead.created_at)}
+                    </td>
+                    <td className="px-4 py-4">
+                      <p className="font-medium text-white">{lead.name}</p>
+                      <p className="text-slate-400">{lead.email}</p>
+                      {lead.company ? (
+                        <p className="text-slate-500">{lead.company}</p>
+                      ) : null}
+                    </td>
+                    <td className="px-4 py-4 text-slate-300">{lead.service}</td>
+                    <td className="px-4 py-4">
+                      <p className="max-w-md text-slate-300">
+                        {lead.ai_summary ?? lead.problem_description.slice(0, 140)}
+                      </p>
+                      {lead.ai_tags?.length ? (
+                        <div className="mt-2 flex flex-wrap gap-1.5">
+                          {lead.ai_tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded-full bg-slate-800 px-2 py-0.5 text-[11px] text-slate-300"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      ) : null}
+                    </td>
+                    <td className="px-4 py-4">
+                      <label>
+                        <span className="sr-only">Update status for {lead.name}</span>
+                        <select
+                          className={`rounded-lg border px-2 py-1.5 text-xs font-medium capitalize ${statusStyles[lead.status]}`}
+                          value={lead.status}
+                          onChange={(event) =>
+                            void updateStatus(lead.id, event.target.value as LeadStatus)
+                          }
+                        >
+                          {LEAD_STATUSES.map((status) => (
+                            <option key={status} value={status}>
+                              {status}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
     </div>
   );

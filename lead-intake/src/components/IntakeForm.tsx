@@ -7,6 +7,7 @@ import {
   type IntakeFormData,
   type ServiceOption,
 } from "@/lib/types";
+import { isValidEmail, MIN_PROBLEM_LENGTH } from "@/lib/validation";
 
 const STEPS = ["Contact", "Service", "Project", "Review"] as const;
 
@@ -59,13 +60,16 @@ export function IntakeForm() {
   ) {
     setForm((current) => ({ ...current, [key]: value }));
     setError(null);
+    if (key === "problemDescription") {
+      setAnalysis(null);
+    }
   }
 
   function validateStep(currentStep: number): string | null {
     if (currentStep === 0) {
       if (!form.name.trim()) return "Name is required.";
       if (!form.email.trim()) return "Email is required.";
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+      if (!isValidEmail(form.email.trim())) {
         return "Enter a valid email address.";
       }
     }
@@ -75,7 +79,7 @@ export function IntakeForm() {
     }
 
     if (currentStep === 2) {
-      if (form.problemDescription.trim().length < 12) {
+      if (form.problemDescription.trim().length < MIN_PROBLEM_LENGTH) {
         return "Describe your project in at least a sentence or two.";
       }
     }
@@ -83,7 +87,7 @@ export function IntakeForm() {
     return null;
   }
 
-  async function runAnalysis() {
+  async function runAnalysis(): Promise<boolean> {
     setAnalyzing(true);
     setError(null);
 
@@ -105,8 +109,10 @@ export function IntakeForm() {
         tags: data.tags,
         mode: data.mode,
       });
+      return true;
     } catch (err) {
       setError(err instanceof Error ? err.message : "Analysis failed");
+      return false;
     } finally {
       setAnalyzing(false);
     }
@@ -120,7 +126,10 @@ export function IntakeForm() {
     }
 
     if (step === 2 && !analysis) {
-      await runAnalysis();
+      const analyzed = await runAnalysis();
+      if (!analyzed) {
+        return;
+      }
     }
 
     setStep((current) => Math.min(current + 1, STEPS.length - 1));
@@ -200,7 +209,14 @@ export function IntakeForm() {
           </span>
           <span>{STEPS[step]}</span>
         </div>
-        <div className="h-2 overflow-hidden rounded-full bg-slate-800">
+        <div
+          className="h-2 overflow-hidden rounded-full bg-slate-800"
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={progress}
+          aria-label={`Intake form progress: step ${step + 1} of ${STEPS.length}`}
+        >
           <div
             className="h-full rounded-full bg-indigo-500 transition-all duration-300"
             style={{ width: `${progress}%` }}
@@ -284,7 +300,8 @@ export function IntakeForm() {
           {analysis ? (
             <div className="rounded-xl border border-indigo-500/30 bg-indigo-500/10 p-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-indigo-200">
-                AI preview {analysis.mode === "demo" ? "(demo mode)" : ""}
+                AI preview
+                {analysis.mode === "demo" ? " (keyword demo mode)" : ""}
               </p>
               <p className="mt-2 text-sm text-indigo-50">{analysis.summary}</p>
               <div className="mt-3 flex flex-wrap gap-2">
@@ -320,7 +337,14 @@ export function IntakeForm() {
           </div>
           {analysis ? (
             <div className="rounded-xl border border-indigo-500/20 bg-indigo-500/5 p-4">
-              <p className="font-medium text-indigo-100">AI summary</p>
+              <p className="font-medium text-indigo-100">
+                AI summary
+                {analysis.mode === "demo" ? (
+                  <span className="ml-2 text-xs font-normal text-slate-400">
+                    (keyword demo — add OPENAI_API_KEY for live AI)
+                  </span>
+                ) : null}
+              </p>
               <p className="mt-2">{analysis.summary}</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {analysis.tags.map((tag) => (
@@ -338,7 +362,10 @@ export function IntakeForm() {
       ) : null}
 
       {error ? (
-        <p className="mt-5 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-100">
+        <p
+          role="alert"
+          className="mt-5 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-100"
+        >
           {error}
         </p>
       ) : null}

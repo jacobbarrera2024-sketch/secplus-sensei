@@ -2,7 +2,7 @@
 
 **Purpose:** Running tally of skills Upwork jobs ask for that are **not yet proven on your portfolio**. Updated every time you paste a new batch of job listings.
 
-**Your profile:** Jacob Barrera — entry-level, vanilla JS/HTML/CSS, Electron, small web utilities.
+**Your profile:** Jacob Barrera — entry-level full-stack web developer (React, Next.js, TypeScript, Tailwind, Express, Supabase) plus Electron desktop and vanilla JS utilities.
 
 **Portfolio today (qualified for):**
 - Vanilla JavaScript, HTML5, CSS3, responsive layout
@@ -18,7 +18,7 @@
 
 ---
 
-## Summary stats (last updated: 2026-07-15, post Phase 2 project #1)
+## Summary stats (last updated: 2026-07-19, post LeadDesk polish)
 
 | Metric | Count |
 |--------|------:|
@@ -52,16 +52,16 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 | 14 | **WordPress** | 15 | ❌ | 🟡 LOW* | *Spiking in `html css` search — consider basic WP child theme demo |
 | 15 | **PHP** | 8 | ❌ | 🟡 LOW | Required for most WordPress customization jobs |
 | 16 | **Python** | 6 | ❌ | 🟡 LOW | Script for data export (pairs with RSS job) |
-| 17 | **AWS / cloud deploy** | 6 | partial | 🟠 MED | Deploy FeedCollector to Railway or Render |
+| 17 | **AWS / cloud deploy** | 6 | ✅ | 🟠 MED | FeedCollector on Railway; Vercel for Next.js apps |
 | 18 | **Vercel deployment** | 5 | ✅ | 🟠 MED | QuickQuote Next (Railway for FeedCollector) |
 | 19 | **GitHub Actions / CI/CD** | 5 | partial | 🟠 MED | You have Pages deploy; add test/lint workflow |
 | 20 | **Docker** | 5 | ❌ | 🟡 LOW | Containerize a small Node app |
 | 21 | **Redis** | 3 | ❌ | 🟡 LOW | Cache layer on API project |
-| 22 | **JWT / OAuth auth** | 3 | ❌ | 🟠 MED | Login on Supabase or NextAuth demo |
+| 22 | **JWT / OAuth auth** | 3 | ✅ | 🟠 MED | LeadDesk Supabase Auth (email/password admin) |
 | 23 | **n8n / Make.com / Zapier** | 4 | ❌ | 🟡 LOW | Automation niche; optional |
 | 24 | **Chrome Extension (Manifest V3)** | 4 | ❌ | 🟡 LOW | Simple tab tool or page highlighter |
 | 25 | **React Native** | 3 | ❌ | 🟡 LOW | Different career path; defer |
-| 26 | **Web scraping / automation** | 3 | ❌ | 🟡 LOW | RSS collector backend counts |
+| 26 | **Web scraping / automation** | 3 | partial | 🟡 LOW | FeedCollector server-side RSS fetch/parse |
 | 27 | **SEO / Core Web Vitals** | 3 | partial | 🟠 MED | Lighthouse 90+ on portfolio site |
 | 28 | **Google Sheets API** | 2 | ❌ | 🟠 MED | SheetDash → read/write Google Sheet |
 | 29 | **Airtable** | 2 | ❌ | 🟡 LOW | Data catalog clone for practice |

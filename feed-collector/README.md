@@ -6,7 +6,9 @@ Matches the Upwork **RSS Feed Collector** job lane: collect feeds, filter headli
 
 ## Live demo
 
-Deploy to [Railway](https://railway.app) or [Render](https://render.com) (needs a Node server for the Express API).
+**https://soothing-surprise-production-27a3.up.railway.app/**
+
+## Run locally
 
 ```bash
 cd feed-collector

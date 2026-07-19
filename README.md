@@ -81,7 +81,7 @@ This repo demonstrates **end-to-end product delivery**: real exam content, deskt
 
 ## Screenshots
 
-Real app captures coming soon — follow [docs/SCREENSHOTS.md](docs/SCREENSHOTS.md) on Windows (`Win+Shift+S`) to add dashboard, study, and exam views to the README.
+Capture real app views with [docs/SCREENSHOTS.md](docs/SCREENSHOTS.md) (`Win+Shift+S` on Windows). Screenshots live in `docs/screenshots/` locally (gitignored) — add them to the README and Upwork portfolio items when ready.
 
 ---
 
@@ -129,11 +129,14 @@ secplus-sensei/
 ├── preload.js            # Secure IPC bridge
 ├── ai-demo/              # BYOK web demo (source — synced to website/ on deploy)
 ├── quick-quote/          # Invoice & quote generator (source — synced on deploy)
+├── quickquote-next/      # Next.js rebuild + /api/exchange (Vercel)
+├── feed-collector/       # Express RSS API + React UI (Railway)
+├── lead-intake/          # LeadDesk — AI intake + Supabase admin (Vercel)
 ├── sheet-dash/           # CSV → dashboard (source — synced on deploy)
 ├── website/              # Portfolio site + deployed demo copies (GitHub Pages)
 ├── assets/               # App icons
 ├── build/                # NSIS installer scripts
-├── docs/                 # Case study, screenshot guide
+├── docs/                 # Case study, skills gap, project notes
 ├── package.json
 └── README.txt            # End-user install guide
 ```

@@ -12,6 +12,7 @@ on:
       - "quick-quote/**"
       - "sheet-dash/**"
       - "feed-collector/public/**"
+      - "lead-intake/public/**"
       - ".github/workflows/deploy-website.yml"
   workflow_dispatch:
 
@@ -45,6 +46,9 @@ jobs:
           cp -r ai-demo website/ai-demo
           cp -r quick-quote website/quick-quote
           cp -r sheet-dash website/sheet-dash
+          mkdir -p website/feed-collector/assets website/lead-intake/assets
+          cp feed-collector/public/icon.svg website/feed-collector/assets/icon.svg
+          cp lead-intake/public/icon.svg website/lead-intake/assets/icon.svg
           rm -rf website/ai-demo/.github website/quick-quote/.github website/sheet-dash/.github 2>/dev/null || true
 
       - name: Upload artifact
