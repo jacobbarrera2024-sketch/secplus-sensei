@@ -12,6 +12,9 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined);
 
+const portfolioOgImage =
+  "https://jacobbarrera2024-sketch.github.io/secplus-sensei/assets/og-image.png";
+
 export const metadata: Metadata = {
   title: "QuickQuote — Invoice & Quote Generator (Next.js)",
   description:
@@ -26,13 +29,20 @@ export const metadata: Metadata = {
     description:
       "Browser-based invoice and quote builder with live currency rates and PDF export. Next.js + React + TypeScript + Tailwind.",
     type: "website",
-    images: [{ url: "/icon.svg", width: 64, height: 64, alt: "QuickQuote app icon" }],
+    images: [
+      {
+        url: portfolioOgImage,
+        width: 1200,
+        height: 630,
+        alt: "Jacob — Developer portfolio preview",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "QuickQuote — Invoice & Quote Generator",
     description: "Next.js portfolio demo: invoices, quotes, live FX rates, PDF export.",
-    images: ["/icon.svg"],
+    images: [portfolioOgImage],
   },
 };
 

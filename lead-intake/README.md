@@ -1,6 +1,6 @@
 # LeadDesk — AI Lead Intake + Admin Dashboard
 
-Portfolio project **#7** for the Upwork pro-services intake lane: multi-step form, AI categorization, Supabase auth/database, and owner dashboards.
+Portfolio project for the Upwork pro-services intake lane: multi-step form, AI categorization, Supabase auth/database, and owner dashboards.
 
 ## Live demo
 

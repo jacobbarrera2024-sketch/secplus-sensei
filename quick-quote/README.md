@@ -4,7 +4,7 @@ Browser-based **invoice and quote generator** — build professional PDFs with n
 
 Try it live: **https://jacobbarrera2024-sketch.github.io/secplus-sensei/quick-quote/**
 
-Portfolio project #3 — demonstrates fast delivery of a **small business web tool** (the most common entry-level freelance deliverable).
+Vanilla JavaScript invoice tool — demonstrates fast delivery of a **small business web app** with no build step.
 
 ---
 

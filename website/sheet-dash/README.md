@@ -4,7 +4,7 @@ Browser-based **CSV → dashboard** — upload a spreadsheet and get instant cha
 
 Try it live: **https://jacobbarrera2024-sketch.github.io/secplus-sensei/sheet-dash/**
 
-Portfolio project **#4** — demonstrates **data visibility** for small businesses (spreadsheet → insights).
+CSV dashboard tool — demonstrates **data visibility** for small businesses with privacy-first, client-side parsing.
 
 ---
 
