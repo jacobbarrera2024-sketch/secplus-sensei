@@ -25,7 +25,7 @@ export function Toolbar({
   return (
     <header className="sticky top-0 z-20 flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 bg-white/95 px-4 py-3 backdrop-blur print:hidden supports-[padding:max(0px)]:pt-[max(0.75rem,env(safe-area-inset-top))]">
       <a
-        href="https://jacobbarrera2024-sketch.github.io/"
+        href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/"
         className="flex items-center gap-3 rounded-lg no-underline hover:opacity-90"
       >
         <span

@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/env";
-import type { CreateLeadPayload } from "@/lib/types";
+import { checkPublicRateLimit } from "@/lib/rate-limit";
+import { createLeadSchema, getClientIp } from "@/lib/validation";
 
 export async function POST(request: Request) {
   if (!isSupabaseConfigured()) {
@@ -14,26 +15,34 @@ export async function POST(request: Request) {
     );
   }
 
+  const ip = getClientIp(request);
+  const { allowed } = checkPublicRateLimit(`leads:${ip}`, 20);
+  if (!allowed) {
+    return NextResponse.json(
+      { error: "Too many submissions from this address. Try again later." },
+      { status: 429 },
+    );
+  }
+
   try {
-    const body = (await request.json()) as CreateLeadPayload;
-    const name = body.name?.trim();
-    const email = body.email?.trim();
-    const service = body.service?.trim();
-    const problemDescription = body.problemDescription?.trim();
+    const body = (await request.json()) as unknown;
+    const parsed = createLeadSchema.safeParse(body);
 
-    if (!name || !email || !service || !problemDescription) {
-      return NextResponse.json(
-        { error: "Name, email, service, and project details are required." },
-        { status: 400 },
-      );
+    if (!parsed.success) {
+      const message =
+        parsed.error.issues[0]?.message ?? "Invalid submission payload.";
+      return NextResponse.json({ error: message }, { status: 400 });
     }
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return NextResponse.json(
-        { error: "Please enter a valid email address." },
-        { status: 400 },
-      );
-    }
+    const {
+      name,
+      email,
+      company,
+      service,
+      problemDescription,
+      aiSummary,
+      aiTags,
+    } = parsed.data;
 
     const supabase = await createServerSupabaseClient();
     const { data, error } = await supabase
@@ -41,11 +50,11 @@ export async function POST(request: Request) {
       .insert({
         name,
         email,
-        company: body.company?.trim() || null,
+        company: company?.trim() || null,
         service,
         problem_description: problemDescription,
-        ai_summary: body.aiSummary?.trim() || null,
-        ai_tags: body.aiTags?.length ? body.aiTags : null,
+        ai_summary: aiSummary?.trim() || null,
+        ai_tags: aiTags?.length ? aiTags : null,
         status: "new",
       })
       .select("id")

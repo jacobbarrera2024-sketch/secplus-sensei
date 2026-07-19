@@ -39,7 +39,7 @@ export function Header({
       )}
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3">
         <a
-          href="https://jacobbarrera2024-sketch.github.io/"
+          href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/"
           className="flex items-center gap-3 rounded-lg no-underline hover:opacity-90"
         >
           <span

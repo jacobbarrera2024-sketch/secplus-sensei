@@ -4,6 +4,7 @@ import { isSupabaseConfigured } from "@/lib/env";
 
 export default function HomePage() {
   const supabaseReady = isSupabaseConfigured();
+  const aiLive = Boolean(process.env.OPENAI_API_KEY);
 
   return (
     <>
@@ -38,6 +39,13 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
+
+            {!aiLive ? (
+              <p className="mt-4 rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-3 text-sm text-slate-300">
+                AI tagging runs in <strong>keyword demo mode</strong> until{" "}
+                <code className="text-indigo-300">OPENAI_API_KEY</code> is set on the server.
+              </p>
+            ) : null}
 
             {!supabaseReady ? (
               <p className="mt-6 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">

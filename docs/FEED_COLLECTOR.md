@@ -1,6 +1,8 @@
 # FeedCollector — Phase 2 Portfolio Project
 
-**Purpose:** Close the **Express.js + Node.js REST API + RSS export** skills gap (Phase 2, item #5 in the Upwork tracker).
+**Purpose:** Close the **Express.js + Node.js REST API + RSS export** skills gap.
+
+**Live demo:** https://soothing-surprise-production-27a3.up.railway.app/
 
 ## Upwork pitch (short)
 
@@ -16,19 +18,16 @@
 | Tailwind CSS | Styling throughout |
 | REST API | POST `/api/feeds/parse`, `/api/feeds/parse-batch` |
 | JSON/CSV export | Client export buttons |
-| Cloud deploy | Railway/Render (`railway.json`, `npm start`) |
+| Cloud deploy | Railway (`railway.json`, `npm start`) |
 
-## Deploy checklist
+## Post-deploy checklist
 
-1. Merge PR → Railway or Render
-2. Root Directory = `feed-collector`
-3. Build: `npm run build` · Start: `NODE_ENV=production npm start`
-4. Test: Load samples → Fetch all → Export CSV
-5. Screenshot → Upwork portfolio item
+1. Test: Load samples → Fetch all → Export CSV
+2. Screenshot → Upwork portfolio item
 
 ## Related jobs you can now cite
 
-- RSS Feed Collector (already proposed)
+- RSS Feed Collector
 - Node.js API integration fixes
 - Data export / aggregation tools
 - React dashboard with backend

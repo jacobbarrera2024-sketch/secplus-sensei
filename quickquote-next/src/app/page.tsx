@@ -17,7 +17,7 @@ export default function Home() {
           Built by <strong className="text-slate-700">Jacob Barrera</strong> ·{" "}
           <a
             className="font-medium text-teal-700 hover:underline"
-            href="https://jacobbarrera2024-sketch.github.io/"
+            href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/"
           >
             Portfolio
           </a>{" "}

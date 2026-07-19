@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/env";
-import { LEAD_STATUSES, type LeadStatus } from "@/lib/types";
+import { updateLeadSchema } from "@/lib/validation";
 
 export async function PATCH(
   request: Request,
@@ -14,10 +14,10 @@ export async function PATCH(
   const { id } = await context.params;
 
   try {
-    const body = (await request.json()) as { status?: LeadStatus };
-    const status = body.status;
+    const body = (await request.json()) as unknown;
+    const parsed = updateLeadSchema.safeParse(body);
 
-    if (!status || !LEAD_STATUSES.includes(status)) {
+    if (!parsed.success) {
       return NextResponse.json({ error: "Invalid status" }, { status: 400 });
     }
 
@@ -32,7 +32,7 @@ export async function PATCH(
 
     const { data, error } = await supabase
       .from("leads")
-      .update({ status })
+      .update({ status: parsed.data.status })
       .eq("id", id)
       .select("*")
       .single();

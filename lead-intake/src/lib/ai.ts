@@ -2,6 +2,7 @@ import { generateObject } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { z } from "zod";
 import type { AnalyzeResult } from "@/lib/types";
+import { MIN_PROBLEM_LENGTH } from "@/lib/validation";
 
 const analyzeSchema = z.object({
   summary: z
@@ -57,7 +58,7 @@ export async function analyzeProblem(
   problemDescription: string,
 ): Promise<AnalyzeResult> {
   const trimmed = problemDescription.trim();
-  if (trimmed.length < 12) {
+  if (trimmed.length < MIN_PROBLEM_LENGTH) {
     return demoAnalyze(trimmed);
   }
 

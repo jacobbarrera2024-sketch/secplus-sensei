@@ -57,6 +57,9 @@ Electron · JavaScript · HTML/CSS · Three.js · electron-builder · Anthropic 
 - **Web demo:** [AI assessment explainer](https://jacobbarrera2024-sketch.github.io/secplus-sensei/ai-demo/) — browser-based BYOK Claude tutoring
 - **QuickQuote:** [Invoice & quote generator](https://jacobbarrera2024-sketch.github.io/secplus-sensei/quick-quote/) — small business web tool demo
 - **SheetDash:** [CSV to dashboard](https://jacobbarrera2024-sketch.github.io/secplus-sensei/sheet-dash/) — spreadsheet upload, charts, sortable table
+- **QuickQuote Next:** [Next.js rebuild + live FX API](https://secplus-sensei.vercel.app/) — React, TypeScript, Tailwind, Vercel
+- **FeedCollector:** [RSS/Atom aggregator](https://soothing-surprise-production-27a3.up.railway.app/) — Express API, JSON/CSV export
+- **LeadDesk:** [AI lead intake + admin dashboard](../lead-intake/) — Next.js, Supabase, Vercel AI SDK (deploy to Vercel)
 - **Screenshot guide:** [docs/SCREENSHOTS.md](SCREENSHOTS.md)
 
 ---

@@ -5,14 +5,14 @@ import { isSupabaseConfigured } from "@/lib/env";
 import { createServerSupabaseClient, getSessionUser } from "@/lib/supabase/server";
 import type { Lead } from "@/lib/types";
 
-async function loadInitialLeads(): Promise<Lead[]> {
+async function loadInitialLeads(): Promise<{ leads: Lead[]; error: string | null }> {
   if (!isSupabaseConfigured()) {
-    return [];
+    return { leads: [], error: null };
   }
 
   const user = await getSessionUser();
   if (!user) {
-    return [];
+    return { leads: [], error: null };
   }
 
   const supabase = await createServerSupabaseClient();
@@ -22,10 +22,10 @@ async function loadInitialLeads(): Promise<Lead[]> {
     .order("created_at", { ascending: false });
 
   if (error) {
-    return [];
+    return { leads: [], error: error.message };
   }
 
-  return (data ?? []) as Lead[];
+  return { leads: (data ?? []) as Lead[], error: null };
 }
 
 export default async function AdminPage() {
@@ -38,7 +38,9 @@ export default async function AdminPage() {
     }
   }
 
-  const initialLeads = supabaseReady ? await loadInitialLeads() : [];
+  const { leads: initialLeads, error: initialLoadError } = supabaseReady
+    ? await loadInitialLeads()
+    : { leads: [], error: null };
 
   return (
     <main className="min-h-screen bg-slate-950">
@@ -64,7 +66,10 @@ export default async function AdminPage() {
             enable the admin dashboard.
           </div>
         ) : (
-          <AdminDashboard initialLeads={initialLeads} />
+          <AdminDashboard
+            initialLeads={initialLeads}
+            initialLoadError={initialLoadError}
+          />
         )}
       </div>
     </main>
