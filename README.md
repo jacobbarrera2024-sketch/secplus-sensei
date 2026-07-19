@@ -22,6 +22,7 @@
   <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/quick-quote/"><strong>QuickQuote</strong></a> ·
   <a href="https://secplus-sensei.vercel.app/"><strong>QuickQuote Next</strong></a> ·
   <a href="https://soothing-surprise-production-27a3.up.railway.app/"><strong>FeedCollector</strong></a> ·
+  <a href="https://github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/lead-intake"><strong>LeadDesk</strong></a> ·
   <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/sheet-dash/"><strong>SheetDash</strong></a> ·
   <a href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/"><strong>Portfolio</strong></a> ·
   <a href="website/README.md"><strong>Website</strong></a>
@@ -71,6 +72,8 @@ This repo demonstrates **end-to-end product delivery**: real exam content, deskt
 **QuickQuote Next → [Next.js rebuild with live FX API](https://secplus-sensei.vercel.app/)** (React, TypeScript, Tailwind, Node.js API)
 
 **FeedCollector → [RSS/Atom aggregator](https://soothing-surprise-production-27a3.up.railway.app/)** (Express API, JSON/CSV export)
+
+**LeadDesk → [AI lead intake + Supabase admin dashboard](https://github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/lead-intake)** (Next.js, Vercel AI SDK, Supabase — deploy to Vercel)
 
 **SheetDash → [CSV to dashboard](https://jacobbarrera2024-sketch.github.io/secplus-sensei/sheet-dash/)** (upload spreadsheet, instant charts)
 
