@@ -24,6 +24,22 @@ export default function Home() {
           ·{" "}
           <a
             className="font-medium text-teal-700 hover:underline"
+            href="https://soothing-surprise-production-27a3.up.railway.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            FeedCollector
+          </a>{" "}
+          ·{" "}
+          <a
+            className="font-medium text-teal-700 hover:underline"
+            href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/quick-quote/"
+          >
+            QuickQuote
+          </a>{" "}
+          ·{" "}
+          <a
+            className="font-medium text-teal-700 hover:underline"
             href="https://github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/quickquote-next"
             target="_blank"
             rel="noopener noreferrer"

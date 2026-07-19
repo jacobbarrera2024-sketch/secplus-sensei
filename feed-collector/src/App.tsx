@@ -187,6 +187,29 @@ export function App() {
           ·{" "}
           <a
             className="font-medium text-blue-700 hover:underline"
+            href="https://secplus-sensei.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            QuickQuote Next
+          </a>{" "}
+          ·{" "}
+          <a
+            className="font-medium text-blue-700 hover:underline"
+            href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/quick-quote/"
+          >
+            QuickQuote
+          </a>{" "}
+          ·{" "}
+          <a
+            className="font-medium text-blue-700 hover:underline"
+            href="https://jacobbarrera2024-sketch.github.io/secplus-sensei/sheet-dash/"
+          >
+            SheetDash
+          </a>{" "}
+          ·{" "}
+          <a
+            className="font-medium text-blue-700 hover:underline"
             href="https://github.com/jacobbarrera2024-sketch/secplus-sensei/tree/main/feed-collector"
             target="_blank"
             rel="noopener noreferrer"
