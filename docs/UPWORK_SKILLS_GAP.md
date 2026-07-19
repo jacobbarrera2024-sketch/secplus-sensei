@@ -24,9 +24,9 @@
 |--------|------:|
 | Job batches reviewed | 9 |
 | Individual jobs scanned | ~105+ |
-| Portfolio projects (ship-ready) | **6** (SecPlus Sensei, AI Demo, QuickQuote, QuickQuote Next, SheetDash, FeedCollector) |
+| Portfolio projects (ship-ready) | **7** (SecPlus Sensei, AI Demo, QuickQuote, QuickQuote Next, SheetDash, FeedCollector, LeadDesk) |
 | Phase 1 skills gap | ✅ Closed (QuickQuote Next) |
-| Phase 2 in progress | FeedCollector ✅ · Supabase · OpenAI streaming · Stripe remaining |
+| Phase 2 in progress | FeedCollector ✅ · LeadDesk ✅ · Stripe remaining |
 
 ---
 
@@ -42,9 +42,9 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 | 4 | **TypeScript** | 16 | ✅ | 🔴 HIGH | QuickQuote Next, FeedCollector |
 | 5 | **Tailwind CSS** | 13 | ✅ | 🔴 HIGH | QuickQuote Next, FeedCollector |
 | 6 | **REST API integration** | 12 | ✅ | 🔴 HIGH | QuickQuote Next FX, FeedCollector RSS |
-| 7 | **PostgreSQL** | 11 | ❌ | 🟠 MED | Todo app or quote tool with Supabase/Postgres |
-| 8 | **Supabase** | 12 | ❌ | 🟠 MED | Auth + DB demo (login + saved quotes) |
-| 9 | **OpenAI / LLM API** | 10 | partial | 🟠 MED | Expand SecPlus AI Demo → real API chat w/ streaming |
+| 7 | **PostgreSQL** | 11 | ✅ | 🟠 MED | LeadDesk (Supabase Postgres) |
+| 8 | **Supabase** | 12 | ✅ | 🟠 MED | LeadDesk auth + leads table + RLS |
+| 9 | **OpenAI / LLM API** | 10 | ✅ | 🟠 MED | LeadDesk Vercel AI SDK analyze endpoint |
 | 10 | **Express.js** | 8 | ✅ | 🟠 MED | FeedCollector RSS/export API |
 | 11 | **MongoDB** | 8 | ❌ | 🟠 MED | MERN todo or marketplace clone (small) |
 | 12 | **Stripe** | 8 | ❌ | 🟠 MED | Stripe Payment Link on a static “Book Now” demo page |
@@ -111,9 +111,11 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 | React | QuickQuote Next, FeedCollector |
 | Next.js | QuickQuote Next |
 | TypeScript | QuickQuote Next, FeedCollector |
-| Tailwind CSS | QuickQuote Next, FeedCollector |
+| Tailwind CSS | QuickQuote Next, FeedCollector, LeadDesk |
 | Node.js / Express API | QuickQuote Next, FeedCollector |
-| REST API integration | FX rates, RSS parsing |
+| REST API integration | FX rates, RSS parsing, lead intake |
+| Supabase / Postgres | LeadDesk leads table + auth |
+| OpenAI / Vercel AI SDK | LeadDesk analyze endpoint |
 | SPA (no framework) | QuickQuote |
 | Data visualization / tables | SheetDash |
 | CSV / JSON export | SheetDash, FeedCollector |
@@ -134,8 +136,8 @@ Higher **Job mentions** = more Upwork posts wanted it. **Priority** = best ROI f
 
 ### Phase 2 — Backend / integration jobs (in progress)
 5. ~~**Node.js + Express**~~ ✅ FeedCollector  
-6. **Supabase** (Postgres + auth) — **NEXT recommended project**  
-7. **OpenAI API** — streaming chat (upgrade SecPlus AI Demo)  
+6. ~~**Supabase** (Postgres + auth)~~ ✅ LeadDesk  
+7. ~~**OpenAI API**~~ ✅ LeadDesk AI tagging (Vercel AI SDK)  
 8. **Stripe** — checkout on a demo product  
 
 ### Phase 3 — Optional breadth
