@@ -842,6 +842,9 @@ section.alt { background: var(--bg-alt); }
   color: var(--muted);
   line-height: 1.5;
 }
+.quick-ref-card .resume-link {
+  margin-top: 10px !important;
+}
 
 /* Skills & services */
 .skills-grid,

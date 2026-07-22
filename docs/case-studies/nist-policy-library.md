@@ -29,12 +29,16 @@ NIST 800-53 / NIST 800-63 frameworks · Microsoft Word · policy & procedure wri
 
 A condensed, one-page summary of all three policies: [policy-quick-reference.md](policy-quick-reference.md)
 
-## Evidence to add here (next step)
+## Evidence
 
-- [ ] `01_Password_Standard.pdf` — cleaned-up, single document (remove school header/rubric text)
-- [ ] `02_Change_Control_Policy.pdf`
-- [ ] `03_New_Account_Creation_Procedure.pdf`
+The full text of each policy is linked from the [live case study page](https://jacobbarrera2024-sketch.github.io/secplus-sensei/case-studies/nist-policy-library.html):
+
+- [x] [Password Standard (PDF)](https://jacobbarrera2024-sketch.github.io/secplus-sensei/assets/docs/password-standard.pdf)
+- [x] [Change Control Management Policy (PDF)](https://jacobbarrera2024-sketch.github.io/secplus-sensei/assets/docs/change-control-management-policy.pdf)
+- [x] [New Account Creation Procedure (PDF)](https://jacobbarrera2024-sketch.github.io/secplus-sensei/assets/docs/new-account-creation-procedure.pdf)
 - [x] 1-page policy quick-reference card — see above
+
+Note: these were written for "SnowBe Online," a fictional company used as the practice scenario for this Full Sail assignment — not a real employer.
 
 ---
 
