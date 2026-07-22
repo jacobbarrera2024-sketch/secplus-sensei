@@ -1088,8 +1088,11 @@ footer {
   color: var(--muted);
   line-height: 1.6;
 }
+body.resume-page section {
+  padding: 0;
+}
 .resume-block {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   padding: 0;
 }
 .resume-block h2 {
