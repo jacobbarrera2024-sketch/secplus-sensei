@@ -31,8 +31,16 @@ website/assets/labs/*
 !website/assets/labs/wp-htaccess-hardening.jpg
 !website/assets/labs/wp-permission-test.jpg
 !website/assets/labs/mayan-docker-compose.jpg
+!website/assets/labs/powershell-rename-computer.jpg
+!website/assets/labs/powershell-uninstall-role.jpg
 !website/assets/labs/nginx-rocky-setup.jpg
 !website/assets/labs/nginx-service-start.jpg
+!website/assets/labs/nginx-reverse-proxy.jpg
+!website/assets/labs/wp-live-homepage.jpg
+!website/assets/labs/wp-wordfence-firewall.jpg
+!website/assets/labs/samba-windows-edit.jpg
+!website/assets/labs/samba-sync-confirm.jpg
+!website/assets/labs/mayan-edms-dashboard.jpg
 website/assets/labs/curated/
 HOME_CHECKLIST.md
 scripts/

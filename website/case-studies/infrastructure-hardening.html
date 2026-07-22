@@ -18,10 +18,10 @@
     <div class="container doc-inner walkthrough reveal visible">
       <p class="case-study-badge">Academic / lab project · Portfolio II &amp; III</p>
       <h1>Multi-Service Infrastructure Hardening</h1>
-      <p class="doc-lead">Five separate lab services, each deployed and then locked down — a web server, a website platform, a file-sharing server, a document management system, and a Windows load-balanced server pair. Click any screenshot to view it full-size.</p>
+      <p class="doc-lead">Six separate lab services, each deployed and then locked down — a web server, a website platform, a file-sharing server, a document management system, a Windows load-balanced server pair, and Windows Server administration via PowerShell. Click any screenshot to view it full-size.</p>
 
       <div class="doc-meta">
-        <span class="tag">Nginx / SSL</span>
+        <span class="tag">Nginx</span>
         <span class="tag">WordPress</span>
         <span class="tag">Samba</span>
         <span class="tag">Docker</span>
@@ -29,7 +29,7 @@
         <span class="tag">PowerShell</span>
       </div>
 
-      <p class="walkthrough-intro"><strong>Why five different services on one page?</strong> Real IT support is never just one app — it's keeping several unrelated systems running, secured, and documented at the same time, on both Linux and Windows. Jump to any section below, or scroll through all five in order.</p>
+      <p class="walkthrough-intro"><strong>Why six different services on one page?</strong> Real IT support is never just one app — it's keeping several unrelated systems running, secured, and documented at the same time, on both Linux and Windows. Jump to any section below, or scroll through all six in order.</p>
 
       <nav class="walkthrough-toc" aria-label="Jump to service">
         <a href="#nginx">Nginx (web server)</a>
@@ -37,6 +37,7 @@
         <a href="#samba">Samba (file sharing)</a>
         <a href="#mayan">Mayan EDMS (documents)</a>
         <a href="#nlb">Windows NLB (load balancing)</a>
+        <a href="#powershell">PowerShell (server admin)</a>
       </nav>
 
       <section class="walkthrough-part" id="nginx">
@@ -61,6 +62,15 @@
               <figcaption><strong>What you're looking at:</strong> the tail end of the Nginx installation, followed by the two commands that bring it to life: <code>systemctl start nginx</code> (turn it on right now) and <code>systemctl enable nginx</code> (also turn it on automatically after every reboot). The confirmation line underneath is Linux acknowledging the auto-start was set up successfully.</figcaption>
             </figure>
           </article>
+          <article class="step-item">
+            <span class="step-number">Step 3</span>
+            <p class="step-text">Configured Nginx to act as a reverse proxy — forwarding requests for one specific address to a separate backend application — then reloaded the service to apply it.</p>
+            <p class="step-explain">A reverse proxy is the actual point of this setup: instead of visitors talking directly to a backend app, Nginx sits in front and forwards their requests to it behind the scenes. That means the backend app never has to be exposed to the internet directly, and Nginx can add logging, SSL, or traffic rules on top of it.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/nginx-reverse-proxy.jpg" alt="Nginx configuration file with a proxy_pass location block, followed by a successful reload" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> the Nginx configuration file open in a text editor, with a <code>location /blog</code> block that uses <code>proxy_pass</code> to forward any request for that path to a backend application running on a different address. Below it, the terminal shows <code>sudo systemctl reload nginx</code> completing — applying the new routing rule without dropping the web server's active connections.</figcaption>
+            </figure>
+          </article>
         </div>
       </section>
 
@@ -79,8 +89,8 @@
           </article>
           <article class="step-item">
             <span class="step-number">Step 2</span>
-            <p class="step-text">Finished the WordPress setup wizard in a web browser, proving the site was actually up and running.</p>
-            <p class="step-explain">Installing files isn't the same as having a working website — the setup wizard is WordPress confirming it can talk to its database and is ready to serve real pages. This is the step where the "it works" moment actually happens.</p>
+            <p class="step-text">Finished the WordPress setup wizard in a web browser, confirming the software could talk to its database.</p>
+            <p class="step-explain">Installing files isn't the same as having a working website — the setup wizard is WordPress's own confirmation that it can reach its database and is ready to serve pages. It's a checkpoint, not the finish line; Step 3 shows the actual finished site.</p>
             <figure class="step-figure">
               <img src="../assets/labs/wp-setup-wizard.jpg" alt="WordPress setup wizard confirming it can connect to its database" loading="lazy" />
               <figcaption><strong>What you're looking at:</strong> a real web browser, loaded to the WordPress installer page, displaying the message <em>"You've made it through this part of the installation. WordPress can now communicate with your database."</em> This confirms the website is genuinely live and functioning, not just files sitting unused on a disk.</figcaption>
@@ -88,6 +98,15 @@
           </article>
           <article class="step-item">
             <span class="step-number">Step 3</span>
+            <p class="step-text">Loaded the finished website in a browser to confirm it was serving real content, not just responding to the installer.</p>
+            <p class="step-explain">The setup wizard proves WordPress can reach its database — it doesn't prove the actual website works for a visitor. This is the follow-through: opening the site's homepage and seeing WordPress's default sample post rendered for real, the same way a client or end user would experience it.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/wp-live-homepage.jpg" alt="Live WordPress homepage showing the default Hello World post and comments" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> the WordPress site's actual public homepage, showing the default "Hello world!" post and a sample comment underneath it. This is the site as any visitor would see it — confirmation that the install didn't just finish, it's genuinely serving pages.</figcaption>
+            </figure>
+          </article>
+          <article class="step-item">
+            <span class="step-number">Step 4</span>
             <p class="step-text">Locked down who is allowed to change WordPress's own files, using Linux file permissions.</p>
             <p class="step-explain">Every file on a Linux server has an "owner" and a set of rules for who can read, write, or run it. Setting the right owner (here, a limited system account called <code>www-data</code> — the account the web server itself runs as) means that even if someone else gets access to the server, they still can't casually edit WordPress's core files.</p>
             <figure class="step-figure">
@@ -96,7 +115,7 @@
             </figure>
           </article>
           <article class="step-item">
-            <span class="step-number">Step 4</span>
+            <span class="step-number">Step 5</span>
             <p class="step-text">Added an extra layer of protection specifically around WordPress's most sensitive file, <code>wp-config.php</code>.</p>
             <p class="step-explain"><code>wp-config.php</code> stores the website's database password and secret security keys — if an attacker ever read that file, they could take over the entire site. A configuration file called <code>.htaccess</code> can add a server-level rule that blocks any direct request for that file from the outside, on top of the normal file permissions from Step 3.</p>
             <figure class="step-figure">
@@ -105,12 +124,21 @@
             </figure>
           </article>
           <article class="step-item">
-            <span class="step-number">Step 5</span>
+            <span class="step-number">Step 6</span>
             <p class="step-text">Tested the lockdown by trying to write to WordPress's files as a different, non-admin user — and confirmed it was blocked.</p>
             <p class="step-explain">Setting permissions is one thing; proving they actually work is another. Here, a second, ordinary user account (<code>testuser</code>) tried to create or edit files inside WordPress's folders — the same thing malicious code would try to do if it ever got a foothold on the server.</p>
             <figure class="step-figure">
               <img src="../assets/labs/wp-permission-test.jpg" alt="Permission denied errors when a non-admin user tries to write WordPress files" loading="lazy" />
-              <figcaption><strong>What you're looking at:</strong> a terminal running several write attempts as <code>testuser</code> — trying to create a file in <code>wp-content</code>, and trying to edit <code>wp-config.php</code>. Every single attempt returns <strong>"Permission denied."</strong> This is direct proof the hardening from Steps 3 and 4 actually works, not just that it was configured.</figcaption>
+              <figcaption><strong>What you're looking at:</strong> a terminal running several write attempts as <code>testuser</code> — trying to create a file in <code>wp-content</code>, and trying to edit <code>wp-config.php</code>. Every single attempt returns <strong>"Permission denied."</strong> This is direct proof the hardening from Steps 4 and 5 actually works, not just that it was configured.</figcaption>
+            </figure>
+          </article>
+          <article class="step-item">
+            <span class="step-number">Step 7</span>
+            <p class="step-text">Installed a dedicated WordPress security plugin (Wordfence) to add a third layer of defense on top of file permissions and the <code>.htaccess</code> rule.</p>
+            <p class="step-explain">File permissions and a locked-down config file protect the server's files, but they don't watch incoming web traffic. Wordfence adds a firewall built specifically for WordPress — it can block known attack patterns, scan installed files for malware, and enforce login protections, covering the layer that plain file permissions can't reach. This is defense-in-depth: no single control is assumed to be enough on its own.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/wp-wordfence-firewall.jpg" alt="Wordfence security plugin dashboard showing firewall protection activated on the WordPress site" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> the Wordfence dashboard inside the WordPress admin area, confirming <strong>"Wordfence Protection Activated"</strong> with the firewall and malware scanner both running. This is the network-facing layer of defense, sitting alongside the file-level hardening from Steps 5 and 6.</figcaption>
             </figure>
           </article>
         </div>
@@ -138,6 +166,19 @@
               <figcaption><strong>What you're looking at:</strong> the Samba settings file open in a text editor, with a custom share block (circled) named <code>[examplefolder]</code>. It points to a specific folder path and includes the line <code>valid users = user</code> — meaning only that one approved account can connect to this particular share, not just anyone on the network.</figcaption>
             </figure>
           </article>
+          <article class="step-item">
+            <span class="step-number">Step 3</span>
+            <p class="step-text">Proved the share actually worked cross-platform: connected from a Windows computer, edited a file, and confirmed the change appeared back on the Linux server.</p>
+            <p class="step-explain">A share that's configured but never tested is just a guess. From a Windows 10 machine, browsing to <code>\\&lt;server-ip&gt;\Milestone2</code> opened the shared folder like any normal Windows network drive. Editing a text file there and then reopening that same file directly on the Linux server — seeing the exact same edit — is the real proof that Windows and Linux are reading and writing to the identical file, not two separate copies.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/samba-windows-edit.jpg" alt="Windows 10 Notepad editing a file inside the mapped Samba share, with the text Yes Samba works typed in" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> a Windows 10 desktop with the Samba share open as a normal network folder, and a text file open in Notepad with the line <strong>"Yes, Samba works!"</strong> just added and saved — written from the Windows side, over the network, straight into a file that physically lives on the Linux server.</figcaption>
+            </figure>
+            <figure class="step-figure">
+              <img src="../assets/labs/samba-sync-confirm.jpg" alt="The same text file opened directly on the Linux server, showing the line added from Windows" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> the same file, opened directly on the Linux server itself — no network share involved this time. The line "Yes, Samba works!" is right there, confirming the edit made from Windows a moment ago landed on the real file, not a disconnected copy.</figcaption>
+            </figure>
+          </article>
         </div>
       </section>
 
@@ -152,6 +193,15 @@
             <figure class="step-figure">
               <img src="../assets/labs/mayan-docker-compose.jpg" alt="Docker Compose up for Mayan EDMS with supporting containers" loading="lazy" />
               <figcaption><strong>What you're looking at:</strong> the output of <code>docker compose up</code> — each line confirms a separate piece of Mayan starting successfully: the main app, plus its database (<code>postgresql</code>), cache (<code>redis</code>), and task queue (<code>rabbitmq</code>). All four containers report "Started," meaning the full document-management system is now running.</figcaption>
+            </figure>
+          </article>
+          <article class="step-item">
+            <span class="step-number">Step 2</span>
+            <p class="step-text">Logged into the finished Mayan EDMS web application to confirm it was actually usable, not just running in the background.</p>
+            <p class="step-explain">Containers reporting "Started" only means the processes launched — it doesn't confirm the app is reachable or that anyone could actually log in and use it. Opening the web interface and signing in with the auto-generated admin account is the step that proves the document management system is genuinely ready for someone to start uploading and organizing files.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/mayan-edms-dashboard.jpg" alt="Mayan EDMS home dashboard after logging in with the admin account" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> the Mayan EDMS home dashboard after a successful admin login, showing the "Recently accessed," "Recently created," and "Favorites" panels alongside the Documents, Cabinets, and Tags navigation. This is the working application a real user would see — the payoff of the Docker deployment in Step 1.</figcaption>
             </figure>
           </article>
         </div>
@@ -200,9 +250,34 @@
         </div>
       </section>
 
+      <section class="walkthrough-part" id="powershell">
+        <h2>Part F — Windows Server administration with PowerShell</h2>
+        <p><strong>Why PowerShell?</strong> Every task in Part E above was done by clicking through Windows menus — that works, but it doesn't scale and it's easy to forget a step. PowerShell does the same administrative work from the command line, which means it can be scripted, repeated exactly, and run against many servers at once instead of one click at a time.</p>
+        <div class="step-walkthrough">
+          <article class="step-item">
+            <span class="step-number">Step 1</span>
+            <p class="step-text">Renamed a Windows Server 2019 machine using a single PowerShell command instead of the Server Manager GUI.</p>
+            <p class="step-explain">Renaming a server through the GUI takes several menus and clicks. The <code>Rename-Computer</code> cmdlet does the identical thing in one line, which is what makes PowerShell useful for setup scripts that configure a whole fleet of servers identically instead of repeating GUI clicks by hand on each one.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/powershell-rename-computer.jpg" alt="Windows PowerShell running the Rename-Computer cmdlet to rename a server to CoreServer" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> a Windows PowerShell window running <code>Rename-Computer -NewName "CoreServer" -Force -Restart</code> — renaming the server and immediately restarting to apply the change, all from one command.</figcaption>
+            </figure>
+          </article>
+          <article class="step-item">
+            <span class="step-number">Step 2</span>
+            <p class="step-text">Removed an installed server role (the Web Server / IIS role) using a PowerShell cmdlet instead of the Remove Roles wizard.</p>
+            <p class="step-explain">Adding and removing server roles is normally a multi-screen wizard in Server Manager, the same tool used to install IIS on the NLB nodes in Part E. <code>Uninstall-WindowsFeature</code> does the same removal in one command, which is exactly the kind of task that gets automated in a real script instead of repeated by hand on every server.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/powershell-uninstall-role.jpg" alt="Windows PowerShell running Uninstall-WindowsFeature to remove the Web Server role" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> PowerShell running <code>Uninstall-WindowsFeature -Name Web-Server -Restart</code> — removing the Web Server (IIS) role and restarting the server in the same command, no GUI wizard required.</figcaption>
+            </figure>
+          </article>
+        </div>
+      </section>
+
       <section class="doc-section doc-callout">
         <h2>Where these labs came from</h2>
-        <p>Full Sail University — Project and Portfolio II (Nginx/SSL, WordPress) and Project and Portfolio III (Samba, Mayan EDMS, Windows NLB). These are private coursework files with instructor notes and aren't published publicly; the screenshots above are the actual proof-of-work images submitted for grading.</p>
+        <p>Full Sail University — Project and Portfolio II (Nginx, WordPress) and Project and Portfolio III (Samba, Mayan EDMS, Windows NLB, PowerShell). These are private coursework files with instructor notes and aren't published publicly; the screenshots above are the actual proof-of-work images submitted for grading.</p>
       </section>
     </div>
   </main>
