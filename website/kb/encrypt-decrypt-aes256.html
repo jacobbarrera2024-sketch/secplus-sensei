@@ -25,6 +25,18 @@
       <section class="doc-section"><h2>Decrypt</h2>
         <pre class="code-block">openssl enc -d -aes-256-cbc -pbkdf2 -in "file.zip.enc" -out "file.zip" -k "YourPassphrase"</pre>
       </section>
+      <section class="doc-section"><h2>The GUI wrapper</h2>
+        <p>Typing OpenSSL flags correctly every time is easy to get wrong, so this is wrapped in a small Python/Tkinter desktop tool with Browse, Encrypt, and Decrypt buttons — the same two commands above, run from a form instead of a terminal:</p>
+        <pre class="code-block">def encrypt_file(file_path, password):
+    encrypted_file = file_path + ".enc"
+    command = f'openssl enc -aes-256-cbc -salt -in "{file_path}" -out "{encrypted_file}" -k "{password}"'
+    result = subprocess.run(command, shell=True, capture_output=True, text=True)
+    if result.returncode == 0:
+        messagebox.showinfo("Success", f"File encrypted: {encrypted_file}")
+    else:
+        messagebox.showerror("Error", f"Encryption failed: {result.stderr}")</pre>
+        <p class="step-note">The GUI's own commands predate the <code>-pbkdf2</code> flag shown above — a good reminder that a tool is only as current as the code inside it. A file encrypted with one version and decrypted with mismatched flags on the other end produces exactly the <code>bad decrypt</code> error covered below.</p>
+      </section>
       <section class="doc-section"><h2>Common issues</h2>
         <div class="table-wrap">
           <table class="doc-table">

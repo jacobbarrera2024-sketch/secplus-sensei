@@ -14,11 +14,11 @@ IT Help Desk candidate with a B.S. in Cybersecurity (Full Sail University, Oct 2
 ## Technical Skills
 
 **Operating systems:** Windows 10/11, Windows Server 2019, Ubuntu/Debian Linux, basic macOS troubleshooting  
-**Identity & access:** Active Directory (user/group provisioning, domain join, shared drives), LDAP concepts, account lifecycle, MFA concepts  
+**Identity & access:** Active Directory (user/group provisioning, domain join troubleshooting, OU structure, least-privilege share permissions), LDAP concepts, account lifecycle, MFA concepts  
 **Networking:** DNS, DHCP, IP configuration, VPN basics, TCP/UDP troubleshooting (`ping`, `tracert`, `nslookup`)  
 **Infrastructure:** Nginx reverse proxy, SSL/TLS certificates, Samba file sharing, Windows Server NLB clustering, Docker (Mayan EDMS)  
 **Security:** Nessus (credentialed and non-credentialed scanning), CVSS triage, patch/remediation tracking, Linux file permissions, NIST-aligned policy writing  
-**Tools & scripting:** PowerShell, Bash, Python, RDP, ticket/documentation workflows, OpenSSL  
+**Tools & scripting:** PowerShell, Bash, Python, RDP, ticketing/documentation workflows, OpenSSL  
 **Soft skills:** Calm communication with frustrated users, ADA/accessibility awareness, prioritization under queue pressure
 
 ---
@@ -68,7 +68,7 @@ Support-style knowledge base article with encrypt/decrypt commands and troublesh
 ## Experience
 
 **Carnival Cruise Lines — Guest Services**  
-*2019 – 2025*
+*2019 - 2025*
 
 - Supported 15+ guests per shift in high-pressure boarding, departure, and onboard situations  
 - Assisted elderly and mobility-restricted passengers with ADA-related accommodations and safe routing  

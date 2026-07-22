@@ -1090,6 +1090,7 @@ footer {
 }
 .resume-block {
   margin-bottom: 24px;
+  padding: 0;
 }
 .resume-block h2 {
   margin: 0 0 10px;
@@ -1165,6 +1166,7 @@ footer {
 }
 
 @media print {
+  @page { margin: 0.4in; }
   .no-print { display: none !important; }
   .doc-page { padding: 0; }
   .resume-sheet {
@@ -1174,7 +1176,14 @@ footer {
     border-radius: 0;
     padding: 0;
   }
-  .resume-block { break-inside: avoid; }
+  .resume-header { margin-bottom: 16px; padding-bottom: 12px; }
+  .resume-block { margin-bottom: 10px; }
+  .resume-block h2 { margin-bottom: 6px; padding-bottom: 4px; }
+  .resume-entry { margin-top: 10px; break-inside: avoid; }
+  .resume-skills { display: block; gap: 0; }
+  .resume-skills li { break-inside: avoid; }
+  .resume-skills li + li,
+  .resume-block li + li { margin-top: 4px; }
   a { color: var(--text) !important; text-decoration: none !important; }
-  body { font-size: 11pt; }
+  body { font-size: 10pt; line-height: 1.45; }
 }
