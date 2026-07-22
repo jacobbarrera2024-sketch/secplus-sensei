@@ -64,11 +64,31 @@
 
         <article class="step-item">
           <span class="step-number">Step 4</span>
-          <p class="step-text">Set up a shared folder on the server and connected it to the Windows 10 computer as a network drive.</p>
-          <p class="step-explain">A "shared folder" lives on the server, not on any one employee's computer — so everyone with permission can open the same files from their own desk, and nothing is lost if one computer breaks. Mapping it as a network drive (here, drive <code>P:</code>) makes that shared folder show up in File Explorer just like a regular hard drive, so it feels normal to use.</p>
+          <p class="step-text">Created a shared folder on the server and granted the employee group read/write access to it — nobody outside that group could open it.</p>
+          <p class="step-explain">Before anyone can use a shared folder, someone has to decide who's allowed in. Instead of opening it up to everyone or sharing it with each person one at a time, I granted access to the <code>Domain Users</code> group as a whole — so any current employee account automatically has access, and the permission only has to be set once. This is the "least privilege" idea in practice: access is granted to a specific group for a specific reason, not handed out by default.</p>
+          <figure class="step-figure">
+            <img src="../assets/labs/ad-share-permissions.jpg" alt="Sharing precisionfiles folder with Domain Users group set to Read/Write permission" loading="lazy" />
+            <figcaption><strong>What you're looking at:</strong> the Windows sharing dialog for the <code>precisionfiles</code> folder on the server. Under "Choose people on your network to share with," the <code>Domain Users</code> group has been added with <strong>Read/Write</strong> permission — meaning every employee account on the domain can open, add, and edit files in this folder, without each person having to be added individually.</figcaption>
+          </figure>
+        </article>
+
+        <article class="step-item">
+          <span class="step-number">Step 5</span>
+          <p class="step-text">Connected ("mapped") that shared folder to the Windows 10 computer so it shows up as a normal network drive.</p>
+          <p class="step-explain">A shared folder lives on the server, not on any one employee's computer — so everyone with permission can open the same files from their own desk, and nothing is lost if one computer breaks. Mapping it as a network drive (here, drive <code>P:</code>) makes that shared folder show up in File Explorer just like a regular hard drive, so it feels normal to use day-to-day.</p>
           <figure class="step-figure">
             <img src="../assets/labs/ad-mapped-drive.jpg" alt="Windows 10 client with P drive mapped to precisionfiles share on PRECISIONENG1" loading="lazy" />
             <figcaption><strong>What you're looking at:</strong> File Explorer on the Windows 10 computer, open to a folder labeled <code>precisionfiles (\\PRECISIONENG1) (P:)</code> — that path means "the <code>precisionfiles</code> folder, located on the server named PRECISIONENG1, mapped locally as drive P." Inside are two shared documents, proving the connection between the workstation and the server's shared storage is actually working.</figcaption>
+          </figure>
+        </article>
+
+        <article class="step-item">
+          <span class="step-number">Step 6</span>
+          <p class="step-text">Logged in as a regular employee — not the administrator — to confirm the whole setup actually worked from their point of view.</p>
+          <p class="step-explain">Setting something up as an administrator and having it actually work for a normal employee are two different things — a lot of real help desk tickets exist because the two don't match. So I signed in as <code>George Stewart</code>, one of the accounts created in Step 3, on the exact same Windows 10 computer, and confirmed his account could see and open the shared drive without any extra setup on his end.</p>
+          <figure class="step-figure">
+            <img src="../assets/labs/ad-employee-drive-access.jpg" alt="Employee account George Stewart logged in and accessing the mapped P drive with shared files visible" loading="lazy" />
+            <figcaption><strong>What you're looking at:</strong> the Windows Start menu, showing <strong>George Stewart</strong> signed in (bottom-left) instead of the administrator account used to build everything. On the right, File Explorer is already open to the same <code>precisionfiles (P:)</code> drive from Step 5, showing both shared files — proof that a real employee account, with no special setup, could log in and immediately access the shared folder exactly as intended.</figcaption>
           </figure>
         </article>
       </div>
