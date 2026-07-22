@@ -6,6 +6,11 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://jacobbarrera2024-sketch.github.io/secplus-sensei/resume.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://jacobbarrera2024-sketch.github.io/secplus-sensei/case-studies/active-directory.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>

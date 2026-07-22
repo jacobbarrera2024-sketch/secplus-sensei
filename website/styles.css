@@ -999,3 +999,125 @@ footer {
   .hero h1 { font-size: 2rem; }
   .project-links .btn { width: 100%; }
 }
+
+/* Resume page */
+.resume-sheet {
+  max-width: 820px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px 44px;
+  box-shadow: var(--shadow);
+}
+.resume-header {
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--text);
+}
+.resume-header h1 {
+  margin: 0 0 6px;
+  font-size: 2rem;
+  letter-spacing: -0.03em;
+}
+.resume-target {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+.resume-contact {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.resume-block {
+  margin-bottom: 24px;
+}
+.resume-block h2 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+}
+.resume-block p,
+.resume-block li {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.55;
+}
+.resume-block ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+.resume-block li + li { margin-top: 6px; }
+.resume-note {
+  margin: 0 0 12px !important;
+  font-size: 13px !important;
+  color: var(--muted) !important;
+  font-style: italic;
+}
+.resume-skills {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.resume-skills li {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.resume-entry {
+  margin-top: 14px;
+}
+.resume-entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.resume-entry h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+.resume-date {
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.resume-link {
+  margin-top: 4px !important;
+  font-size: 13px !important;
+}
+.resume-link a {
+  font-weight: 600;
+}
+.nav-links .btn {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+@media print {
+  .no-print { display: none !important; }
+  .doc-page { padding: 0; }
+  .resume-sheet {
+    max-width: none;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+  }
+  .resume-block { break-inside: avoid; }
+  a { color: var(--text) !important; text-decoration: none !important; }
+  body { font-size: 11pt; }
+}

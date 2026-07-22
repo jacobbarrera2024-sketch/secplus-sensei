@@ -1,0 +1,6 @@
+Ticket #,Date Opened,Finding,Severity,Affected Host,Status,Owner,Remediation,Date Resolved
+VA-001,2025-09-08,SMBv1 protocol enabled on file server (legacy, vulnerable to EternalBlue-class exploits),Critical,SAMBA-FS01,Resolved,J. Barrera,Disabled SMBv1 server-side; verified only SMBv2/3 negotiated by test clients,2025-09-10
+VA-002,2025-09-08,Outdated OpenSSL version with known CVE on web-facing host,High,NGINX-PROXY01,Resolved,J. Barrera,Updated OpenSSL package and rebuilt reverse proxy container; re-scanned to confirm patched version,2025-09-11
+VA-003,2025-09-08,RDP exposed to lab network with weak account lockout policy,High,WIN-SRV2019-A,Resolved,J. Barrera,Restricted RDP to management subnet via firewall rule; enforced account lockout after 5 failed attempts,2025-09-12
+VA-004,2025-09-09,Missing security patches (multiple KBs) on Windows Server,Medium,WIN-SRV2019-B,Resolved,J. Barrera,Applied pending Windows Updates during scheduled maintenance window; verified via follow-up scan,2025-09-15
+VA-005,2025-09-09,Self-signed SSL certificate on internal WordPress admin panel,Low,WP-LAMP01,In Progress,J. Barrera,Requested internal CA-signed certificate; interim mitigation is IP allowlisting for /wp-admin,
