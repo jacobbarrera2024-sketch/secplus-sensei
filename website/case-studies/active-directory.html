@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Active Directory &amp; Account Provisioning — Jacob Barrera</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="../index.html#it-support"><span class="brand-mark">J</span><span>Jacob Barrera</span></a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="../index.html#it-support">← Back to portfolio</a>
+      </nav>
+    </div>
+  </header>
+  <main class="doc-page">
+    <div class="container doc-inner walkthrough reveal visible">
+      <p class="case-study-badge">Academic / lab project · Full Sail</p>
+      <h1>Active Directory &amp; Account Provisioning</h1>
+      <p class="doc-lead">A step-by-step walkthrough of setting up a small-business style network: one central computer (the "domain controller") manages logins for every user and workstation. Click any screenshot below to view it full-size.</p>
+
+      <div class="doc-meta">
+        <span class="tag">Active Directory</span>
+        <span class="tag">Domain join</span>
+        <span class="tag">Shared drives</span>
+        <span class="tag">Least privilege</span>
+      </div>
+
+      <p class="walkthrough-intro"><strong>What's Active Directory?</strong> It's Microsoft's system for managing every user account and computer on a business network from one place, instead of setting up logins on each computer individually. In this lab, the network domain is named <code>precisioneng.local</code> — think of it as the "company name" every computer and user account belongs to.</p>
+
+      <div class="step-walkthrough">
+        <article class="step-item">
+          <span class="step-number">Step 1</span>
+          <p class="step-text">Built the lab computers — a server that manages logins, and two Windows 10 computers that employees would actually use.</p>
+          <p class="step-explain">All of this ran as virtual machines (VMs) — full, separate "computers" simulated in software on one physical host, so I could safely build and break a real network without needing four physical PCs. One VM (Server 2019) acts as the domain controller — the "manager" that every other computer checks in with.</p>
+          <figure class="step-figure">
+            <img src="../assets/labs/ad-lab-setup.jpg" alt="Proxmox lab with Server 2019 and domain-joined Windows 10 computers in Active Directory" loading="lazy" />
+            <figcaption><strong>What you're looking at:</strong> the left-hand list shows every virtual computer in the lab — a firewall, a Linux server, two Windows 10 computers (<code>Win10a</code> and <code>Win10b</code>), and the Server 2019 domain controller. The window in the middle is the domain controller's own screen, open to the tool used to manage the network (<em>Active Directory Users and Computers</em>). It already shows <code>JEB-WIN10A</code> and <code>JEB-WIN10B</code> listed as computers that successfully joined the network — proof both workstations are checked into the domain.</figcaption>
+          </figure>
+        </article>
+
+        <article class="step-item">
+          <span class="step-number">Step 2</span>
+          <p class="step-text">Connected ("joined") a Windows 10 computer to the <code>precisioneng.local</code> network.</p>
+          <p class="step-explain">"Joining a domain" is what makes a computer trust the central server for logins — after this, any approved employee can sign in on that computer using their company username and password instead of a separate local account. This is one of the most common help desk tickets: a new computer that needs to be added to the company network before an employee can use it.</p>
+          <figure class="step-figure">
+            <img src="../assets/labs/ad-domain-join.jpg" alt="Windows 10 workstation successfully joined to precisioneng.local domain" loading="lazy" />
+            <figcaption><strong>What you're looking at:</strong> a Windows 10 computer named <code>JEB-win10a</code>, in the middle of changing its network settings. The small pop-up in the center is the confirmation message Windows shows the moment the join succeeds: <em>"Welcome to the precisioneng.local domain."</em> That message only appears after the computer has verified its identity with the domain controller from Step 1.</figcaption>
+          </figure>
+        </article>
+
+        <article class="step-item">
+          <span class="step-number">Step 3</span>
+          <p class="step-text">Created individual employee user accounts on the domain controller, organized into a folder ("OU") just for this company's staff.</p>
+          <p class="step-explain">Every employee gets their own separate login instead of everyone sharing one account — that way, actions can be traced back to a specific person, and access can be removed for just one person without affecting anyone else. Organizational Units (OUs) are simply folders used to group accounts so permissions and policies can be applied to a whole group at once.</p>
+          <figure class="step-figure">
+            <img src="../assets/labs/ad-users-and-computers.jpg" alt="Active Directory Users and Computers showing provisioned user accounts in precisionusers OU" loading="lazy" />
+            <figcaption><strong>What you're looking at:</strong> the <em>Active Directory Users and Computers</em> console — the main tool IT staff use to manage every account on the network. The folder called <code>precisionusers</code> is selected on the left, and its contents are listed on the right: three individual employee accounts (Billy Martinez, George Stewart, and Jacob Barrera), each type "User." These are the accounts that employees would actually log in with.</figcaption>
+          </figure>
+        </article>
+
+        <article class="step-item">
+          <span class="step-number">Step 4</span>
+          <p class="step-text">Set up a shared folder on the server and connected it to the Windows 10 computer as a network drive.</p>
+          <p class="step-explain">A "shared folder" lives on the server, not on any one employee's computer — so everyone with permission can open the same files from their own desk, and nothing is lost if one computer breaks. Mapping it as a network drive (here, drive <code>P:</code>) makes that shared folder show up in File Explorer just like a regular hard drive, so it feels normal to use.</p>
+          <figure class="step-figure">
+            <img src="../assets/labs/ad-mapped-drive.jpg" alt="Windows 10 client with P drive mapped to precisionfiles share on PRECISIONENG1" loading="lazy" />
+            <figcaption><strong>What you're looking at:</strong> File Explorer on the Windows 10 computer, open to a folder labeled <code>precisionfiles (\\PRECISIONENG1) (P:)</code> — that path means "the <code>precisionfiles</code> folder, located on the server named PRECISIONENG1, mapped locally as drive P." Inside are two shared documents, proving the connection between the workstation and the server's shared storage is actually working.</figcaption>
+          </figure>
+        </article>
+      </div>
+
+      <section class="doc-section doc-callout">
+        <h2>Where this lab came from</h2>
+        <p>Full Sail University — Introduction to Application Servers course, Week 2 lab assignments (<code>activity2.5.docx</code> and <code>activity_2.4.docx</code>). These are private coursework files with instructor notes and aren't published publicly; the screenshots above are the actual proof-of-work images submitted for grading.</p>
+      </section>
+    </div>
+  </main>
+  <script src="../assets/js/lightbox.js" defer></script>
+</body>
+</html>

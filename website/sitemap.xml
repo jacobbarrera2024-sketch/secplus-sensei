@@ -6,6 +6,36 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://jacobbarrera2024-sketch.github.io/secplus-sensei/case-studies/active-directory.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://jacobbarrera2024-sketch.github.io/secplus-sensei/case-studies/vulnerability-assessment.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://jacobbarrera2024-sketch.github.io/secplus-sensei/case-studies/infrastructure-hardening.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://jacobbarrera2024-sketch.github.io/secplus-sensei/case-studies/nist-policy-library.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jacobbarrera2024-sketch.github.io/secplus-sensei/case-studies/sample-tickets.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://jacobbarrera2024-sketch.github.io/secplus-sensei/kb/encrypt-decrypt-aes256.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://jacobbarrera2024-sketch.github.io/secplus-sensei/ai-demo/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

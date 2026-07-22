@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infrastructure Hardening — Jacob Barrera</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="../index.html#it-support"><span class="brand-mark">J</span><span>Jacob Barrera</span></a>
+      <nav class="nav-links"><a href="../index.html#it-support">← Back to portfolio</a></nav>
+    </div>
+  </header>
+  <main class="doc-page">
+    <div class="container doc-inner walkthrough reveal visible">
+      <p class="case-study-badge">Academic / lab project · Portfolio II &amp; III</p>
+      <h1>Multi-Service Infrastructure Hardening</h1>
+      <p class="doc-lead">Five separate lab services, each deployed and then locked down — a web server, a website platform, a file-sharing server, a document management system, and a Windows load-balanced server pair. Click any screenshot to view it full-size.</p>
+
+      <div class="doc-meta">
+        <span class="tag">Nginx / SSL</span>
+        <span class="tag">WordPress</span>
+        <span class="tag">Samba</span>
+        <span class="tag">Docker</span>
+        <span class="tag">Windows Server 2019</span>
+        <span class="tag">PowerShell</span>
+      </div>
+
+      <p class="walkthrough-intro"><strong>Why five different services on one page?</strong> Real IT support is never just one app — it's keeping several unrelated systems running, secured, and documented at the same time, on both Linux and Windows. Jump to any section below, or scroll through all five in order.</p>
+
+      <nav class="walkthrough-toc" aria-label="Jump to service">
+        <a href="#nginx">Nginx (web server)</a>
+        <a href="#wordpress">WordPress (website)</a>
+        <a href="#samba">Samba (file sharing)</a>
+        <a href="#mayan">Mayan EDMS (documents)</a>
+        <a href="#nlb">Windows NLB (load balancing)</a>
+      </nav>
+
+      <section class="walkthrough-part" id="nginx">
+        <h2>Part A — Nginx web server</h2>
+        <p><strong>What is Nginx?</strong> It's software that sits in front of a website and handles incoming traffic — think of it as the front desk that greets every visitor before routing them to the right place. It's one of the most common web servers in the world.</p>
+        <div class="step-walkthrough">
+          <article class="step-item">
+            <span class="step-number">Step 1</span>
+            <p class="step-text">Prepared a Linux server (Rocky Linux) by installing an extra software repository needed for Nginx.</p>
+            <p class="step-explain">Linux keeps its software in curated collections called "repositories" — like an app store. Rocky Linux's default collection doesn't include everything needed, so an additional repository (EPEL, "Extra Packages for Enterprise Linux") has to be added first before Nginx and its related tools can be installed.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/nginx-rocky-setup.jpg" alt="Rocky Linux VM installing epel-release for Nginx reverse proxy setup" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> a text-based command line on a freshly started Rocky Linux server. The last line shows the command being typed to install <code>epel-release</code> — the package that unlocks the extra software repository. Everything above it is normal startup activity from the server booting up.</figcaption>
+            </figure>
+          </article>
+          <article class="step-item">
+            <span class="step-number">Step 2</span>
+            <p class="step-text">Installed Nginx itself, then started it and set it to launch automatically every time the server restarts.</p>
+            <p class="step-explain">Installing software doesn't mean it's running — it has to be explicitly started. Setting a service to "enable" means it will start itself automatically on every future reboot, so nobody has to remember to manually turn the web server back on after a restart.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/nginx-service-start.jpg" alt="Nginx installed then started and enabled as a service on Rocky Linux" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> the tail end of the Nginx installation, followed by the two commands that bring it to life: <code>systemctl start nginx</code> (turn it on right now) and <code>systemctl enable nginx</code> (also turn it on automatically after every reboot). The confirmation line underneath is Linux acknowledging the auto-start was set up successfully.</figcaption>
+            </figure>
+          </article>
+        </div>
+      </section>
+
+      <section class="walkthrough-part" id="wordpress">
+        <h2>Part B — WordPress hardening</h2>
+        <p><strong>What is WordPress?</strong> It's the platform running roughly 40% of all websites — a content-management system that lets you build and edit a site without writing code from scratch. Popularity also makes it a common attack target, so hardening it matters.</p>
+        <div class="step-walkthrough">
+          <article class="step-item">
+            <span class="step-number">Step 1</span>
+            <p class="step-text">Deployed the WordPress software onto a Linux web server.</p>
+            <p class="step-explain">This is simply unpacking WordPress's files onto the server in the folder a web server looks in by default (<code>/var/www/html</code>) — the standard "front door" location for anything a website visitor is allowed to see.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/wordpress-files.jpg" alt="WordPress installation file listing in var www html on Ubuntu" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> a file listing showing WordPress's core files now sitting on the server — <code>index.php</code>, <code>wp-login.php</code>, <code>wp-config.php</code>, and others. Their presence here means the WordPress software itself is installed and ready to be configured.</figcaption>
+            </figure>
+          </article>
+          <article class="step-item">
+            <span class="step-number">Step 2</span>
+            <p class="step-text">Finished the WordPress setup wizard in a web browser, proving the site was actually up and running.</p>
+            <p class="step-explain">Installing files isn't the same as having a working website — the setup wizard is WordPress confirming it can talk to its database and is ready to serve real pages. This is the step where the "it works" moment actually happens.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/wp-setup-wizard.jpg" alt="WordPress setup wizard confirming it can connect to its database" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> a real web browser, loaded to the WordPress installer page, displaying the message <em>"You've made it through this part of the installation. WordPress can now communicate with your database."</em> This confirms the website is genuinely live and functioning, not just files sitting unused on a disk.</figcaption>
+            </figure>
+          </article>
+          <article class="step-item">
+            <span class="step-number">Step 3</span>
+            <p class="step-text">Locked down who is allowed to change WordPress's own files, using Linux file permissions.</p>
+            <p class="step-explain">Every file on a Linux server has an "owner" and a set of rules for who can read, write, or run it. Setting the right owner (here, a limited system account called <code>www-data</code> — the account the web server itself runs as) means that even if someone else gets access to the server, they still can't casually edit WordPress's core files.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/wordpress-permissions.jpg" alt="WordPress directory permissions showing www-data ownership" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> a permissions check on WordPress's three most important folders (<code>wp-admin</code>, <code>wp-content</code>, <code>wp-includes</code>). Each line confirms the owner is <code>www-data</code> — the restricted account the web server runs as, not a full administrator account — which limits the damage possible if that account were ever compromised.</figcaption>
+            </figure>
+          </article>
+          <article class="step-item">
+            <span class="step-number">Step 4</span>
+            <p class="step-text">Added an extra layer of protection specifically around WordPress's most sensitive file, <code>wp-config.php</code>.</p>
+            <p class="step-explain"><code>wp-config.php</code> stores the website's database password and secret security keys — if an attacker ever read that file, they could take over the entire site. A configuration file called <code>.htaccess</code> can add a server-level rule that blocks any direct request for that file from the outside, on top of the normal file permissions from Step 3.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/wp-htaccess-hardening.jpg" alt=".htaccess rule blocking direct access to wp-config.php" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> the <code>.htaccess</code> file being edited in a text editor. The top rule, <code>&lt;Files wp-config.php&gt; ... deny from all &lt;/Files&gt;</code>, tells the web server to refuse any visitor who tries to load that file directly in a browser — closing off one of the most damaging things an attacker could try.</figcaption>
+            </figure>
+          </article>
+          <article class="step-item">
+            <span class="step-number">Step 5</span>
+            <p class="step-text">Tested the lockdown by trying to write to WordPress's files as a different, non-admin user — and confirmed it was blocked.</p>
+            <p class="step-explain">Setting permissions is one thing; proving they actually work is another. Here, a second, ordinary user account (<code>testuser</code>) tried to create or edit files inside WordPress's folders — the same thing malicious code would try to do if it ever got a foothold on the server.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/wp-permission-test.jpg" alt="Permission denied errors when a non-admin user tries to write WordPress files" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> a terminal running several write attempts as <code>testuser</code> — trying to create a file in <code>wp-content</code>, and trying to edit <code>wp-config.php</code>. Every single attempt returns <strong>"Permission denied."</strong> This is direct proof the hardening from Steps 3 and 4 actually works, not just that it was configured.</figcaption>
+            </figure>
+          </article>
+        </div>
+      </section>
+
+      <section class="walkthrough-part" id="samba">
+        <h2>Part C — Samba file server</h2>
+        <p><strong>What is Samba?</strong> It's software that lets a Linux computer share folders the same way Windows computers natively do — so a mixed office of Windows and Linux/Mac machines can all access the same shared drive. This is the exact fix behind the classic "I can't access the shared drive" help desk ticket.</p>
+        <div class="step-walkthrough">
+          <article class="step-item">
+            <span class="step-number">Step 1</span>
+            <p class="step-text">Installed Samba on a Linux server, turning it into a file server Windows computers can connect to.</p>
+            <p class="step-explain">Without Samba, a Linux computer can't be "seen" by Windows the normal way Windows expects (through a system called SMB). Installing it is what makes cross-platform file sharing possible at all.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/samba-install.jpg" alt="apt-get install samba on Ubuntu file server in Proxmox" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> a Linux command line running <code>sudo apt-get install samba</code> — the command that downloads and installs Samba along with everything it depends on. The scrolling text lists all the smaller components being installed alongside it.</figcaption>
+            </figure>
+          </article>
+          <article class="step-item">
+            <span class="step-number">Step 2</span>
+            <p class="step-text">Created a specific shared folder and set exactly who is allowed to access it.</p>
+            <p class="step-explain">Samba's behavior is controlled by one settings file (<code>smb.conf</code>). Rather than sharing every folder on the server with everyone, this defines one named share with a specific list of approved users — the same "least privilege" principle used in Active Directory: only give access to the people who actually need it.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/samba-share-config.jpg" alt="Samba smb.conf file with a custom share and restricted valid users" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> the Samba settings file open in a text editor, with a custom share block (circled) named <code>[examplefolder]</code>. It points to a specific folder path and includes the line <code>valid users = user</code> — meaning only that one approved account can connect to this particular share, not just anyone on the network.</figcaption>
+            </figure>
+          </article>
+        </div>
+      </section>
+
+      <section class="walkthrough-part" id="mayan">
+        <h2>Part D — Mayan EDMS (document management)</h2>
+        <p><strong>What is Mayan EDMS?</strong> It's a system for storing, organizing, and searching scanned documents and files — the digital version of a filing cabinet, built for businesses that need to track paperwork like contracts or invoices.</p>
+        <div class="step-walkthrough">
+          <article class="step-item">
+            <span class="step-number">Step 1</span>
+            <p class="step-text">Deployed the entire document-management system in one step using Docker.</p>
+            <p class="step-explain">Mayan EDMS actually needs several separate pieces working together — the main app, a database, a cache, and a message queue. Docker packages each piece into its own isolated "container" so they don't interfere with each other, and one command can start all of them together correctly configured.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/mayan-docker-compose.jpg" alt="Docker Compose up for Mayan EDMS with supporting containers" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> the output of <code>docker compose up</code> — each line confirms a separate piece of Mayan starting successfully: the main app, plus its database (<code>postgresql</code>), cache (<code>redis</code>), and task queue (<code>rabbitmq</code>). All four containers report "Started," meaning the full document-management system is now running.</figcaption>
+            </figure>
+          </article>
+        </div>
+      </section>
+
+      <section class="walkthrough-part" id="nlb">
+        <h2>Part E — Windows Server load balancing (NLB)</h2>
+        <p><strong>What is load balancing?</strong> It's spreading incoming traffic across two or more servers instead of relying on just one — so if one server gets overloaded or fails, the other keeps things running. NLB (Network Load Balancing) is Microsoft's built-in way to do this on Windows Server.</p>
+        <div class="step-walkthrough">
+          <article class="step-item">
+            <span class="step-number">Step 1</span>
+            <p class="step-text">Prepared a Windows Server 2019 machine to be cloned into an identical second server, using a tool called Sysprep.</p>
+            <p class="step-explain">You can't just copy a running Windows server and turn on two at once — they'd conflict over shared internal IDs. Sysprep resets those unique identifiers so the copy can safely become its own independent computer, which is how the second load-balancing node gets created.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/nlb-sysprep.jpg" alt="Sysprep command on Windows Server 2019 for NLB node preparation" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> the Windows "Run" box with <code>Sysprep</code> typed in and circled — this launches the tool that generalizes the server so it can be cloned into a second, independent machine for the load-balancing pair.</figcaption>
+            </figure>
+          </article>
+          <article class="step-item">
+            <span class="step-number">Step 2</span>
+            <p class="step-text">Gave the first server a fixed, permanent network address instead of a temporary one.</p>
+            <p class="step-explain">Most home devices get a temporary, auto-assigned address that can change over time (DHCP). Servers need a permanent, unchanging address (a "static IP") so other computers — and the load balancer itself — always know exactly where to find them.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/nlb-network-config.jpg" alt="Static IP and DNS configuration on NLB-server1" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> the Windows network settings for a server named <code>NLB-server1</code>, with a fixed address (<code>192.168.50.115</code>) and matching gateway/DNS settings manually entered — the permanent contact information this server will always use.</figcaption>
+            </figure>
+          </article>
+          <article class="step-item">
+            <span class="step-number">Step 3</span>
+            <p class="step-text">Created the actual load-balancing cluster and gave it its own shared address that customers or employees would connect to.</p>
+            <p class="step-explain">This is the core of load balancing: instead of people connecting directly to <code>NLB-server1</code> or <code>NLB-server2</code>, everyone connects to one shared "cluster" address, and Windows automatically routes each request to whichever server is healthy and available.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/nlb-cluster-create.jpg" alt="Network Load Balancing Manager creating a new cluster with a shared IP address" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> the Network Load Balancing Manager, mid-way through the "New Cluster" wizard, adding the shared cluster address <code>192.168.50.200</code>. This is the single address the outside world will use — behind the scenes, it's actually two servers sharing the load.</figcaption>
+            </figure>
+          </article>
+          <article class="step-item">
+            <span class="step-number">Step 4</span>
+            <p class="step-text">Added the second server to the cluster, completing the two-node load-balanced pair.</p>
+            <p class="step-explain">A load-balancing cluster with only one server isn't providing any redundancy — this step connects the second, previously-prepared server (from Step 1) into the same cluster, so traffic can now be shared between both, and either one can fail without taking the whole service down.</p>
+            <figure class="step-figure">
+              <img src="../assets/labs/nlb-cluster-add-node.jpg" alt="Adding a second host to the existing NLB cluster" loading="lazy" />
+              <figcaption><strong>What you're looking at:</strong> the "Add Host to Cluster" dialog, connecting to the second server at <code>192.168.50.115</code> to join it to the cluster created in Step 3. Once this finishes, the load-balancing pair is fully operational.</figcaption>
+            </figure>
+          </article>
+        </div>
+      </section>
+
+      <section class="doc-section doc-callout">
+        <h2>Where these labs came from</h2>
+        <p>Full Sail University — Project and Portfolio II (Nginx/SSL, WordPress) and Project and Portfolio III (Samba, Mayan EDMS, Windows NLB). These are private coursework files with instructor notes and aren't published publicly; the screenshots above are the actual proof-of-work images submitted for grading.</p>
+      </section>
+    </div>
+  </main>
+  <script src="../assets/js/lightbox.js" defer></script>
+</body>
+</html>

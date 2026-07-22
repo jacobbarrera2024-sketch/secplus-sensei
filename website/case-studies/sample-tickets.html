@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sample Vulnerability Tickets — Jacob Barrera</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="../index.html#it-support"><span class="brand-mark">J</span><span>Jacob Barrera</span></a>
+      <nav class="nav-links"><a href="vulnerability-assessment.html">← Case study</a></nav>
+    </div>
+  </header>
+  <main class="doc-page">
+    <div class="container doc-inner reveal visible">
+      <h1>Sample Remediation Tickets</h1>
+      <p class="doc-lead">Representative findings from a Nessus lab scan, tracked through open → in progress → resolved.</p>
+      <div class="table-wrap">
+        <table class="doc-table">
+          <thead>
+            <tr><th>Ticket</th><th>Finding</th><th>Severity</th><th>Host</th><th>Status</th><th>Remediation</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>VA-001</td><td>SMBv1 enabled (EternalBlue-class risk)</td><td><span class="sev critical">Critical</span></td><td>SAMBA-FS01</td><td>Resolved</td><td>Disabled SMBv1; verified SMBv2/3 only</td></tr>
+            <tr><td>VA-002</td><td>Outdated OpenSSL with known CVE</td><td><span class="sev high">High</span></td><td>NGINX-PROXY01</td><td>Resolved</td><td>Updated OpenSSL; re-scanned</td></tr>
+            <tr><td>VA-003</td><td>RDP exposed with weak lockout policy</td><td><span class="sev high">High</span></td><td>WIN-SRV2019-A</td><td>Resolved</td><td>Restricted RDP subnet; enforced lockout</td></tr>
+            <tr><td>VA-004</td><td>Missing Windows security patches</td><td><span class="sev medium">Medium</span></td><td>WIN-SRV2019-B</td><td>Resolved</td><td>Applied updates in maintenance window</td></tr>
+            <tr><td>VA-005</td><td>Self-signed SSL on WordPress admin</td><td><span class="sev low">Low</span></td><td>WP-LAMP01</td><td>In Progress</td><td>Requested internal CA cert; IP allowlist interim</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

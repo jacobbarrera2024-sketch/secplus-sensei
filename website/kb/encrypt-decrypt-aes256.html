@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KB: Encrypt/Decrypt with AES-256 — Jacob Barrera</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="../index.html#it-support"><span class="brand-mark">J</span><span>Jacob Barrera</span></a>
+      <nav class="nav-links"><a href="../index.html#it-support">← Back to portfolio</a></nav>
+    </div>
+  </header>
+  <main class="doc-page">
+    <div class="container doc-inner reveal visible">
+      <p class="case-study-badge">Knowledge base article · Lab project</p>
+      <h1>How to Encrypt/Decrypt Files with AES-256</h1>
+      <p class="doc-lead">Internal-style KB entry based on OpenSSL lab work and a Python/Tkinter encryption utility — written the way a help desk knowledge base should read.</p>
+      <section class="doc-section"><h2>Encrypt</h2>
+        <pre class="code-block">openssl enc -aes-256-cbc -salt -pbkdf2 -in "file.zip" -out "file.zip.enc" -k "YourPassphrase"</pre>
+      </section>
+      <section class="doc-section"><h2>Decrypt</h2>
+        <pre class="code-block">openssl enc -d -aes-256-cbc -pbkdf2 -in "file.zip.enc" -out "file.zip" -k "YourPassphrase"</pre>
+      </section>
+      <section class="doc-section"><h2>Common issues</h2>
+        <div class="table-wrap">
+          <table class="doc-table">
+            <thead><tr><th>Symptom</th><th>Cause</th><th>Fix</th></tr></thead>
+            <tbody>
+              <tr><td><code>bad decrypt</code></td><td>Wrong password or -pbkdf2 mismatch</td><td>Match flags on both commands; verify passphrase</td></tr>
+              <tr><td>Corrupt output</td><td>File transferred in text mode</td><td>Transfer .enc as binary attachment</td></tr>
+              <tr><td>Unknown option</td><td>Older OpenSSL</td><td>Upgrade OpenSSL or drop -pbkdf2 on both sides</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="doc-section"><h2>Security notes</h2>
+        <ul>
+          <li>Never send passphrase in the same channel as the encrypted file.</li>
+          <li>For routine use, prefer BitLocker or company-approved secure transfer over ad hoc OpenSSL.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NIST Security Policy Library — Jacob Barrera</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="../index.html#it-support"><span class="brand-mark">J</span><span>Jacob Barrera</span></a>
+      <nav class="nav-links"><a href="../index.html#it-support">← Back to portfolio</a></nav>
+    </div>
+  </header>
+  <main class="doc-page">
+    <div class="container doc-inner walkthrough reveal visible">
+      <p class="case-study-badge">Academic / lab project · Portfolio IV</p>
+      <h1>NIST Security Policy Library</h1>
+      <p class="doc-lead">Three written policy documents defining how passwords, system changes, and new employee accounts get handled — the same rules help desk technicians enforce every day, based on NIST (National Institute of Standards and Technology) security guidelines.</p>
+
+      <div class="doc-meta">
+        <span class="tag">NIST 800-53</span>
+        <span class="tag">NIST 800-63</span>
+        <span class="tag">Policy writing</span>
+        <span class="tag">Change control</span>
+      </div>
+
+      <p class="walkthrough-intro"><strong>Why no screenshots on this page?</strong> This project's deliverable is the written policy itself, not a hands-on lab — there's no console or terminal to screenshot. The quick-reference cards below summarize what each document actually requires in plain terms.</p>
+
+      <div class="quick-ref-grid">
+        <div class="quick-ref-card">
+          <h3>Password Standard</h3>
+          <p>Passwords must be at least 12 characters long, and every account needs a second login step (multi-factor authentication) beyond just the password. Passwords aren't force-changed on a schedule — instead they're checked against lists of passwords already leaked in past breaches, and only changed when there's an actual reason to suspect one is compromised.</p>
+        </div>
+        <div class="quick-ref-card">
+          <h3>Change Control</h3>
+          <p>Before any change goes live on a real system: someone requests it, someone else reviews it, a manager approves it, it gets implemented, then it gets verified afterward to confirm it actually worked — and every step gets written down. No change goes live without a plan to undo it if something breaks.</p>
+        </div>
+        <div class="quick-ref-card">
+          <h3>New Account Procedure</h3>
+          <p>Every new employee account needs a request and a manager's approval before it's created. Each account only gets the minimum access needed for that person's job ("least privilege") and is unique to one person — never shared. The moment someone leaves the company, their account is disabled that same day.</p>
+        </div>
+      </div>
+
+      <section class="doc-section" style="margin-top: 36px;">
+        <h2>Help desk relevance</h2>
+        <p>Most entry-level candidates never write policy — they just click through tickets. Writing these documents means I understand <em>why</em> account-creation and change-management tickets exist in the first place, not just the steps to close them.</p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
